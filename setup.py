@@ -31,7 +31,7 @@ def uploadlist(dir):
 setup(
     name='gcid',
     version='10',
-    url='https://github.com/bthate/gcdbot',
+    url='https://github.com/bthate/gcid',
     author='Bart Thate',
     author_email='bthate67@gmail.com', 
     description="OTP-CR-117/19",
@@ -40,7 +40,6 @@ setup(
     packages=["gcid", "gcid.mod"],
     zip_safe=True,
     include_package_data=True,
-    install_requires=["feedparser"],
     package_dir={
         "": "lib",
         "gcid": "gcid"

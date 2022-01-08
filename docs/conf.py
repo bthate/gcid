@@ -9,10 +9,15 @@
 __version__ = 10
 
 
-import doctest, os, sys, unittest
+import doctest
+import os
+import sys
+import unittest
 
 
 curdir = os.getcwd()
+
+
 sys.path.insert(0, curdir)
 sys.path.insert(0, os.path.join(curdir , " "))
 
@@ -20,7 +25,7 @@ sys.path.insert(0, os.path.join(curdir , " "))
 # -- Options for GENERIC output ---------------------------------------------
 
 
-project = "gcd"
+project = "gcid"
 master_doc = 'index'
 version = '%s' % __version__
 release = '%s' % __version__
@@ -56,9 +61,8 @@ html_theme = "bizstyle"
 html_theme_options = {
     'nosidebar': True,
 }
-html_short_title = "GCD %s OTP-CR-117/19" % __version__
-html_short_title = "OTP-CR-117/19"
-#html_titlex = "GENOCIDE %s" % __version__
+html_title = "OTP-CR-117/19"
+html_short_title = ""
 html_favicon = "jpg/skull3.jpg"
 html_extra_path = []
 html_last_updated_fmt = '%Y-%b-%d'
@@ -70,7 +74,7 @@ html_show_sourcelink = False
 html_show_sphinx = False
 html_show_copyright = False
 html_copy_source = False
-html_use_opensearch = 'http://genocide.rtfd.io/'
+html_use_opensearch = 'http://gcid.rtfd.io/'
 html_file_suffix = '.html'
 htmlhelp_basename = 'testdoc'
 
@@ -81,7 +85,7 @@ intersphinx_mapping = {
 intersphinx_cache_limit=1
 
 
-rst_prolog = '''.. image:: genocide3line.png
+rst_prolog = '''.. image:: line.png
     :width: 100%
 '''
 

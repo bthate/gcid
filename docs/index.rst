@@ -1,6 +1,5 @@
-GENOCIDE
-########
-
+GCID
+####
 
 | Information and Evidence Unit
 | Office of the Prosecutor
