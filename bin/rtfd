@@ -1,0 +1,8 @@
+#!/bin/bash
+# GENOCIDE
+#
+# OTP-CR-117/19
+
+[ -d "env" ] && echo "environment is there" || (echo "creating environment" ; bin/upenv)
+env/bin/python3 env/bin/sphinx-build docs html
+

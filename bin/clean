@@ -1,0 +1,3 @@
+rm -fR lib/*~ lib/__pycache__ lib/gcid.egg-info gcid/*~ gcid/__pycache__ __pycache__ files/*~ .test gcid/mod/*~ gcid/mod/__pycache__ test/__pycache__ test/*~
+rm -fR docs/txt/*~ docs/gcid*.rst docs/gcid.mod*.rst docs/gcid.mod.rst docs/gcid.rst docs/*~ docs/__pycache__ html env env.tar.gz  build dist MANIFEST gcid.egg-info bin/*~ *~
+rm -fR env html.tar.gz

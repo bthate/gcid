@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+# This file is placed in the Public Domain.
+
+
+"OTP-CR-117/19"
+
+
+import doctest
+import inspect
+import os
+import shutil
+import sys
+import unittest
+
+
+from gcd.cls import Cls
+from gcd.cmd import Cmd
+from gcd.krn import Cfg, boot
+from gcd.obj import Object, values
+from gcd.prs import parse
+from gcd.tbl import Tbl
+
+
+import gcd.all
+import gcdm.all
+
+
+Cfg.wd = ".test"
+
+
+flags = doctest.REPORT_NDIFF | doctest.FAIL_FAST | doctest.ELLIPSIS
+results = []
+
+
+def scan():
+    for mod in values(Tbl.mod):
+        for k, o in inspect.getmembers(mod, inspect.isfunction):
+            if "event" in o.__code__.co_varnames:
+                Cmd.cmds[k] = o
+        for k, clz in inspect.getmembers(mod, inspect.isclass):
+            Cls.add(clz)
+        Tbl.add(mod)
+
+
+def main():
+    if os.path.exists(Cfg.wd):
+        shutil.rmtree(Cfg.wd)
+    boot(" ".join(sys.argv[1:]))
+    Cfg.debug = True
+    scan()
+    pat = "test_%s*" % "*"
+    suite = unittest.loader.TestLoader().discover("test", pattern=pat)
+    unittest.TextTestRunner(verbosity=3).run(suite)
+    if Cfg.verbose:
+        for txt in results:
+            print(txt)
+
+main()
