@@ -12,4 +12,4 @@ otp1
 
 
 .. image:: OTP1.png
-    :height: 15cm
+    :height: 12cm

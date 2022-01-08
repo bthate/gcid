@@ -62,7 +62,7 @@ html_theme_options = {
     'nosidebar': True,
 }
 html_title = "GCID %s" % __version__
-html_short_title = "GCID %s reconsider OTP-CR-117/19" % __version__
+html_short_title = "GCID %s OTP-CR-117/19" % __version__
 html_favicon = "jpg/skull3.jpg"
 html_extra_path = []
 html_last_updated_fmt = '%Y-%b-%d'

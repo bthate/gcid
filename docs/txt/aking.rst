@@ -8,8 +8,7 @@ king
 
 .. raw:: html
 
-    <br><br>   
+    <br>
 
 
 .. image:: bevestigd.jpg
-    :height: 15cm

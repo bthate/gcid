@@ -8,8 +8,8 @@ otp2
 
 .. raw:: html
 
-    <br><br>   
+    <br>
 
 
 .. image:: OTP2.png
-    :height: 15cm
+    :height: 12cm
