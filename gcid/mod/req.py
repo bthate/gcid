@@ -1,10 +1,12 @@
 # This file is placed in the Public Domain.
 
-"""| Information and Evidence Unit
-| Office of the Prosecutor
-| Post Office Box 19519
-| 2500 CM The Hague
-| The Netherlands
+"request"
+
+txt = """Information and Evidence Unit
+|Office of the Prosecutor
+|Post Office Box 19519
+|2500 CM The Hague
+|The Netherlands
 
 Hello Office of the Prosecutor,
 
@@ -63,4 +65,4 @@ p.s.
 
 
 def req(event):
-    event.reply(__doc__)
+    event.reply(txt)

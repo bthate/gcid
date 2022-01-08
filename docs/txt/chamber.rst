@@ -1,3 +1,5 @@
+.. title:: chamber
+
 .. _chamber:
 
 chamber
@@ -9,4 +11,4 @@ chamber
 
 
 .. image:: kamer.png
-    :Width: 100%
+    :height: 15cm

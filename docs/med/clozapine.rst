@@ -1,4 +1,6 @@
-.. _leponex:
+.. title:: clozapine
+
+.. _clozapine:
 
 clozapine
 #########

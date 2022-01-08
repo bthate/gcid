@@ -1,3 +1,5 @@
+.. title:: haldol
+
 .. _haldol:
 
 haldol

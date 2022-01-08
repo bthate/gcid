@@ -1,3 +1,5 @@
+.. title:: abilify
+
 .. _abilify:
 
 abilify

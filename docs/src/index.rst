@@ -1,3 +1,5 @@
+.. title:: source
+
 .. _source:
 
 source
@@ -13,7 +15,6 @@ The gcid package provides the following modules:
     gcid.cfg
     gcid.clt
     gcid.dbs
-    gcid.dft
     gcid.err
     gcid.evt
     gcid.fnc

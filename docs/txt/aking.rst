@@ -1,3 +1,5 @@
+.. title:: king
+
 .. _king:
 
 king
@@ -10,3 +12,4 @@ king
 
 
 .. image:: bevestigd.jpg
+    :height: 15cm

@@ -1,3 +1,5 @@
+.. title:: otp1
+
 .. _otp1:
 
 otp1
@@ -10,4 +12,4 @@ otp1
 
 
 .. image:: OTP1.png
-    :width: 100%
+    :height: 15cm

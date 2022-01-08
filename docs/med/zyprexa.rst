@@ -1,3 +1,5 @@
+.. title:: zyprexa
+
 .. _zyprexa:
 
 zyprexa

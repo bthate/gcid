@@ -1,6 +1,9 @@
 # This file is placed in the Public Domain.
 
 
+"specification"
+
+
 def __dir__():
     return (
         "Bus",
@@ -13,6 +16,7 @@ def __dir__():
         "launch",
         "root"
     )
+
 
 from gcid.bus import Bus
 from gcid.clt import Client

@@ -61,8 +61,8 @@ html_theme = "bizstyle"
 html_theme_options = {
     'nosidebar': True,
 }
-html_title = ""
-html_short_title = "GCID - reconsider OTP-CR-117/19"
+html_title = "GCID %s" % __version__
+html_short_title = "GCID %s reconsider OTP-CR-117/19" % __version__
 html_favicon = "jpg/skull3.jpg"
 html_extra_path = []
 html_last_updated_fmt = '%Y-%b-%d'
@@ -87,10 +87,6 @@ intersphinx_cache_limit=1
 
 rst_prolog = '''.. image:: line.png
     :width: 100%
-
-
-.. title:: GCID - reconsider OTP-CR-117/19
-
 '''
 
 
