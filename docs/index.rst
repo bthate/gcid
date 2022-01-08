@@ -1,11 +1,10 @@
+.. title:: OTP-CR-117/19
+
 | Information and Evidence Unit
 | Office of the Prosecutor
 | Post Office Box 19519
 | 2500 CM The Hague
 | The Netherlands
-
-
-
 
 Hello Office of the Prosecutor,
 
@@ -60,7 +59,6 @@ p.s.
 
 
 (1) provided are the confirmation letters of both the :ref:`chamber` and the :ref:`king`.
-(2) your reference: **OTP-CR-117/19**
 
 
 .. toctree::
