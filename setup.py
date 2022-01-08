@@ -47,7 +47,7 @@ setup(
     py_modules=["gcidrun"],
     data_files=[
                 ("share/gcid", ["files/gcid.service"]),
-                ("share/gcid", ["docs/gcid.1.md"]),
+                ("share/gcid", ["files/gcid.1.md"]),
                 ("share/doc/gcid", uploadlist("docs")),
                 ("share/doc/gcid/jpg", uploadlist("docs/jpg")),
                 ("share/doc/gcid/pdf", uploadlist("docs/pdf")),
