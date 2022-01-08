@@ -1,9 +1,14 @@
 .. _admin:
 
-NAME
+GCID
 ####
 
- **GCID** reconsider **OTP-CR-117/19**
+ reconsider **OTP-CR-117/19**
+
+NAME
+----
+
+ **GCID** 
 
 SYNOPSIS
 --------
