@@ -8,8 +8,8 @@
  (4) aripriprazole (:ref:`abilify`) - https://echa.europa.eu/substance-information/-/substanceinfo/100.112.532
 
 
-.. toctree::
-    :hidden:
-    :glob:
+ .. toctree::
+     :hidden:
+     :glob:
 
-    *
+     *

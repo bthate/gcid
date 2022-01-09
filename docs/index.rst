@@ -50,17 +50,12 @@
 
  **SEE ALSO**
 
-  :ref:`reconsider <reconsider>`, :ref:`source <source>`
+  :ref:`reconsider <reconsider>`
+
 
 .. toctree::
     :hidden:
 
     reconsider
-
-.. toctree::
-    :hidden:
-    :glob:
-
-    txt/*
-    src/*
-    med/*
+    med/index
+    txt/index
