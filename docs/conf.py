@@ -61,7 +61,8 @@ html_theme = "bizstyle"
 html_theme_options = {
     'nosidebar': True,
 }
-html_title = "GCID %s" % __version__
+html_title = "OTP-CR-117/19"
+html_title = ""
 html_short_title = "GCID %s" % __version__
 html_favicon = "jpg/skull3.jpg"
 html_extra_path = []

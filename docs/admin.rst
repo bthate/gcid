@@ -48,6 +48,3 @@
   | ``gcidctl met <userhost>``
 
 
- **SEE ALSO**
-
-  :ref:`reconsider <reconsider>`
