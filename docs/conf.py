@@ -40,7 +40,7 @@ modindex_common_prefix = [""]
 keep_warnings = True
 templates_path=['_templates']
 add_function_parentheses = False
-add_module_names = True
+add_module_names = False
 show_authors = False
 pygments_style = 'sphinx'
 extensions=[
@@ -85,9 +85,9 @@ intersphinx_mapping = {
 intersphinx_cache_limit=1
 
 
-rst_prolog = ''' .. image:: line.png
-     :width: 100%
-'''
+#rst_prolog = ''' .. image:: line.png
+#     :width: 100%
+#'''
 
 
 # -- Options for CODE output -------------------------------------------------
