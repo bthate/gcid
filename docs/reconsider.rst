@@ -60,11 +60,3 @@
 
  (1) provided are the confirmation letters of both the chamber and the king.
 
-
-.. toctree::
-    :hidden:
-
-    reconsider
-    txt/index
-    med/index
-    src/index

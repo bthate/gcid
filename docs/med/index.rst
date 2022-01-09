@@ -1,9 +1,4 @@
-.. title:: evidence
-
 .. _evidence:
-
-evidence
-########
 
 There is proof the medication used in forced treatements in the netherlands are poison.
 

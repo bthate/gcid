@@ -49,7 +49,7 @@
 
 
 
- **see also**
+ **SEE ALSO**
 
   :ref:`reconsider <reconsider>`, :ref:`source <source>`
 
@@ -57,6 +57,7 @@
 .. toctree::
     :hidden:
 
-    txt/index
+    reconsider
     med/index
+    txt/index
     src/index
