@@ -1,3 +1,5 @@
+ .. _{{ fullname }}:
+
  **{{ fullname }}**
 
  .. automodule:: {{ fullname }}

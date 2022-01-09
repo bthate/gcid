@@ -37,3 +37,9 @@
      gcid.mod.rss
      gcid.mod.udp
      gcid.mod.wsd
+
+.. toctree::
+    :hidden:
+    :glob:
+
+    *

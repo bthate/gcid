@@ -13,13 +13,13 @@
   netherlands is doing a genocide, a written response where the king of
   the netherlands confirmed taking note of “what i have written”, namely
   proof that medicine he uses in treatement laws like zyprexa, haldol,
-  abilify and clozapine are poison. Poison that makes impotent, is both
-  physical (contracted muscles) and mental (let people hallucinate) torture
-  and kills members of the victim groups.
+  abilify and clozapine are poison that makes impotent, is both physical
+  (contracted muscles) and mental (let people hallucinate) torture and kills
+  members of the victim groups.
 
   **GCID** provides a IRC bot that can run as a background daemon for 24/7
-  day presence in a IRC channel. You can use it to display RSS feeds,
-  act as a UDP to IRC gateway, and program your own commands for.
+  day presence in a IRC channel, be used to display RSS feeds, act as a UDP
+  to IRC gateway and program your own commands for.
 
  **INSTALL**
 
@@ -30,19 +30,19 @@
   | ``cp /usr/local/share/gcid/gcid.service /etc/systemd/system``
   | ``systemctl enable gcid --now``
 
- **irc**
+  **irc**
 
   | ``gcidctl cfg server=<server> channel=<channel>``
   | ``gcidctl cfg nick=<nick>``
 
   default channel/server is #gcid on localhost
 
- **sasl**
+  **sasl**
 
   | ``gcidctl pwd <nickservnick> <nickservpass>``
   | ``gcidctl cfg password=<outputfrompwd>``
 
- **users**
+  **users**
 
   | ``gcidctl cfg users=True``
   | ``gcidctl met <userhost>``
@@ -53,3 +53,11 @@
 
   :ref:`reconsider <reconsider>`, :ref:`source <source>`
 
+.. toctree::
+    :hidden:
+    :glob:
+
+    reconsider
+    txt/*
+    src/*
+    med/*
