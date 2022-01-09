@@ -1,14 +1,6 @@
-.. title:: king
+ .. raw:: html
 
-.. _king:
-
-king
-####
+     <br><br>
 
 
-.. raw:: html
-
-    <br>
-
-
-.. image:: bevestigd.jpg
+ .. image:: bevestigd.jpg

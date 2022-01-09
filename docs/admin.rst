@@ -1,69 +1,49 @@
-.. _admin:
+ **NAME**
 
-GCID
-####
+  GCID  - reconsider OTP-CR-117/19
 
- reconsider **OTP-CR-117/19**
 
-NAME
-----
+ **SYNOPSIS**
 
- **GCID** 
+  ``gcidctl <cmd> [key=value] [key==value]``
 
-SYNOPSIS
---------
+ **DESCRIPTION**
 
- ``gcidctl <cmd> [key=value] [key==value]``
+  **GCID** is a python3 program that holds evidence that the king of the
+  netherlands is doing a genocide, a written response where the king of
+  the netherlands confirmed taking note of “what i have written”, namely
+  proof that medicine he uses in treatement laws like zyprexa, haldol,
+  abilify and clozapine are poison. Poison that makes impotent, is both
+  physical (contracted muscles) and mental (let people hallucinate) torture
+  and kills members of the victim groups.
 
-DESCRIPTION
------------
+  **GCID** provides a IRC bot that can run as a background daemon for 24/7
+  day presence in a IRC channel. You can use it to display RSS feeds,
+  act as a UDP to IRC gateway, and program your own commands for.
 
- **GCID** is a python3 program that holds evidence that the king of the
- netherlands is doing a genocide, a written response where the king of
- the netherlands confirmed taking note of “what i have written”, namely
- proof that medicine he uses in treatement laws like zyprexa, haldol,
- abilify and clozapine are poison. Poison that makes impotent, is both
- physical (contracted muscles) and mental (let people hallucinate) torture
- and kills members of the victim groups.
+ **INSTALL**
 
- **GCID** provides a IRC bot that can run as a background daemon for 24/7
- day presence in a IRC channel. You can use it to display RSS feeds,
- act as a UDP to IRC gateway, and program your own commands for.
-
-INSTALL
--------
-
- ``pip3 install gcid``
+  ``pip3 install gcid``
     
-CONFIGURATION
--------------
+ **CONFIGURATION**
 
- | ``cp /usr/local/share/gcid/gcid.service /etc/systemd/system``
- | ``systemctl enable gcid --now``
+  | ``cp /usr/local/share/gcid/gcid.service /etc/systemd/system``
+  | ``systemctl enable gcid --now``
 
-irc
----
+ **irc**
 
- | ``gcidctl cfg server=<server> channel=<channel>``
- | ``gcidctl cfg nick=<nick>``
+  | ``gcidctl cfg server=<server> channel=<channel>``
+  | ``gcidctl cfg nick=<nick>``
 
-default channel/server is #gcid on localhost
+ default channel/server is #gcid on localhost
 
-sasl
-----
+ **sasl**
 
- | ``gcidctl pwd <nickservnick> <nickservpass>``
- | ``gcidctl cfg password=<outputfrompwd>``
+  | ``gcidctl pwd <nickservnick> <nickservpass>``
+  | ``gcidctl cfg password=<outputfrompwd>``
 
-users
------
+ **users**
 
- | ``gcidctl cfg users=True``
- | ``gcidctl met <userhost>``
+  | ``gcidctl cfg users=True``
+  | ``gcidctl met <userhost>``
 
-
-SEE ALSO
---------
-
- | ``/usr/local/share/gcid``
- | ``/usr/local/share/doc/gcid``

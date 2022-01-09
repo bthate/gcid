@@ -1,14 +1,7 @@
-.. title:: chamber
+ .. raw:: html
 
-.. _chamber:
-
-chamber
-#######
-
-.. raw:: html
-
-    <br><br>   
+     <br><br>
 
 
-.. image:: kamer.png
+ .. image:: kamer.png
     :height: 15cm

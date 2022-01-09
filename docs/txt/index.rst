@@ -1,8 +1,3 @@
-.. _correspondence:
-
-correspondence
-##############
-
  | **From**: Bart Thate <bthate@dds.nl>
  | **To**: otp.informationdesk@icc-cpi.int
  | **Subject**: Information that the king of the netherlands is aware that the

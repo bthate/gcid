@@ -1,3 +1,10 @@
-rm -fR lib/*~ lib/__pycache__ lib/gcid.egg-info gcid/*~ gcid/__pycache__ __pycache__ files/*~ .test gcid/mod/*~ gcid/mod/__pycache__ test/__pycache__ test/*~
-rm -fR docs/txt/*~ docs/src/*~ docs/adm/*~ docs/med/*~ docs/med/docs/txt/*~ docs/src/gcid*.rst docs/src/gcid.mod*.rst docs/src/gcid.mod.rst docs/src/gcid.rst docs/*~ docs/__pycache__ html env env.tar.gz  build dist MANIFEST gcid.egg-info bin/*~ *~
-rm -fR env html.tar.gz
+rm -fR lib/*~ lib/__pycache__ lib/gcid.egg-info
+rm -fR gcid/*~ gcid/__pycache__ __pycache__
+rm -fR files/*~ .test gcid/mod/*~ gcid/mod/__pycache__
+rm -fR test/__pycache__ test/*~
+rm -fR docs/txt/*~ 
+rm -fR docs/src/*~ docs/src/gcid*.rst docs/src/gcid.mod*.rst docs/src/gcid.mod.rst docs/src/gcid.rst
+rm -fR docs/med/*~ docs/med/
+rm -fR docs/txt/*~ docs/*~ docs/__pycache__ html env env.tar.gz 
+rm -fR build dist MANIFEST gcid.egg-info 
+rm -fR bin/*~ *~

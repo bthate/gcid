@@ -1,15 +1,7 @@
-.. title:: otp1
+ .. raw:: html
 
-.. _otp1:
-
-otp1
-####
+     <br><br>
 
 
-.. raw:: html
-
-    <br><br>   
-
-
-.. image:: OTP1.png
-    :height: 12cm
+ .. image:: OTP1.png
+     :height: 12cm

@@ -1,9 +1,7 @@
-{{ fullname }}
-{{ underline }}
 
-.. auto{{ objtype }}:: {{ objname }}
+ .. auto{{ objtype }}:: {{ objname }}
 
-.. automodule:: {{ fullname }}
+ .. automodule:: {{ fullname }}
 
 
-.. currentmodule:: {{ module }}
+ .. currentmodule:: {{ module }}

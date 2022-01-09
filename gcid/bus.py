@@ -1,7 +1,11 @@
 # This file is placed in the Public Domain.
 
 
-"bus"
+"""**BUS**
+
+The Bus class provides a class namespace level list of registered listeners.
+
+"""
 
 
 from .obj import Object
