@@ -35,7 +35,7 @@
   | ``gcidctl cfg server=<server> channel=<channel>``
   | ``gcidctl cfg nick=<nick>``
 
- default channel/server is #gcid on localhost
+  default channel/server is #gcid on localhost
 
  **sasl**
 
@@ -53,11 +53,3 @@
 
   :ref:`reconsider <reconsider>`, :ref:`source <source>`
 
-
-.. toctree::
-    :hidden:
-
-    reconsider
-    med/index
-    txt/index
-    src/index

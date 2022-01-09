@@ -1,3 +1,4 @@
+ **{{ fullname }}**
 
  .. auto{{ objtype }}:: {{ objname }}
 

@@ -85,9 +85,10 @@ intersphinx_mapping = {
 intersphinx_cache_limit=1
 
 
-#rst_prolog = ''' .. image:: line.png
-#     :width: 100%
-#'''
+rst_prolog = ''' .. image:: line.png
+    :width: 100%
+
+'''
 
 
 # -- Options for CODE output -------------------------------------------------
