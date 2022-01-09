@@ -48,16 +48,19 @@
   | ``gcidctl met <userhost>``
 
 
-
  **SEE ALSO**
 
   :ref:`reconsider <reconsider>`, :ref:`source <source>`
 
 .. toctree::
     :hidden:
-    :glob:
 
     reconsider
+
+.. toctree::
+    :hidden:
+    :glob:
+
     txt/*
     src/*
     med/*

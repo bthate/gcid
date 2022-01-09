@@ -1,5 +1,7 @@
  .. _source:
 
+ **source**
+
  the gcid package provides the following modules
 
  .. autosummary::

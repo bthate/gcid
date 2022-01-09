@@ -1,3 +1,5 @@
+ .. title:: {{ fullname }}
+
  **{{ fullname }}**
 
  .. autoclass:: {{ objname }}

@@ -1,4 +1,4 @@
- .. _{{ fullname }}:
+ .. title:: {{ fullname }}
 
  **{{ fullname }}**
 
