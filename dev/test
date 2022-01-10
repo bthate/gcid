@@ -13,16 +13,18 @@ import sys
 import unittest
 
 
-from gcd.cls import Cls
-from gcd.cmd import Cmd
-from gcd.krn import Cfg, boot
-from gcd.obj import Object, values
-from gcd.prs import parse
-from gcd.tbl import Tbl
+sys.path.insert(0, os.getcwd())
 
 
-import gcd.all
-import gcdm.all
+from gcid.krn import Cfg, boot
+from gcid.fnc import format
+from gcid.obj import Object, values
+from gcid.prs import parse
+from gcid.tbl import scan
+
+
+import gcid.all
+import gcid.mod.all
 
 
 Cfg.wd = ".test"
@@ -30,16 +32,6 @@ Cfg.wd = ".test"
 
 flags = doctest.REPORT_NDIFF | doctest.FAIL_FAST | doctest.ELLIPSIS
 results = []
-
-
-def scan():
-    for mod in values(Tbl.mod):
-        for k, o in inspect.getmembers(mod, inspect.isfunction):
-            if "event" in o.__code__.co_varnames:
-                Cmd.cmds[k] = o
-        for k, clz in inspect.getmembers(mod, inspect.isclass):
-            Cls.add(clz)
-        Tbl.add(mod)
 
 
 def main():
@@ -54,5 +46,6 @@ def main():
     if Cfg.verbose:
         for txt in results:
             print(txt)
+
 
 main()

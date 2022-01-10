@@ -4,10 +4,10 @@
 import os
 import unittest
 
-from gcd.obj import *
-from gcd.cfg import *
-from gcd.dbs import *
-from gcd.fnc import *
+from gcid.obj import *
+from gcid.cfg import *
+from gcid.dbs import *
+from gcid.fnc import *
 
 attr = (
     'clear',
@@ -44,7 +44,7 @@ class Test_ObjectFunctions(unittest.TestCase):
         Cfg.wd = ".test"
         o = Object()
         save(o)
-        self.assertTrue("Object" in fns("gcd.obj.Object")[0])
+        self.assertTrue("Object" in fns("gcid.obj.Object")[0])
 
     def test_hook(self):
         o = Object()

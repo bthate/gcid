@@ -8,14 +8,14 @@ import os
 import unittest
 
 
-from gcd.dbs import Db, fns, hook, load, last, save
-from gcd.fnc import cdir, edit, format, register
-from gcd.jsn import loads
-from gcd.krn import Cfg
-from gcd.obj import Object, get, items, keys, update, values
+from gcid.dbs import Db, fns, hook, load, last, save
+from gcid.fnc import cdir, edit, format, register
+from gcid.jsn import loads
+from gcid.krn import Cfg
+from gcid.obj import Object, get, items, keys, update, values
 
 
-import gcd.obj
+import gcid.obj
 
 
 attrs1 = (
@@ -75,7 +75,7 @@ attrs2 = (
 class Test_Object(unittest.TestCase):
 
     def test_import(self):
-        self.assertEqual(tuple(dir(gcd.obj)), attrs1)
+        self.assertEqual(tuple(dir(gcid.obj)), attrs1)
 
     def test_attributes(self):
         o = Object()
@@ -243,7 +243,7 @@ class Test_Object(unittest.TestCase):
         self.assertEqual(o, oo)
 
     def test_Object__otype__(self):
-        self.assertEqual(Object().__otype__, "gcd.obj.Object")
+        self.assertEqual(Object().__otype__, "gcid.obj.Object")
 
     def test_Object__reduce__(self):
         o = Object()
@@ -277,7 +277,7 @@ class Test_Object(unittest.TestCase):
 
     def test_Object__stp__(self):
         o = Object()
-        self.assertTrue("gcd.obj.Object" in o.__stp__)
+        self.assertTrue("gcid.obj.Object" in o.__stp__)
 
     def test_Object__str__(self):
         o = Object()
@@ -307,13 +307,13 @@ class Test_Object(unittest.TestCase):
         self.assertEqual(format(o), "")
 
     def test_fns(self):
-        from gcd.obj import Object
-        from gcd.cfg import Cfg
-        from gcd.dbs import save
+        from gcid.obj import Object
+        from gcid.cfg import Cfg
+        from gcid.dbs import save
         Cfg.wd = ".test"
         o = Object()
         save(o)
-        self.assertTrue("Object" in fns("gcd.obj.Object")[0])
+        self.assertTrue("Object" in fns("gcid.obj.Object")[0])
 
     def test_get(self):
         o = Object()

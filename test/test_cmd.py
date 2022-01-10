@@ -4,20 +4,23 @@
 "OTP-CR-117/19"
 
 
+import sys
 import unittest
 
 
-from gcd.bus import Bus
-from gcd.cls import Cls
-from gcd.clt import Client
-from gcd.cmd import Cmd
-from gcd.evt import Event
-from gcd.fnc import format
-from gcd.hdl import Handler
-from gcd.krn import Cfg
-from gcd.obj import Object, get, values
-from gcd.tbl import Tbl
-from gcd.thr import launch
+from gcid.bus import Bus
+from gcid.clt import Client
+from gcid.evt import Event
+from gcid.fnc import format
+from gcid.hdl import Handler
+from gcid.krn import Cfg
+from gcid.obj import Object, get, values
+from gcid.tbl import Cls, Cmd, Tbl
+from gcid.thr import launch
+
+
+def getmain(name):
+    return getattr(sys.modules["__main__"], name, None)
 
 
 events = []
@@ -51,25 +54,15 @@ class CLI(Client, Handler):
          e.wait()
 
      def raw(self, txt):
+         print(txt)
+
+
+     def raw(self, txt):
          results.append(txt)
         
 
 c = CLI()
-results = []
-
-
-def consume(events):
-    fixed = []
-    res = []
-    for e in events:
-        e.wait()
-        fixed.append(e)
-    for f in fixed:
-        try:
-            events.remove(f)
-        except ValueError:
-            continue
-    return res
+results = getmain("results")
 
 
 class Test_Commands(unittest.TestCase):
@@ -91,3 +84,17 @@ class Test_Commands(unittest.TestCase):
                 events.append(e)
         consume(events)
         self.assertTrue(not events)
+
+
+def consume(events):
+    fixed = []
+    res = []
+    for e in events:
+        e.wait()
+        fixed.append(e)
+    for f in fixed:
+        try:
+            events.remove(f)
+        except ValueError:
+            continue
+    return res

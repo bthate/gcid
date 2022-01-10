@@ -2,7 +2,6 @@
 
 
 import getpass
-import inspect
 import os
 import pwd
 import sys
@@ -52,16 +51,6 @@ def root():
     if os.geteuid() != 0:
         return False
     return True
-
-
-def scan():
-    for mod in values(Tbl.mod):
-        for k, o in inspect.getmembers(mod, inspect.isfunction):
-            if "event" in o.__code__.co_varnames:
-                Cmd.cmds[k] = o
-        for k, clz in inspect.getmembers(mod, inspect.isclass):
-            Cls.add(clz)
-        Tbl.add(mod)
 
 
 def watcher(clt, quit=False):

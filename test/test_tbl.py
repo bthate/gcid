@@ -8,17 +8,17 @@ import os
 import unittest
 
 
-from gcd.obj import Object, keys, values
-from gcd.tbl import Tbl
+from gcid.obj import Object, keys, values
+from gcid.tbl import Tbl
 
 
-import gcdm.bsc
+import gcid.mod.bsc
 
 
-Tbl.add(gcdm.bsc)
+Tbl.add(gcid.mod.bsc)
 
 
 class Test_Table(unittest.TestCase):
 
     def test_mod(self):
-        self.assertTrue("gcdm.bsc" in keys(Tbl.mod))
+        self.assertTrue("gcid.mod.bsc" in keys(Tbl.mod))

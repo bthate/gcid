@@ -8,8 +8,10 @@ import os
 import unittest
 
 
-from gcd.obj import *
-from gcd.fnc import *
+from gcid.obj import *
+from gcid.fnc import *
+
+
 
 attr = (
     'clear',

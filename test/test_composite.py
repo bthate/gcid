@@ -7,9 +7,9 @@
 import unittest
 
 
-from gcd.dbs import Db
-from gcd.obj import Object
-from gcd.jsn import dumps, loads
+from gcid.dbs import Db
+from gcid.obj import Object
+from gcid.jsn import dumps, loads
 
 
 class Composite(Object):

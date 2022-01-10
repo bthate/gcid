@@ -7,8 +7,8 @@
 import unittest
 
 
-from gcd.jsn import dumps, loads
-from gcd.obj import Object
+from gcid.jsn import dumps, loads
+from gcid.obj import Object
 
 
 validjson = '{"test": "bla"}'

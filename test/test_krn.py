@@ -7,10 +7,10 @@
 import unittest
 
 
-from gcd.krn import Cfg
+from gcid.krn import Cfg
 
 
 class Test_Kernel(unittest.TestCase):
 
     def test_cfg(self):
-        self.assertTrue("gcd.krn.Cfg" in str(Cfg))
+        self.assertTrue("gcid.krn.Cfg" in str(Cfg))

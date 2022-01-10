@@ -7,10 +7,10 @@
 import unittest
 
 
-from gcd.fnc import edit
-from gcd.krn import Cfg
-from gcd.obj import Object, update
-from gcd.prs import parse
+from gcid.fnc import edit
+from gcid.krn import Cfg
+from gcid.obj import Object, update
+from gcid.prs import parse
 
 
 class Test_Cfg(unittest.TestCase):

@@ -18,6 +18,9 @@ import unittest
 sys.path.insert(0, os.getcwd())
 
 
+from gcdrun import scan, wrap 
+
+
 from gcd.bus import Bus
 from gcd.cls import Cls
 from gcd.clt import Client

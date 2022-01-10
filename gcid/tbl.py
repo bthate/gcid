@@ -4,12 +4,24 @@
 "tables"
 
 
+import inspect
 import _thread
 
 
 from .fnc import register
-from .obj import Object, get
+from .obj import Object, get, values
 from .utl import locked
+
+
+def __dir__():
+    return (
+        "Cbs",
+        "Cls",
+        "Cmd",
+        "Dpt",
+        "Tbl",
+        "scan"
+    )
 
 
 cmdlock = _thread.allocate_lock()
@@ -119,3 +131,13 @@ class Tbl(Object):
     @staticmethod
     def get(nm):
         return get(Tbl.mod, nm, None)
+
+
+def scan():
+    for mod in values(Tbl.mod):
+        for k, o in inspect.getmembers(mod, inspect.isfunction):
+            if "event" in o.__code__.co_varnames:
+                Cmd.cmds[k] = o
+        for k, clz in inspect.getmembers(mod, inspect.isclass):
+            Cls.add(clz)
+        Tbl.add(mod)
