@@ -49,8 +49,7 @@ extensions=[
     'sphinx.ext.doctest',
     'sphinx.ext.viewcode',
     'sphinx.ext.todo',
-    'sphinx.ext.githubpages',
-    #'sphinx_autodoc_annotation'
+    'sphinx.ext.githubpages'
 ]
 
 

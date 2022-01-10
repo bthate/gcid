@@ -1,16 +1,13 @@
-.. title:: clozapine
+ .. raw:: html
 
-.. _clozapine:
+     <br><br>
 
-clozapine
-#########
-
-
-.. raw:: html
-
-    <br>
+ .. _clozapine:
 
 
-.. image:: ECHAclozapine.png
-    :width: 100%
-    :height: 15cm
+ .. image:: ECHAclozapine.png
+     :width: 100%
+     :height: 15cm
+
+
+ .. title:: clozapine

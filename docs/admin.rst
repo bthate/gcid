@@ -48,3 +48,4 @@
   | ``gcidctl met <userhost>``
 
 
+ .. title:: admin

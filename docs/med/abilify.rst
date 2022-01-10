@@ -1,14 +1,12 @@
-.. title:: abilify
+ .. raw:: html
 
-.. _abilify:
+     <br><br>
 
-abilify
-#######
+ .. _abilify:
 
-.. raw:: html
+ .. image:: ECHAabilify.png
+     :width: 100%
+     :height: 15cm
 
-    <br>
 
-.. image:: ECHAabilify.png
-    :width: 100%
-    :height: 15cm
+ .. title:: abilify

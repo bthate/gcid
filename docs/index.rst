@@ -6,6 +6,7 @@
  | **2500 CM The Hague**
  | **The Netherlands**
 
+
  Hello Office of the Prosecutor,
 
  i write you in the context of communications and claims under art.15 of 
@@ -59,6 +60,7 @@
 
 
  (1) provided are the confirmation letters of both the chamber and the king.
+ (2) your reference: **OTP-CR-117/19**
 
 
 .. toctree::
@@ -69,4 +71,4 @@
     med/index
 
 
-.. title:: Reconsider OTP-CR-117/19
+.. title:: OTP-CR-117/19
