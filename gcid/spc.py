@@ -24,3 +24,4 @@ from gcid.evt import Event
 from gcid.krn import Cfg, boot, kcmd, root
 from gcid.hdl import Handler
 from gcid.thr import launch
+from gcid.tbl import scan

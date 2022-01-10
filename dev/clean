@@ -1,3 +1,4 @@
+rm -fR dev/*~
 rm -fR lib/*~ lib/__pycache__ lib/gcid.egg-info
 rm -fR gcid/*~ gcid/__pycache__ __pycache__
 rm -fR files/*~ .test gcid/mod/*~ gcid/mod/__pycache__

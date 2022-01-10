@@ -11,7 +11,11 @@ import sys
 import time
 
 
-from gcid.spc import Bus, Cfg, Client, Event, Handler, boot, kcmd, root, launch
+sys.path.insert(0, os.getcwd())
+sys.path.insert(0, "lib")
+
+
+from gcid.spc import Bus, Cfg, Client, Event, Handler, boot, kcmd, root, scan, launch
 
 
 from gcid.mod.irc import IRC
@@ -21,7 +25,7 @@ from gcid.mod.rss import Fetcher
 
 
 
-from gcidrun import daemon, scan, watcher, wrap
+from gcidrun import daemon, watcher, wrap
 
 
 import gcid.all
