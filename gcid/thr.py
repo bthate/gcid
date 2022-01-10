@@ -39,6 +39,7 @@ class Thr(threading.Thread):
             self.errors.append(ex)
             if args and "errors" in args[0]:
                 args[0].errors.append(self)
+            if "ready" in args[0]:
                 args[0].ready()
 
 

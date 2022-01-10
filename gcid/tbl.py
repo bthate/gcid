@@ -102,22 +102,20 @@ class Dpt(Object):
     cbs = Object()
 
     @staticmethod
-    def add(cb):
-        register(Dpt.cbs, cb.__name__, cb)
+    def add(name, cb):
+        register(Dpt.cbs, name, cb)
 
     @staticmethod
-    @locked(cmdlock)
-    def handle(clt, e):
+    def dispatch(clt, e):
         e.parse()
-        cb = Dpt.get(e.type)
+        cb = Dpt.get(e.command)
         if cb:
             cb(clt, e)
-            e.show()
         e.ready()
 
     @staticmethod
     def get(cmd):
-        return get(Dpt.cmds, cmd)
+        return get(Dpt.cbs, cmd)
 
 
 class Tbl(Object):

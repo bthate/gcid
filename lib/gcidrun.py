@@ -58,14 +58,16 @@ def watcher(clt, quit=False):
     while 1:
         time.sleep(1.0)
         for ex in clt.errors:
-            if ex.reason not in done:
-                done.append(ex.reason)
+            if "reason" in dir(ex) and ex not in done:
                 print("\n")
                 traceback.print_exception(type(ex), ex, ex.__traceback__)
                 if quit:
                     break
+            done.append(ex)
         if quit:
             break
+    for ex in done:
+        clt.errors.remove(ex)
 
 
 def wrap(func):

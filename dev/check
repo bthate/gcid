@@ -9,4 +9,3 @@ grep -R --exclude *check --exclude-dir=docs --exclude-dir=bin --exclude-dir=.git
 grep -R --exclude *check --exclude-dir=docs --exclude-dir=bin --exclude-dir=.git importlib
 grep -R --exclude *check --exclude-dir=docs --exclude-dir=bin --exclude-dir=.git print
 grep -R --exclude *check --exclude-dir=docs --exclude-dir=bin --exclude-dir=.git "import sys"
-grep -R --exclude *check --exclude-dir=docs --exclude-dir=bin --exclude-dir=.git "import inspect"

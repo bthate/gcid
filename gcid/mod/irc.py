@@ -21,7 +21,7 @@ from gcid.evt import Event
 from gcid.fnc import edit, format
 from gcid.hdl import Handler, Stop
 from gcid.obj import Object, update
-from gcid.tbl import Cbs, Cmd
+from gcid.tbl import Cbs, Cmd, Dpt
 from gcid.thr import launch
 from gcid.utl import locked
 
@@ -47,6 +47,10 @@ def __dir__():
 
 saylock = _thread.allocate_lock()
 
+
+class NotAllowed(Exception):
+
+    pass
 
 class NoUser(Exception):
 
@@ -145,6 +149,7 @@ class Output(Object):
 class IRC(Output, Handler):
 
     def __init__(self):
+        Dpt.__init__(self)
         Output.__init__(self)
         Handler.__init__(self)
         self.buffer = []
@@ -270,7 +275,7 @@ class IRC(Output, Handler):
         return self.sock.fileno()
 
     def handle(self, e):
-        Cbs.dispatch(e)
+        Dpt.dispatch(self, e)
 
     def joinall(self):
         for channel in self.channels:
@@ -378,7 +383,7 @@ class IRC(Output, Handler):
         self.state.nrsend += 1
 
     def register(self, k, v):
-        Cbs.add(k, v)
+        Dpt.add(k, v)
 
     def say(self, channel, txt):
         self.oput(channel, txt)
@@ -408,7 +413,6 @@ class IRC(Output, Handler):
         self.joined.clear()
         self.sock = None
         self.doconnect(self.cfg.server, self.cfg.nick, int(self.cfg.port))
-        self.connected.wait()
         self.logon(self.cfg.server, self.cfg.nick)
         Bus.add(self)
         Handler.start(self)
@@ -540,45 +544,39 @@ class TextWrap(textwrap.TextWrapper):
         self.width = 450
 
 
-def AUTH(obj):
-    clt = obj.bot()
+def AUTH(clt, obj):
     clt.raw("AUTHENTICATE %s" % clt.cfg.password)
 
 
-def CAP(obj):
-    clt = obj.bot()
+def CAP(clt, obj):
     if clt.cfg.password and "ACK" in obj.arguments:
         clt.raw("AUTHENTICATE PLAIN")
     else:
         clt.raw("CAP REQ :sasl")
 
 
-def h903(obj):
-    clt = obj.bot()
+def h903(clt, obj):
     clt.raw("CAP END")
 
 
-def h904(obj):
-    clt = obj.bot()
+def h904(clt):
     clt.raw("CAP END")
 
 
-def ERROR(obj):
-    clt = obj.bot()
+def ERROR(clt, obj):
     clt.state.nrerror += 1
     clt.state.error = obj.txt
 
 
-def KILL(obj):
+def KILL(clt, obj):
     pass
 
 
-def LOG(obj):
+def LOG(clt, obj):
     pass
 
 
-def NOTICE(obj):
-    clt = obj.bot()
+def NOTICE(clt, obj):
     if obj.txt.startswith("VERSION"):
         txt = "\001VERSION %s %s - %s\001" % (
             "botlib",
@@ -588,8 +586,7 @@ def NOTICE(obj):
         clt.command("NOTICE", obj.channel, txt)
 
 
-def PRIVMSG(obj):
-    clt = obj.bot()
+def PRIVMSG(clt, obj):
     if obj.txt.startswith("DCC CHAT"):
         if clt.cfg.users and not clt.users.allowed(obj.origin, "USER"):
             return
@@ -610,13 +607,15 @@ def PRIVMSG(obj):
         splitted[0] = splitted[0].lower()
         obj.txt = " ".join(splitted)
         if clt.cfg.users and not clt.users.allowed(obj.origin, "USER"):
+            e = NotAllowed(obj.origin)
+            e.txt = "denied %s" % obj.origin
+            clt.errors.append(e)
             return
         obj.parse()
         Cmd.handle(obj)
 
 
-def QUIT(obj):
-    clt = obj.bot()
+def QUIT(clt, obj):
     if obj.orig and obj.orig in clt.zelf:
         clt.reconnect()
 

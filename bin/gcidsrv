@@ -14,16 +14,16 @@ import time
 import traceback
 
 
-from gcid.cls import Cls
-from gcid.cmd import Cmd
-from gcid.dft import Default
+from gcidrun import watcher
+
+
 from gcid.evt import Event
 from gcid.fnc import format
 from gcid.krn import Cfg, boot, kcmd, root
 from gcid.obj import Object, update, values
 from gcid.prs import parse
 from gcid.hdl import Handler
-from gcid.tbl import Tbl
+from gcid.tbl import scan
 from gcid.tms import tfmt
 from gcid.thr import launch
 
@@ -40,40 +40,19 @@ import gcid.mod.all
 Cfg.wd = "/var/lib/gcid/"
 
 
-def scan():
-    for mod in values(Tbl.mod):
-        for k, o in inspect.getmembers(mod, inspect.isfunction):
-            if "event" in o.__code__.co_varnames:
-                Cmd.cmds[k] = o
-        for k, clz in inspect.getmembers(mod, inspect.isclass):
-            Cls.add(clz)
-        Tbl.add(mod)
-
-
-def watcher(clt, quit=False):
-    done = []
-    while 1:
-        time.sleep(1.0)
-        for ex in clt.errors:
-            if ex.reason not in done:
-                done.append(ex.reason)
-                print("\n")
-                traceback.print_exception(type(ex), ex, ex.__traceback__)
-                if quit:
-                    break
-        if quit:
-            break
-
-
 def main():
     print("GCID service start at %s (reconsider OTP-CR-117/19)" % time.ctime(time.time()).replace("  ", " "))
-    print("user=%s!%s@%s port=%s channel=%s sasl=%s" % (ICfg.nick, ICfg.username, ICfg.server, ICfg.port, ICfg.channel, ICfg.sasl))
+    print("user=%s!%s@%s port=%s channel=%s sasl=%s users=%s" % (ICfg.nick, ICfg.username, ICfg.server, ICfg.port, ICfg.channel, ICfg.sasl, ICfg.users))
+    sys.stdout.flush()
     scan()
     i = IRC()
-    i.start()
+    launch(i.start)
+    launch(watcher, i)
     f = Fetcher()
     f.start()
-    watcher(i)
+    while 1:
+        time.sleep(1.0)
+    watcher(f)
 
 
 main()

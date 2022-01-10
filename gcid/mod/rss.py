@@ -63,6 +63,7 @@ class Seen(Object):
 
 class Fetcher(Object):
 
+    errors = []
     seen = Seen()
 
     def __init__(self):

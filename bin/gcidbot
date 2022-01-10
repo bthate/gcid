@@ -23,8 +23,6 @@ from gcid.mod.irc import Cfg as ICfg
 from gcid.mod.rss import Fetcher
 
 
-
-
 from gcidrun import daemon, watcher, wrap
 
 
@@ -63,16 +61,17 @@ def main():
     c = Console()
     if Cfg.txt:
         return kcmd(c, Cfg.otxt)
-    print("GCID bot start at %s (reconsider OTP-CR-117/19)" % time.ctime(time.time()).replace("  ", " "))
-    print("channel=%s daemon=%s sasl=%s" % (ICfg.channel, Cfg.daemon, ICfg.sasl))
+    print("GCID bot start at %s channel=%s daemon=%s sasl=%s" % (time.ctime(time.time()).replace("  ", " "), ICfg.channel, Cfg.daemon, ICfg.sasl))
     print("using %s!%s@%s:%s" % (ICfg.nick, ICfg.username, ICfg.server, ICfg.port))
     if Cfg.daemon:
         daemon()
     i = IRC()
-    launch(i.start)
+    i.start()
+    launch(watcher, i)
     f = Fetcher()
     f.start()
     c.start()
-    watcher(i)
+    while 1:
+        time.sleep(1.0)
 
 wrap(main)
