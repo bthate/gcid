@@ -9,4 +9,4 @@
      :height: 15cm
 
 
- .. title:: abilify
+.. title:: abilify

@@ -8,10 +8,10 @@
  (4) aripriprazole - https://echa.europa.eu/substance-information/-/substanceinfo/100.112.532
 
 
- .. toctree::
-     :hidden:
-     :glob:
+.. toctree::
+    :hidden:
+    :glob:
 
-     *
+    *
 
 .. title:: evidence

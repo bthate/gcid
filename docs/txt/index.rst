@@ -11,8 +11,10 @@
 
 .. toctree::
     :hidden:
-    :glob:
-
-    *
+    
+    aking
+    chamber
+    otp1
+    otp2
 
 .. title:: correspondence
