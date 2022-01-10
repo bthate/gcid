@@ -8,10 +8,7 @@
 import sys
 
 
-from gcidrun import scan
-
-
-from gcid.spc import Cfg, Client, Event, Handler, boot, kcmd
+from gcid.spc import Cfg, Client, Event, Handler, boot, kcmd, scan
 
 
 import gcid.all

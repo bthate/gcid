@@ -47,7 +47,7 @@ def main():
     scan()
     i = IRC()
     launch(i.start)
-    launch(watcher, i)
+    watcher(i)
     f = Fetcher()
     f.start()
     while 1:

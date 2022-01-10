@@ -80,6 +80,7 @@ class Cfg(Object):
         self.password = Cfg.password
         self.port = Cfg.port
         self.realname = Cfg.realname
+        self.sasl = Cfg.sasl
         self.server = Cfg.server
         self.servermodes = Cfg.servermodes
         self.sleep = Cfg.sleep
@@ -207,7 +208,8 @@ class IRC(Output, Handler):
         self.state.last = time.time()
 
     def connect(self, server, port=6667):
-        if self.cfg.password:
+        print(self.cfg)
+        if False and self.cfg.password:
             self.cfg.sasl = True
             ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
             ctx.check_hostname = False
