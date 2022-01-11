@@ -10,7 +10,6 @@ import _thread
 
 from .fnc import register
 from .obj import Object, get, values
-from .utl import locked
 
 
 def __dir__():

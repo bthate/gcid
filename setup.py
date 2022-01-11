@@ -30,7 +30,7 @@ def uploadlist(dir):
 
 setup(
     name='gcid',
-    version='10',
+    version='100',
     url='https://github.com/bthate/gcid',
     author='Bart Thate',
     author_email='bthate67@gmail.com', 
@@ -53,7 +53,7 @@ setup(
                 ("share/doc/gcid/pdf", uploadlist("docs/pdf")),
                 ("share/doc/gcid/_templates", uploadlist("docs/_templates")),
                ],
-    scripts=["bin/gcidbot", "bin/gcidcmd", "bin/gcidctl",  "bin/gcidsrv"],
+    scripts=["bin/gcid", "bin/gcidbot", "bin/gcidcmd", "bin/gcidctl",  "bin/gcidsrv"],
     classifiers=['Development Status :: 3 - Alpha',
                  'License :: Public Domain',
                  'Operating System :: Unix',

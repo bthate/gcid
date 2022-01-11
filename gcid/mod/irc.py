@@ -21,7 +21,7 @@ from gcid.evt import Event
 from gcid.fnc import edit, format
 from gcid.hdl import Handler, Stop
 from gcid.obj import Object, update
-from gcid.tbl import Cbs, Cmd, Dpt
+from gcid.tbl import Cmd, Dpt
 from gcid.thr import launch
 from gcid.utl import locked
 
@@ -47,10 +47,6 @@ def __dir__():
 
 saylock = _thread.allocate_lock()
 
-
-class NotAllowed(Exception):
-
-    pass
 
 class NoUser(Exception):
 
@@ -150,7 +146,6 @@ class Output(Object):
 class IRC(Output, Handler):
 
     def __init__(self):
-        Dpt.__init__(self)
         Output.__init__(self)
         Handler.__init__(self)
         self.buffer = []
@@ -208,8 +203,7 @@ class IRC(Output, Handler):
         self.state.last = time.time()
 
     def connect(self, server, port=6667):
-        print(self.cfg)
-        if False and self.cfg.password:
+        if self.cfg.password:
             self.cfg.sasl = True
             ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
             ctx.check_hostname = False
@@ -609,9 +603,6 @@ def PRIVMSG(clt, obj):
         splitted[0] = splitted[0].lower()
         obj.txt = " ".join(splitted)
         if clt.cfg.users and not clt.users.allowed(obj.origin, "USER"):
-            e = NotAllowed(obj.origin)
-            e.txt = "denied %s" % obj.origin
-            clt.errors.append(e)
             return
         obj.parse()
         Cmd.handle(obj)
