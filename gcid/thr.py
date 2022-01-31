@@ -6,15 +6,31 @@
 
 import queue
 import threading
+import time
 import types
+
+
+from .evt import Event
+
+
+def __dir__():
+    return (
+        "getname",
+        "launch",
+        "thr"
+    )
+
+
+starttime = time.time()
 
 
 class Thr(threading.Thread):
 
-    def __init__(self, func, *args, daemon=True):
-        super().__init__(None, self.run, "", (), {}, daemon=daemon)
-        self.errors = []
-        self.name = getname(func)
+    def __init__(self, func, name, *args, daemon=True):
+        super().__init__(None, self.run, name, (), {}, daemon=daemon)
+        self.exc = None
+        self.evt = None
+        self.name = name
         self.queue = queue.Queue()
         self.queue.put_nowait((func, args))
         self.result = None
@@ -32,15 +48,16 @@ class Thr(threading.Thread):
 
     def run(self):
         func, args = self.queue.get()
+        if args and isinstance(args[0], Event):
+            self.evt = args[0]
         self.setName(self.name)
         try:
             self.result = func(*args)
         except Exception as ex:
-            self.errors.append(ex)
-            if args and "errors" in args[0]:
-                args[0].errors.append(self)
-            if "ready" in args[0]:
-                args[0].ready()
+            self.exc = ex
+        if self.evt:
+            self.evt.ready()
+        return self.result
 
 
 def getname(o):
@@ -59,6 +76,7 @@ def getname(o):
 
 
 def launch(func, *args, **kwargs):
-    t = Thr(func, *args)
+    name = kwargs.get("name", getname(func))
+    t = Thr(func, name, *args)
     t.start()
     return t

@@ -8,25 +8,30 @@ import threading
 import time
 
 
-from gcid.bus import Bus
-from gcid.dbs import Db, fntime, save
-from gcid.dbs import find
-from gcid.fnc import format
-from gcid.obj import Object, get, update
-from gcid.tbl import Cmd
-from gcid.thr import getname
-from gcid.prs import elapsed
+from .bus import Bus
+from .cls import Cls
+from .cmd import Cmd
+from .dbs import Db, fntime, save
+from .dbs import find
+from .fnc import format
+from .obj import Object, get, keys, update
+from .thr import getname
+from .prs import elapsed
 
 
 def __dir__():
     return (
+        "Log",
         "cmd",
+        "err",
         "flt",
         "fnd",
         "log",
+        "tdo",
         "thr",
         "upt"
     )
+
 
 starttime = time.time()
 
@@ -38,8 +43,25 @@ class Log(Object):
         self.txt = ""
 
 
+class Todo(Object):
+
+    def __init__(self):
+        super().__init__()
+        self.txt = ""
+
+
 def cmd(event):
-    event.reply(",".join(sorted(Cmd.cmds)))
+    event.reply(",".join((sorted(keys(Cmd.cmd)))))
+
+
+def err(event):
+    if not Cmd.events:
+        event.reply("no errors")
+        return
+    event.reply("%s events had errors" % len(Cmd.events))
+    for e in Cmd.events:
+        for err in e.errors:
+            event.reply(err)
 
 
 def flt(event):
@@ -55,9 +77,10 @@ def flt(event):
 def fnd(event):
     if not event.args:
         db = Db()
-        event.reply(",".join(
+        res = ",".join(
             sorted({x.split(".")[-1].lower() for x in db.types()}))
-        )
+        if res:
+            event.reply(res)
         return
     otype = event.args[0]
     nr = -1
@@ -105,5 +128,27 @@ def thr(event):
         event.reply(" ".join(res))
 
 
+def tdo(event):
+    if not event.rest:
+        event.reply("tdo <txt>")
+        return
+    o = Todo()
+    o.txt = event.rest
+    save(o)
+    event.reply("ok")
+
+
 def upt(event):
     event.reply(elapsed(time.time() - starttime))
+
+
+Cls.add(Log)
+Cls.add(Todo)
+Cmd.add(cmd)
+Cmd.add(err)
+Cmd.add(flt)
+Cmd.add(fnd)
+Cmd.add(log)
+Cmd.add(tdo)
+Cmd.add(thr)
+Cmd.add(upt)

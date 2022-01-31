@@ -8,40 +8,24 @@
 import sys
 
 
-from gcid.spc import Cfg, Client, Event, Handler, boot, kcmd, scan
+from gcid.hdl import Handler
+from gcid.krn import Cfg, kcmd
 
 
 import gcid.all
-import gcid.mod.all
 
 
 Cfg.wd = "/var/lib/gcid/"
 
 
-class Console(Client, Handler):
-
-    "console"
-
-    def __init__(self):
-        Client.__init__(self)
-        Handler.__init__(self)
-
-    def poll(self):
-        evt = Event()
-        evt.orig = repr(self)
-        evt.txt = input("> ")
-        return evt
+class CLI(Handler):
 
     def raw(self, txt):
         print(txt)
 
 
 def main():
-    "main"
-    boot(" ".join(sys.argv[1:]))
-    scan()
-    csl = Console()
-    return kcmd(csl, Cfg.otxt)
-
+    c = CLI()
+    kcmd(c, " ".join(sys.argv[1:]))
 
 main()

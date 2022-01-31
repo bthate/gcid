@@ -8,10 +8,11 @@ import socket
 import time
 
 
-from gcid.bus import Bus
-from gcid.dbs import last
-from gcid.obj import Object
-from gcid.thr import launch
+from .cls import Cls
+from .flt import Fleet
+from .dbs import last
+from .obj import Object
+from .thr import launch
 
 
 class Cfg(Object):
@@ -38,7 +39,7 @@ class UDP(Object):
         self.cfg = Cfg()
 
     def output(self, txt, addr):
-        Bus.announce(txt.replace("\00", ""))
+        Fleet.announce(txt.replace("\00", ""))
 
     def server(self):
         try:
@@ -68,3 +69,6 @@ class UDP(Object):
 def toudp(host, port, txt):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.sendto(bytes(txt.strip(), "utf-8"), (host, port))
+
+
+Cls.add(UDP)

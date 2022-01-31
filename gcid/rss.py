@@ -10,13 +10,22 @@ import threading
 import urllib
 
 
-from gcid.bus import Bus
-from gcid.dbs import Db, find, last, save
-from gcid.fnc import edit
-from gcid.krn import Cfg
-from gcid.obj import Object, get, update
-from gcid.tms import Repeater
-from gcid.thr import launch
+try:
+    import feedparser
+except ImportError:
+    pass
+
+
+from .cls import Cls
+from .cmd import Cmd
+from .dbs import Db, find, last, save
+from .flt import Fleet
+from .fnc import edit
+from .krn import Cfg
+from .obj import Object, get, update
+from .prs import spl
+from .rpt import Repeater
+from .thr import launch
 
 
 from urllib.error import HTTPError, URLError
@@ -74,14 +83,10 @@ class Fetcher(Object):
         result = ""
         dl = []
         try:
-            dl = o.display_list.split(",")
+            dl = o.display_list or "title,link"
         except AttributeError:
-            pass
-        if not dl:
             dl = "title,link"
-        if not dl or not dl[0]:
-            dl = ["title", "link"]
-        for key in dl:
+        for key in spl(dl):
             if not key:
                 continue
             data = get(o, key, None)
@@ -116,7 +121,7 @@ class Fetcher(Object):
             save(Fetcher.seen)
         for o in objs:
             txt = self.display(o)
-            Bus.announce(txt)
+            Fleet.announce(txt)
         return counter
 
     def run(self):
@@ -141,7 +146,6 @@ def getfeed(url):
         return [Object(), Object()]
     if not result:
         return [Object(), Object()]
-    import feedparser
     result = feedparser.parse(result.data)
     if result and "entries" in result:
         for entry in result["entries"]:
@@ -168,7 +172,7 @@ def gettinyurl(url):
 def geturl(url):
     url = urllib.parse.urlunparse(urllib.parse.urlparse(url))
     req = urllib.request.Request(url)
-    req.add_header("User-agent", useragent(Cfg.name.upper()))
+    req.add_header("User-agent", useragent("BOTLIB"))
     response = urllib.request.urlopen(req)
     response.data = response.read()
     return response
@@ -194,12 +198,13 @@ def dpl(event):
         return
     db = Db()
     setter = {"display_list": event.args[1]}
-    name = get(db.names, "rss", "rss")
-    _fn, o = db.lastmatch(name, {"rss": event.args[0]})
-    if o:
-        edit(o, setter)
-        save(o)
-        event.reply("ok")
+    names = Cls.full("rss")
+    if names:
+        _fn, o = db.lastmatch(names[0], {"rss": event.args[0]})
+        if o:
+            edit(o, setter)
+            save(o)
+            event.reply("ok")
 
 
 def ftc(event):
@@ -209,7 +214,7 @@ def ftc(event):
     fetcher.start(False)
     thrs = fetcher.run()
     for thr in thrs:
-        res.append(thr.join() or 0)
+        res.append(thr.join())
     if res:
         event.reply(",".join([str(x) for x in res]))
         return
@@ -246,3 +251,12 @@ def rss(event):
     o.rss = event.args[0]
     save(o)
     event.reply("ok")
+
+
+Cls.add(Feed)
+Cls.add(Rss)
+Cls.add(Seen)
+Cmd.add(dpl)
+Cmd.add(ftc)
+Cmd.add(rem)
+Cmd.add(rss)

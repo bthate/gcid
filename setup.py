@@ -30,25 +30,21 @@ def uploadlist(dir):
 
 setup(
     name='gcid',
-    version='100',
+    version='101',
     url='https://github.com/bthate/gcid',
     author='Bart Thate',
     author_email='bthate67@gmail.com', 
     description="OTP-CR-117/19",
     long_description=read(),
     license='Public Domain',
-    packages=["gcid", "gcid.mod"],
+    packages=["gcid"],
     zip_safe=True,
     include_package_data=True,
-    package_dir={
-        "": "lib",
-        "gcid": "gcid"
-    },
-    py_modules=["gcidrun"],
     data_files=[
                 ("share/gcid", ["files/gcid.service"]),
                 ("share/gcid", ["files/gcid.1.md"]),
                 ("share/doc/gcid", uploadlist("docs")),
+                ("share/doc/gcid/txt", uploadlist("docs/txt")),
                 ("share/doc/gcid/jpg", uploadlist("docs/jpg")),
                 ("share/doc/gcid/pdf", uploadlist("docs/pdf")),
                 ("share/doc/gcid/_templates", uploadlist("docs/_templates")),

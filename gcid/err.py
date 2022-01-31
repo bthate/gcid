@@ -1,9 +1,11 @@
-# This file is placed in the Public Domain.
+# This file is placed in the Public Domain
 
 
-"errors"
+class Restart(Exception):
+
+    pass
 
 
-class Error(Exception):
+class Stop(Exception):
 
     pass
