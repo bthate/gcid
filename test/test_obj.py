@@ -18,6 +18,8 @@ from gcid.obj import Object, get, items, keys, update, values
 import gcid.obj
 
 
+Cfg.wd = ".test"
+
 attrs1 = (
     'Object',
     'clear',
