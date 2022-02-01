@@ -1,0 +1,6 @@
+pandoc files/gcid.1.md -s -t man -o files/gcid.1
+gzip -f files/gcid.1
+chown -R bart:bart files/*.gz
+chmod 444 files/*.gz
+python3 setup.py install_data
+mandb
