@@ -49,7 +49,7 @@ setup(
                 ("share/doc/gcid/pdf", uploadlist("docs/pdf")),
                 ("share/doc/gcid/_templates", uploadlist("docs/_templates")),
                ],
-    scripts=["bin/gcid", "bin/gcidbot", "bin/gcidcmd", "bin/gcidctl",  "bin/gcidsrv"],
+    scripts=["bin/gcid", "bin/gcidcmd", "bin/gcidctl",  "bin/gcidd"],
     classifiers=['Development Status :: 3 - Alpha',
                  'License :: Public Domain',
                  'Operating System :: Unix',

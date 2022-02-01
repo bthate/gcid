@@ -2,9 +2,6 @@
 # This file is placed in the Public Domain.
 
 
-"OTP-CR-117/19"
-
-
 import inspect
 import os
 import shutil
@@ -18,29 +15,22 @@ import unittest
 sys.path.insert(0, os.getcwd())
 
 
-from gcdrun import scan, wrap 
+from gcid.bus import Bus
+from gcid.cbs import Cbs
+from gcid.cls import Cls
+from gcid.cmd import Cmd
+from gcid.evt import Event
+from gcid.dbs import find, fntime, last, listfiles, save
+from gcid.obj import Object, get, items, keys, values, update
+from gcid.fnc import edit, format
+from gcid.hdl import Handler
+from gcid.krn import Cfg, boot
+from gcid.prs import elapsed, parse
+from gcid.tbl import Tbl
+from gcid.thr import Thr, getname, launch
 
 
-from gcd.bus import Bus
-from gcd.cls import Cls
-from gcd.clt import Client
-from gcd.cmd import Cmd
-from gcd.evt import Event
-from gcd.dbs import find, fntime, last, listfiles, save
-from gcd.obj import Object, get, items, keys, values, update
-from gcd.fnc import edit, format
-from gcd.hdl import Handler
-from gcd.krn import Cfg, boot
-from gcd.prs import elapsed, parse
-from gcd.tbl import Tbl
-from gcd.thr import Thr, getname, launch
-
-
-import gcd.all
-import gcdm.all
-
-
-from gcdm.dbg import TestError
+import gcid.all
 
 
 Cfg.wd = ".test"
@@ -63,11 +53,7 @@ results = []
 starttime = time.time()
 
 
-class CLI(Client, Handler):
-
-    def __init__(self):
-        Client.__init__(self)
-        Handler.__init__(self)
+class CLI(Handler):
 
     def raw(self, txt):
         results.append(txt)
@@ -82,8 +68,6 @@ def consume(events):
     for e in events:
         e.wait()
         for err in e.errors:
-            if type(err) == TestError:
-                continue
             if str(err) not in have:
                 have.append(str(err))
                 errors.append(err)
@@ -104,13 +88,14 @@ def from_exception(ex, txt="", sep=" "):
 
 def payload(c):
     thrs = []
-    for cmd in Cmd.cmds:
+    for cmd in Cmd.cmd:
         for ex in getattr(param, cmd, [""]):
             e = Event()
-            e.type = "cmd"
+            e.type = "event"
             e.txt = cmd + " " + ex
+            e.txt.rstrip()
             e.orig = repr(c)
-            thrs.append(launch(c.handle, e))
+            thrs.append(launch(Cbs.callback, e))
             events.append(e)
     return thrs
 
@@ -119,7 +104,7 @@ def scan():
     for mod in values(Tbl.mod):
         for k, o in inspect.getmembers(mod, inspect.isfunction):
             if "event" in o.__code__.co_varnames:
-                Cmd.cmds[k] = o
+                Cmd.cmd[k] = o
         for k, clz in inspect.getmembers(mod, inspect.isclass):
             Cls.add(clz)
         Tbl.add(mod)
@@ -140,20 +125,20 @@ def wrap(func):
             traceback.print_exception(type(err), err, err.__traceback__)
     print("\n%s events left (%s)" % (len(events), elapsed(time.time()-starttime)))
 
+
 def main():
-    print("GCD tinder start at %s" % time.ctime(time.time()).replace("  ", " "))
+    print("GCID tinder start at %s" % time.ctime(time.time()).replace("  ", " "))
     if os.path.exists(Cfg.wd):
         shutil.rmtree(Cfg.wd)
     boot(" ".join(sys.argv[1:]))
     Cfg.debug = True
     print(format(Cfg, "debug,verbose,index,wd"))
-    scan()
     c = CLI()
     c.start()
     thrs = []
     nrs = Cfg.index or 20
     for nr in range(nrs):
-        launch(payload, c)
+        payload(c)
     consume(events)
 
 
