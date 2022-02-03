@@ -17,11 +17,13 @@ from gcid import jsn
 from gcid import krn
 from gcid import opt
 from gcid import prs
+from gcid import req
 from gcid import rpt
 from gcid import sta
 from gcid import tbl
 from gcid import thr
 from gcid import tmr
+from gcid import wsd
 
 
 Tbl.add(cfg)
@@ -34,6 +36,7 @@ Tbl.add(jsn)
 Tbl.add(krn)
 Tbl.add(opt)
 Tbl.add(prs)
+Tbl.add(req)
 Tbl.add(rpt)
 Tbl.add(sta)
 Tbl.add(tbl)
@@ -55,6 +58,7 @@ Tbl.add(fnd)
 Tbl.add(irc)
 Tbl.add(log)
 Tbl.add(opt)
+Tbl.add(req)
 Tbl.add(rss)
 Tbl.add(tdo)
 Tbl.add(udp)
