@@ -90,6 +90,17 @@ class Event(Event):
         self.type = "event"
         self.txt = ""
 
+class TextWrap(textwrap.TextWrapper):
+
+    def __init__(self):
+        super().__init__()
+        self.break_long_words = True
+        self.drop_whitespace = True
+        self.fix_sentence_endings = True
+        self.replace_whitespace = True
+        self.tabsize = 4
+        self.width = 250
+
 
 class IRC(Handler, Output):
 
@@ -188,7 +199,7 @@ class IRC(Handler, Output):
 
     def dosay(self, channel, txt):
         wrapper = TextWrap()
-        txt = str(txt).replace("\n", " ")
+        txt = str(txt).replace("\n", "")
         txt = txt.replace("  ", " ")
         c = 0
         txtlist = wrapper.wrap(txt)
@@ -335,7 +346,6 @@ class IRC(Handler, Output):
                 self.stop()
         self.state.last = time.time()
         self.state.nrsend += 1
-
 
     def reconnect(self):
         self.disconnect()
@@ -510,16 +520,6 @@ class DCC(Handler):
     def raw(self, txt):
         self.sock.send(bytes("%s\n" % txt.rstrip(), self.encoding))
 
-class TextWrap(textwrap.TextWrapper):
-
-    def __init__(self):
-        super().__init__()
-        self.break_long_words = False
-        self.drop_whitespace = False
-        self.fix_sentence_endings = True
-        self.replace_whitespace = False
-        self.tabsize = 4
-        self.width = 250
 
 
 def cfg(event):
@@ -567,6 +567,7 @@ def rct(event):
     bot = event.bot()
     if "reconnect" in bot:
         bot.reconnect()
+
 
 Cmd.add(cfg)
 Cmd.add(nck)

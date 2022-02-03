@@ -71,8 +71,10 @@ def mre(event):
     for x in range(3):
         txt = bot.cache[event.channel].pop(0)
         if txt:
-            event.reply(txt)
-    event.reply("(+%s more)" % bot.size(event.channel))
+            bot.say(event.channel, txt)
+    sz = bot.size(event.channel)
+    if sz:
+       event.reply("(+%s more)" % sz)
 
 
 Cmd.add(mre)
