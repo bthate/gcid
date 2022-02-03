@@ -69,7 +69,7 @@ p.s.
 
 
 def req(event):
-    event.reply(txt)
+    event.reply(txt.replace("\n", " "))
 
 
 Cmd.add(req)

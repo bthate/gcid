@@ -91,7 +91,7 @@ class Event(Event):
         self.txt = ""
 
 
-class IRC(Output, Handler):
+class IRC(Handler, Output):
 
     def __init__(self):
         Handler.__init__(self)
@@ -188,11 +188,20 @@ class IRC(Output, Handler):
 
     def dosay(self, channel, txt):
         wrapper = TextWrap()
-        txt = str(txt).replace("\n", "")
-        for t in wrapper.wrap(txt):
+        txt = str(txt).replace("\n", " ")
+        txt = txt.replace("  ", " ")
+        c = 0
+        txtlist = wrapper.wrap(txt)
+        for t in txtlist:
             if not t:
                 continue
-            self.command("PRIVMSG", channel, t)
+            if c < 3:
+                self.command("PRIVMSG", channel, t)
+                c += 1
+            else:
+                self.command("PRIVMSG", channel, "%s left in cache, use !mre to show more" % (len(txtlist)-3))
+                self.extend(channel, txtlist[3:])
+                break
 
     def event(self, txt, origin=None):
         if not txt:
@@ -508,9 +517,9 @@ class TextWrap(textwrap.TextWrapper):
         self.break_long_words = False
         self.drop_whitespace = False
         self.fix_sentence_endings = True
-        self.replace_whitespace = True
+        self.replace_whitespace = False
         self.tabsize = 4
-        self.width = 450
+        self.width = 250
 
 
 def cfg(event):

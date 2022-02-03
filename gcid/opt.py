@@ -15,21 +15,20 @@ from .thr import launch
 
 class Output(Object):
 
-    cache = Object()
 
     def __init__(self):
         Object.__init__(self)
+        self.cache = Object()
         self.oqueue = queue.Queue()
         self.dostop = threading.Event()
 
-    @staticmethod
-    def append(channel, txtlist):
-        if channel not in Output.cache:
-            Output.cache[channel] = []
-        Output.cache[channel].extend(txtlist)
-
     def dosay(self, channel, txt):
         pass
+
+    def extend(self, channel, txtlist):
+        if channel not in self.cache:
+            self.cache[channel] = []
+        self.cache[channel].extend(txtlist)
 
     def oput(self, channel, txt):
         self.oqueue.put_nowait((channel, txt))
@@ -39,12 +38,15 @@ class Output(Object):
             (channel, txt) = self.oqueue.get()
             if self.dostop.isSet():
                 break
-            self.dosay(channel, txt)
+            try:
+                self.dosay(channel, txt)
+            except Exception as ex:
+                print(ex)
+                pass
 
-    @staticmethod
-    def size(name):
-        if name in Output.cache:
-            return len(Output.cache[name])
+    def size(self, name):
+        if name in self.cache:
+            return len(self.cache[name])
         return 0
 
     def start(self):
@@ -57,18 +59,20 @@ class Output(Object):
         self.oqueue.put_nowait((None, None))
 
 
+
 def mre(event):
     if event.channel is None:
         event.reply("channel is not set.")
         return
-    if event.channel not in Output.cache:
+    bot = event.bot()
+    if event.channel not in bot.cache:
         event.reply("no output in %s cache." % event.channel)
         return
-    for txt in range(3):
-        txt = Output.cache[event.channel].pop(0)
+    for x in range(3):
+        txt = bot.cache[event.channel].pop(0)
         if txt:
-            event.say(txt)
-    event.reply("(+%s more)" % Output.size(event.channel))
+            event.reply(txt)
+    event.reply("(+%s more)" % bot.size(event.channel))
 
 
 Cmd.add(mre)
