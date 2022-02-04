@@ -30,11 +30,11 @@ def uploadlist(dir):
 
 setup(
     name='gcid',
-    version='101',
+    version='102',
     url='https://github.com/bthate/gcid',
     author='Bart Thate',
     author_email='bthate67@gmail.com', 
-    description="OTP-CR-117/19",
+    description="GCID contains correspondence with the International Criminal Court, asking for the arrest of the king of the netherlands.",
     long_description=read(),
     license='Public Domain',
     packages=["gcid"],
