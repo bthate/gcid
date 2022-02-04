@@ -563,14 +563,7 @@ def pwd(event):
     event.reply(bm)
 
 
-def rct(event):
-    bot = event.bot()
-    if "reconnect" in bot:
-        bot.reconnect()
-
-
 Cmd.add(cfg)
 Cmd.add(nck)
 Cmd.add(ops)
 Cmd.add(pwd)
-Cmd.add(rct)
