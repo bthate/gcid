@@ -1,58 +1,57 @@
 **NAME**
 
- **GCID** - reconsider OTP-CR-117/19
+**GCID** - reconsider OTP-CR-117/19
 
 
 **SYNOPSIS**
 
- ``gcidctl <cmd> [key=value] [key==value]``
+``gcidctl <cmd> [key=value] [key==value]``
 
 **DESCRIPTION**
 
- **GCID** is also an IRC bot that can run as a background daemon for 24/7
- day presence in an IRC channel, be used to display RSS feeds, act as a UDP
- to IRC gateway and program your own commands for.
+**GCID** is also an IRC bot that can run as a background daemon for 24/7
+day presence in an IRC channel, be used to display RSS feeds, act as a UDP
+to IRC gateway and program your own commands for.
 
- **GCID** is also a python3 program that holds evidence that the king of the
- netherlands is doing a genocide, a written response where the king of
- the netherlands confirmed taking note of “what i have written”, namely
- proof that medicine he uses in treatement laws like zyprexa, haldol,
- abilify and clozapine are poison that makes impotent, is both physical
- (contracted muscles) and mental (let people hallucinate) torture and kills
- members of the victim groups.
+**GCID** is also a python3 program that holds evidence that the king of the
+netherlands is doing a genocide, a written response where the king of
+the netherlands confirmed taking note of “what i have written”, namely
+proof that medicine he uses in treatement laws like zyprexa, haldol,
+abilify and clozapine are poison that makes impotent, is both physical
+(contracted muscles) and mental (let people hallucinate) torture and kills
+members of the victim groups.
 
- **GCID** contains correspondence with the International Criminal Court,
- asking for arrest of the king of the netherlands, for the genocide he is
- committing with his new treatement laws. Current status is an outside the
- jurisdiction judgement of the prosecutor which requires a reconsider to
- have the king actually arrested. See the reconsider :ref:`here <reconsider>`.
+**GCID** contains correspondence with the International Criminal Court,
+asking for arrest of the king of the netherlands, for the genocide he is
+committing with his new treatement laws. Current status is an outside the
+jurisdiction judgement of the prosecutor which requires a reconsider to
+have the king actually arrested. See the reconsider :ref:`here <reconsider>`.
 
- @IntlCrimCourt @KarimKhanQC reconsider OTP-CR-117/19, after 2002, as article 6, 
- other groups than mentioned, article 15 request. http://genocide.rtfd.io #ggz
+@IntlCrimCourt @KarimKhanQC reconsider OTP-CR-117/19, after 2002, as article 6, 
+other groups than mentioned, article 15 request. http://genocide.rtfd.io #ggz
 
 **INSTALL**
 
- ``pip3 install gcid``
+``pip3 install gcid``
     
 **CONFIGURATION**
 
- | ``cp /usr/local/share/gcid/gcid.service /etc/systemd/system``
- | ``systemctl enable gcid --now``
+| ``cp /usr/local/share/gcid/gcid.service /etc/systemd/system``
+| ``systemctl enable gcid --now``
 
- **irc**
+**irc**
 
- | ``gcidctl cfg server=<server> channel=<channel>``
- | ``gcidctl cfg nick=<nick>``
+| ``gcidctl cfg server=<server> channel=<channel>``
+| ``gcidctl cfg nick=<nick>``
 
  default channel/server is #gcid on localhost
 
- **sasl**
+**sasl**
 
- | ``gcidctl pwd <nickservnick> <nickservpass>``
- | ``gcidctl cfg password=<outputfrompwd>``
+| ``gcidctl pwd <nickservnick> <nickservpass>``
+| ``gcidctl cfg password=<outputfrompwd>``
 
- **users**
+**users**
 
- | ``gcidctl cfg users=True``
- | ``gcidctl met <userhost>``
-
+| ``gcidctl cfg users=True``
+| ``gcidctl met <userhost>``
