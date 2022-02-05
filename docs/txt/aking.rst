@@ -3,6 +3,8 @@
      <br><br>
 
 
+ .. _king:
+
  .. image:: bevestigd.jpg
 
 

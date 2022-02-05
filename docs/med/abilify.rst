@@ -6,7 +6,6 @@
 
  .. image:: ECHAabilify.png
      :width: 100%
-     :height: 15cm
 
 
 .. title:: abilify

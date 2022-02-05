@@ -1,7 +1,6 @@
  **NAME**
 
-  **GCID** - reconsider OTP-CR-117/19
-
+  **GCID** to reconsider OTP-CR-117/19
 
  **SYNOPSIS**
 
@@ -65,11 +64,11 @@
   ``gcidctl rss <url>``
 
 
- .. title:: admin
+ .. title:: OTP-CR-117/19
 
  .. toctree::
      :hidden:
 
      reconsider
-     med/index
      txt/index
+     med/index

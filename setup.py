@@ -34,7 +34,7 @@ setup(
     url='https://github.com/bthate/gcid',
     author='Bart Thate',
     author_email='bthate67@gmail.com', 
-    description="GCID contains correspondence with the International Criminal Court, asking for the arrest of the king of the netherlands.",
+    description="GCID to reconsider OTP-CR-117/19",
     long_description=read(),
     license='Public Domain',
     packages=["gcid"],
