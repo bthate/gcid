@@ -14,7 +14,8 @@
   proof that medicine he uses in treatement laws like zyprexa, haldol,
   abilify and clozapine are poison that makes impotent, is both physical
   (contracted muscles) and mental (let people hallucinate) torture and kills
-  members of the victim groups.
+  members of the victim groups, namely elderly and handicapped (Wzd), mentally
+  disturbed (WvGGZ) and criminals (Wfz), see :ref:`source <source>`
 
   **GCID** contains correspondence with the International Criminal Court,
   asking for arrest of the king of the netherlands, for the genocide he is
@@ -64,11 +65,15 @@
   ``gcidctl rss <url>``
 
 
+ **CODE**
+
+  code can be found at https://github.com/bthate/gcid
+
  .. title:: OTP-CR-117/19
 
  .. toctree::
-     :hidden:
 
      reconsider
+     source
      txt/index
      med/index

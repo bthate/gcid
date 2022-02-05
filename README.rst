@@ -9,14 +9,14 @@
 
 **DESCRIPTION**
 
-
 **GCID** is a python3 program that holds evidence that the king of the
 netherlands is doing a genocide, a written response where the king of
 the netherlands confirmed taking note of “what i have written”, namely
 proof that medicine he uses in treatement laws like zyprexa, haldol,
 abilify and clozapine are poison that makes impotent, is both physical
 (contracted muscles) and mental (let people hallucinate) torture and kills
-members of the victim groups.
+members of the victim groups, namely elderly and handicapped (Wzd), mentally
+disturbed (WvGGZ) and criminals (Wfz).
 
 **GCID** contains correspondence with the International Criminal Court,
 asking for arrest of the king of the netherlands, for the genocide he is
