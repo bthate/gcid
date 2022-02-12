@@ -6,6 +6,7 @@
  | **2500 CM The Hague**
  | **The Netherlands**
 
+ your reference: :ref:`OTP-CR-117/19 <otp1>` and :ref:`OTP-CR-117/19/001 <otp2>`
 
  Hello Office of the Prosecutor,
 
@@ -24,23 +25,12 @@
  these laws are proven to be poison (1).
  
  There is proof the medication used in forced treatements in the 
- netherlands are poison.
+ netherlands are poison:
 
- (1) haloperiodol
-
- https://echa.europa.eu/substance-information/-/substanceinfo/100.000.142
-
- (2) clozapine 
-
- https://echa.europa.eu/substance-information/-/substanceinfo/100.024.831
-
- (3) olanzapine
-
- https://echa.europa.eu/substance-information/-/substanceinfo/100.125.320
-
- (4) aripriprazole
-
- https://echa.europa.eu/substance-information/-/substanceinfo/100.112.532
+ copies of the website for :ref:`haldol <haldol>`, 
+ :ref:`clozapine <clozapine>`,
+ :ref:`zyprexa <zyprexa>`,
+ :ref:`abilify <abilify>`
 
  With the mass scale torture with poison the king of the netherlands and 
  his chamber:
@@ -57,26 +47,15 @@
  (4) criminelen (criminials)
  (5) gehandicapten (handicapped)
 
- Since the members of the chamber and the king were aware that these 
- medicine are poison at the time they voted for this law and the day the 
- Wfz law took effect (1-1-2019), i ask the prosecutor to prosecute the 
- king for making the commiting of the above mentioned crimes (killing, 
- torture and impotent making) possible here in the netherlands in the 
- hope that it stops the mass torture with poison the king of the 
+ Since the members of the :ref:`chamber <chamber>` and the :ref:`king <king>`
+ were aware that these medicine are poison at the time they voted for this law
+ and the day the Wfz law took effect (1-1-2019), i ask the prosecutor to
+ prosecute the king for making the commiting of the above mentioned crimes
+ (killing, torture and impotent making) possible here in the netherlands in
+ the hope that it stops the mass torture with poison the king of the 
  netherlands and his government are doing.
 
  Bart Thate - bthate@dds.nl/thatebart@gmail.com
-
- p.s.
-
-
- (1) confirmation letters of both the :ref:`chamber <chamber>` and 
-     the :ref:`king <king>`
- (2) copies of the website for :ref:`haldol <haldol>`, 
-     :ref:`clozapine <clozapine>`,
-     :ref:`zyprexa <zyprexa>`,
-     :ref:`abilify <abilify>`
- (3) your reference: :ref:`OTP-CR-117/19 <otp1>` and :ref:`OTP-CR-117/19/001 <otp2>`
 
  .. title:: OTP-CR-117/19
 
