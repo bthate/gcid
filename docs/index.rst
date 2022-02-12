@@ -22,15 +22,17 @@
 
  Both the chamber suggesting these laws to the king and the king himself 
  have been informed about the fact the the substances administered under 
- these laws are proven to be poison (1).
+ these laws are proven to be poison.
  
  There is proof the medication used in forced treatements in the 
  netherlands are poison:
 
- copies of the website for :ref:`haldol <haldol>`, 
- :ref:`clozapine <clozapine>`,
- :ref:`zyprexa <zyprexa>`,
- :ref:`abilify <abilify>`
+ copies of the ECHA <`European Chemical Agency` >website for:
+
+ (1) :ref:`haldol <haldol>`
+ (2) :ref:`clozapine <clozapine>`
+ (3) :ref:`zyprexa <zyprexa>`
+ (4) :ref:`abilify <abilify>`
 
  With the mass scale torture with poison the king of the netherlands and 
  his chamber:
