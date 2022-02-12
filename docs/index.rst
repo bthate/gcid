@@ -1,79 +1,89 @@
- **NAME**
+ .. _reconsider:
 
-  **GCID** to reconsider OTP-CR-117/19
-
- **SYNOPSIS**
-
-  ``gcidctl <cmd> [key=value] [key==value]``
-
- **DESCRIPTION**
-
-  **GCID** is a python3 program that holds evidence that the king of the
-  netherlands is doing a genocide, a written response where the king of
-  the netherlands confirmed taking note of “what i have written”, namely
-  proof that medicine he uses in treatement laws like zyprexa, haldol,
-  abilify and clozapine are poison that makes impotent, is both physical
-  (contracted muscles) and mental (let people hallucinate) torture and kills
-  members of the victim groups, namely elderly and handicapped (Wzd), mentally
-  disturbed (WvGGZ) and criminals (Wfz), see :ref:`source <source>`
-
-  **GCID** contains correspondence with the International Criminal Court,
-  asking for arrest of the king of the netherlands, for the genocide he is
-  committing with his new treatement laws. Current status is an outside the
-  jurisdiction judgement of the prosecutor which requires a reconsider to
-  have the king actually arrested. See the reconsider :ref:`here <reconsider>`.
-
-  **GCID** is also an IRC bot that can run as a background daemon for 24/7 day
-  presence in an IRC channel, be used to display RSS feeds, act as a UDP
-  to IRC gateway and is a programmable bot that you can program your commands
-  for.
-
-  @IntlCrimCourt @KarimKhanQC reconsider OTP-CR-117/19, after 2002, as article 6, 
-  other groups than mentioned, article 15 request. http://genocide.rtfd.io #ggz
-
- **INSTALL**
-
-  ``pip3 install gcid``
-    
- **CONFIGURATION**
-
-  | ``cp /usr/local/share/gcid/gcid.service /etc/systemd/system``
-  | ``systemctl enable gcid --now``
-
-  **irc**
-
-  | ``gcidctl cfg server=<server> channel=<channel>``
-  | ``gcidctl cfg nick=<nick>``
-
-  default channel/server is #gcid on localhost
-
-  **sasl**
-
-  | ``gcidctl pwd <nickservnick> <nickservpass>``
-  | ``gcidctl cfg password=<outputfrompwd>``
-
-  **users**
-
-  | ``gcidctl cfg users=True``
-  | ``gcidctl met <userhost>``
+ | **Information and Evidence Unit**
+ | **Office of the Prosecutor**
+ | **Post Office Box 19519**
+ | **2500 CM The Hague**
+ | **The Netherlands**
 
 
-  **rss**
+ Hello Office of the Prosecutor,
 
-  ``sudo apt install python3-feedparser``
+ i write you in the context of communications and claims under art.15 of 
+ the Rome Statute. i want to inform the prosecutor that the king of the 
+ netherlands and his government are commiting 3 of the 5 crimes defined 
+ in the Rome Statute.
 
-  ``gcidctl rss <url>``
+ The dutch government has introduced three new forced care laws, the Wfz 
+ (wet forensische zorg) for criminals, the WvGGZ (Wet verplichte GGZ) for 
+ the disturbed and addicted and the Wzd (Wet zorg en dwang) for the 
+ handicapped.
+
+ Both the chamber suggesting these laws to the king and the king himself 
+ have been informed about the fact the the substances administered under 
+ these laws are proven to be poison (1).
+ 
+ There is proof the medication used in forced treatements in the 
+ netherlands are poison.
+
+ (1) haloperiodol
+
+ https://echa.europa.eu/substance-information/-/substanceinfo/100.000.142
+
+ (2) clozapine 
+
+ https://echa.europa.eu/substance-information/-/substanceinfo/100.024.831
+
+ (3) olanzapine
+
+ https://echa.europa.eu/substance-information/-/substanceinfo/100.125.320
+
+ (4) aripriprazole
+
+ https://echa.europa.eu/substance-information/-/substanceinfo/100.112.532
+
+ With the mass scale torture with poison the king of the netherlands and 
+ his chamber:
+
+ (1) kills
+ (2) does grave bodily and mental harm
+ (3) makes impotent
+
+ on the following victim groups here in the Netherlands:
+
+ (1) verslaafden (addicts)
+ (2) bejaarden (elderly)
+ (3) ggz patienten (psychiatric patients)
+ (4) criminelen (criminials)
+ (5) gehandicapten (handicapped)
+
+ Since the members of the chamber and the king were aware that these 
+ medicine are poison at the time they voted for this law and the day the 
+ Wfz law took effect (1-1-2019), i ask the prosecutor to prosecute the 
+ king for making the commiting of the above mentioned crimes (killing, 
+ torture and impotent making) possible here in the netherlands in the 
+ hope that it stops the mass torture with poison the king of the 
+ netherlands and his government are doing.
+
+ Bart Thate - bthate@dds.nl/thatebart@gmail.com
+
+ p.s.
 
 
- **CODE**
-
-  code can be found at https://github.com/bthate/gcid
+ (1) confirmation letters of both the :ref:`chamber <chamber>` and 
+     the :ref:`king <king>`
+ (2) copies of the website for :ref:`haldol <haldol>`, 
+     :ref:`clozapine <clozapine>`,
+     :ref:`zyprexa <zyprexa>`,
+     :ref:`abilify <abilify>`
+ (3) your reference: :ref:`OTP-CR-117/19 <otp1>` and :ref:`OTP-CR-117/19/001 <otp2>`
 
  .. title:: OTP-CR-117/19
 
+
  .. toctree::
 
-     reconsider
-     source
      txt/index
      med/index
+     admin
+     source

@@ -8,4 +8,4 @@
  .. image:: bevestigd.jpg
 
 
-.. title:: king
+ .. title:: king
