@@ -6,7 +6,7 @@
 "OTP-CR-117/19"
 
 
-__version__ = 101
+__version__ = 102
 
 
 import doctest
