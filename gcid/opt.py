@@ -10,7 +10,7 @@ import threading
 
 from .cmd import Cmd
 from .obj import Object
-from .thr import launch
+from .thr import getname, launch
 
 
 class Output(Object):
@@ -65,6 +65,9 @@ def mre(event):
         event.reply("channel is not set.")
         return
     bot = event.bot()
+    if "cache" not in bot:
+        event.reply("%s doesn't have a cache" % getname(bot))
+        return
     if event.channel not in bot.cache:
         event.reply("no output in %s cache." % event.channel)
         return
