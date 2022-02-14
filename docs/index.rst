@@ -6,8 +6,6 @@
  | **2500 CM The Hague**
  | **The Netherlands**
 
- your reference: :ref:`OTP-CR-117/19 <otp1>` and :ref:`OTP-CR-117/19/001 <otp2>`
-
  Hello Office of the Prosecutor,
 
  i write you in the context of communications and claims under art.15 of 
@@ -25,9 +23,8 @@
  these laws are proven to be poison.
  
  There is proof the medication used in forced treatements in the 
- netherlands are poison:
-
- copies of the ECHA <`European Chemical Agency` >website for:
+ netherlands are poison, see copies of the ECHA <`European Chemical Agency`>
+ website for:
 
  (1) :ref:`haldol <haldol>`
  (2) :ref:`clozapine <clozapine>`
@@ -57,14 +54,13 @@
  the hope that it stops the mass torture with poison the king of the 
  netherlands and his government are doing.
 
- Bart Thate - bthate@dds.nl/thatebart@gmail.com
 
- .. title:: OTP-CR-117/19
-
+ .. title:: king netherlands commits genocide
 
  .. toctree::
+     :hidden:
 
      txt/index
      med/index
-     admin
      source
+     admin
