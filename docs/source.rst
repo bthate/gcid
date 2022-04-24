@@ -13,9 +13,9 @@ the following modules are provided:
     :toctree: 
     :template: module.rst
 
-    genocide.mdl		genocide model
-    genocide.req		requirements
-    genocide.slg		slug
-    genocide.sui		suicide stats
-    genocide.trt		torture definition
-    genocide.wsd		wisdom
+    gcid.mdl		genocide model
+    gcid.req		requirements
+    gcid.slg		slug
+    gcid.sui		suicide stats
+    gcid.trt		torture definition
+    gcid.wsd		wisdom
