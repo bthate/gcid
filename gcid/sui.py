@@ -10,12 +10,13 @@ import random
 import time
 
 
-from obj import Object, get, items, keys, values
+from gcid.run.bus import Bus
+from gcid.run.evt import Event
+from gcid.run.prs import elapsed
+from gcid.run.rpt import Repeater
 
-from run.bus import Bus
-from run.evt import Event
-from run.prs import elapsed
-from run.rpt import Repeater
+
+from gcid.obj import Object, get, items, keys, values
 
 
 source = "https://github.com/bthate/genocide"
