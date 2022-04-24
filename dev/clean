@@ -1,10 +1,11 @@
-rm -fR dev/*~
+rm -fR build dist MANIFEST gcid.egg-info 
 rm -fR gcid/*~ gcid/__pycache__ __pycache__
-rm -fR files/*~ .test gcid/mod/*~ gcid/mod/__pycache__
+rm -fR files/*~ .test
 rm -fR test/__pycache__ test/*~
-rm -fR docs/genocide.*.rst
+rm -fR docs/gcid.*.rst
 rm -fR docs/*~ 
 rm -fR docs/_static/*~
 rm -fR docs/_templates/*~
-rm -fR build dist MANIFEST gcid.egg-info 
+rm -fR html
+rm -fR dev/*~
 rm -fR bin/*~ *~
