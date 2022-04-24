@@ -5,7 +5,7 @@ import os
 import traceback
 
 
-from run.thr import getname
+from gcid.run.thr import getname
 
 
 def __dir__():

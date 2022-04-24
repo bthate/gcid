@@ -3,43 +3,62 @@
 
 
 import doctest
+import importlib
 import inspect
 import os
 import shutil
 import sys
+import time
 import unittest
 
 
 sys.path.insert(0, os.getcwd())
 
 
-from gcid.krn import Cfg, boot
-from gcid.fnc import format
-from gcid.obj import Object, values
-from gcid.prs import parse
-
-
-import gcid.all
-
-
-Cfg.wd = ".test"
+from gcid.obj.dbs import Class, Config
+from gcid.obj.fnc import format
+from gcid.run.cbs import Callbacks
+from gcid.run.cmd import Commands, dispatch
+from gcid.run.evt import Event
+from gcid.run.hdl import Handler
+from gcid.exc.scn import scan
+from gcid.exc.wrp import wrap
 
 
 flags = doctest.REPORT_NDIFF | doctest.FAIL_FAST | doctest.ELLIPSIS
 results = []
 
 
+Config.debug = True
+Config.verbose = False
+Config.workdir = ".test"
+
+
+class CLI(Handler):
+
+    def raw(self, txt):
+        if Config.verbose:
+            print(txt)
+            sys.stdout.flush()
+
+
+Class.add(Event)
+
+
+c = CLI()
+
+
 def main():
-    if os.path.exists(Cfg.wd):
-        shutil.rmtree(Cfg.wd)
-    boot(" ".join(sys.argv[1:]))
-    Cfg.debug = True
+    if os.path.exists(".test"):
+        shutil.rmtree(".test")
+    if "-v" in sys.argv:
+        Config.verbose = True
+    Callbacks.add("command", dispatch)
     pat = "test_%s*" % "*"
+    scan("gcid")
+    scan("gcid.mod")
     suite = unittest.loader.TestLoader().discover("test", pattern=pat)
     unittest.TextTestRunner(verbosity=3).run(suite)
-    if Cfg.verbose:
-        for txt in results:
-            print(txt)
 
 
-main()
+wrap(main)

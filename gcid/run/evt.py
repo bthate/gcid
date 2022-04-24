@@ -7,10 +7,10 @@
 import threading
 
 
-from obj import Object
+from gcid.obj import Object
 
 
-from run.bus import Bus
+from .bus import Bus
 
 
 def __dir__():

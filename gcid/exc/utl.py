@@ -6,7 +6,7 @@ import sys
 import time
 
 
-from run.cbs import Callbacks
+from gcid.run.cbs import Callbacks
 
 
 def __dir__():

@@ -4,12 +4,10 @@
 "object callback"
 
 
-from obj import Object, get
+from gcid.obj.fnc import register
+from .thr import launch
 
-
-from obj.fnc import register
-from run.thr import launch
-
+from gcid.obj import Object, get
 
 def __dir__():
     return (

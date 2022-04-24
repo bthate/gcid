@@ -15,18 +15,16 @@ import time
 import _thread
 
 
-from obj import Object, update
+from gcid.obj.dbs import Config as CoreConfig
+from gcid.obj.dbs import Class, find, last, locked, save
+from gcid.obj.fnc import edit, format
+from gcid.run.cmd import Commands, Command
+from gcid.run.evt import Event
+from gcid.run.hdl import Handler
+from gcid.run.thr import launch
 
 
-from obj.dbs import Config as CoreConfig
-from obj.dbs import Class, find, last, locked, save
-from obj.fnc import edit, format
-
-
-from run.cmd import Commands, Command
-from run.evt import Event
-from run.hdl import Handler
-from run.thr import launch
+from gcid.obj import Object, update
 
 
 def __dir__():

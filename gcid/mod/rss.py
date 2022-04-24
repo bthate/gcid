@@ -20,18 +20,20 @@ except ImportError:
     pass
 
 
-from obj import Object, get, update
+
+from gcid.obj.dbs import Class, Db, find, save
+from gcid.obj.dbs import Config, Db, find, last, save
+from gcid.obj.fnc import edit, spl
 
 
-from obj.dbs import Class
-from obj.dbs import Config, Db, find, last, save
-from obj.fnc import edit, spl
+from gcid.run.bus import Bus
+from gcid.run.cmd import Commands
+from gcid.run.rpt import Repeater
+from gcid.run.thr import launch
+from gcid.obj.fnc import edit
 
 
-from run.bus import Bus
-from run.cmd import Command
-from run.rpt import Repeater
-from run.thr import launch
+from gcid.obj import Object, get, update
 
 
 from urllib.error import HTTPError, URLError
@@ -208,21 +210,6 @@ def useragent(txt):
 Class.add(Feed)
 Class.add(Rss)
 Class.add(Seen)
-#!/usr/bin/env python3
-# This file is placed in the Public Domain.
-
-
-"rss commands"
-
-
-from obj.dbs import Class, Db, find, save
-from obj.fnc import edit
-
-
-from run.cmd import Commands
-
-
-from rssbot import Rss
 
 
 def dpl(event):

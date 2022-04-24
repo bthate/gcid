@@ -7,7 +7,7 @@
 import queue
 
 
-from obj import Object
+from gcid.obj import Object
 
 
 def __dir__():

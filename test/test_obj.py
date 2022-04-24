@@ -1,24 +1,26 @@
 # This file is placed in the Public Domain.
 
 
-"object"
+"object tests"
 
 
 import os
 import unittest
 
 
-from gcid.dbs import Db, fns, hook, load, last, save
-from gcid.fnc import cdir, edit, format, register
-from gcid.jsn import loads
-from gcid.krn import Cfg
+from gcid.obj.dbs import cdir, Config, Db, fns, hook, load, last, save
+from gcid.obj.fnc import edit, format, register
+from gcid.obj.jsn import loads
+
+
 from gcid.obj import Object, get, items, keys, update, values
 
 
-import gcid.obj
+import obj
 
 
-Cfg.wd = ".test"
+Config.workdir = ".test"
+
 
 attrs1 = (
     'Object',
@@ -42,6 +44,7 @@ attrs2 = (
     '__contains__',
     '__delattr__',
     '__delitem__',
+    '__dict__',
     '__dir__',
     '__doc__',
     '__eq__',
@@ -58,9 +61,11 @@ attrs2 = (
     '__le__',
     '__len__',
     '__lt__',
+    '__module__',
     '__ne__',
     '__new__',
-    '__or__',
+    '__oqn__',
+    '__otype__',
     '__reduce__',
     '__reduce_ex__',
     '__repr__',
@@ -69,15 +74,16 @@ attrs2 = (
     '__setattr__',
     '__setitem__',
     '__sizeof__',
+    '__slots__',
+    '__stp__',
     '__str__',
     '__subclasshook__'
 )
 
-
 class Test_Object(unittest.TestCase):
 
     def test_import(self):
-        self.assertEqual(tuple(dir(gcid.obj)), attrs1)
+        self.assertEqual(tuple(dir(obj)), attrs1)
 
     def test_attributes(self):
         o = Object()
@@ -116,45 +122,7 @@ class Test_Object(unittest.TestCase):
 
     def test_Object__dir__(self):
         o = Object()
-        self.assertEqual(
-            dir(o),
-            [
-                "__class__",
-                "__class_getitem__",
-                "__contains__",
-                "__delattr__",
-                "__delitem__",
-                "__dir__",
-                "__doc__",
-                "__eq__",
-                "__format__",
-                "__ge__",
-                "__getattribute__",
-                "__getitem__",
-                "__gt__",
-                "__hash__",
-                "__init__",
-                "__init_subclass__",
-                "__ior__",
-                "__iter__",
-                "__le__",
-                "__len__",
-                "__lt__",
-                "__ne__",
-                "__new__",
-                "__or__",
-                "__reduce__",
-                "__reduce_ex__",
-                "__repr__",
-                "__reversed__",
-                "__ror__",
-                "__setattr__",
-                "__setitem__",
-                "__sizeof__",
-                "__str__",
-                "__subclasshook__",
-            ],
-        )
+        self.assertEqual(tuple(dir(o)), attrs2)
 
     def test_Object__doc__(self):
         o = Object()
@@ -290,10 +258,6 @@ class Test_Object(unittest.TestCase):
         b = o.__subclasshook__()
         self.assertEqual(b, NotImplemented)
 
-    def test_Db(self):
-        db = Db()
-        self.assertTrue(type(db), Db)
-
     def test_cdir(self):
         cdir(".test")
         self.assertTrue(os.path.exists(".test"))
@@ -310,9 +274,8 @@ class Test_Object(unittest.TestCase):
 
     def test_fns(self):
         from gcid.obj import Object
-        from gcid.cfg import Cfg
-        from gcid.dbs import save
-        Cfg.wd = ".test"
+        from gcid.obj.dbs import Config, save
+        Config.workdir = ".test"
         o = Object()
         save(o)
         self.assertTrue("Object" in fns("gcid.obj.Object")[0])
@@ -370,10 +333,10 @@ class Test_Object(unittest.TestCase):
         self.assertEqual(o.key, "value")
 
     def test_save(self):
-        Cfg.wd = ".test"
+        Config.workdir = ".test"
         o = Object()
         p = save(o)
-        self.assertTrue(os.path.exists(os.path.join(Cfg.wd, "store", p)))
+        self.assertTrue(os.path.exists(os.path.join(Config.workdir, "store", p)))
 
     def test_update(self):
         o = Object()

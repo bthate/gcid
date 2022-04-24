@@ -4,12 +4,12 @@
 "object parse"
 
 
-from obj import Object, update
+from .bus import Bus
+from .cbs import Callbacks
+from .hdl import Handler
 
 
-from run.bus import Bus
-from run.cbs import Callbacks
-from run.hdl import Handler
+from gcid.obj import Object, update
 
 
 def __dir__():

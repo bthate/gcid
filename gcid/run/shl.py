@@ -4,11 +4,11 @@
 "object console"
 
 
-from run.bus import Bus
-from run.cbs import Callbacks
-from run.cmd import Command
-from run.hdl import Handler
-from run.prs import parse
+from .bus import Bus
+from .cbs import Callbacks
+from .cmd import Command
+from .hdl import Handler
+from .prs import parse
 
 
 def __dir__():

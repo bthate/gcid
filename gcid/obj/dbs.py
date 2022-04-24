@@ -3,6 +3,7 @@
 
 "object databases"
 
+
 import datetime
 import json
 import os
@@ -11,11 +12,11 @@ import time
 import _thread
 
 
-from obj import Object, update
+from .fnc import search
+from .jsn import ObjectDecoder, ObjectEncoder
 
 
-from obj.fnc import search
-from obj.jsn import ObjectDecoder, ObjectEncoder
+from . import Object, update
 
 
 def __dir__():

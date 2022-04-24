@@ -8,10 +8,10 @@ import threading
 import time
 
 
-from obj import Object
+from .thr import getname, launch
 
 
-from run.thr import getname, launch
+from gcid.obj import Object
 
 
 def __dir__():

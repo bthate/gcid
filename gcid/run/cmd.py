@@ -1,12 +1,14 @@
 # This file is placed in the Public Domain.
 
 
-from obj import Object, get
+from gcid.obj.fnc import register
 
 
-from obj.fnc import register
-from run.evt import Event
-from run.prs import parse
+from .evt import Event
+from .prs import parse
+
+
+from gcid.obj import Object, get
 
 
 class Commands(Object):

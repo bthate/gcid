@@ -1,14 +1,16 @@
 # This file is placed in the Public Domain.
 
 
-"json"
+"json tests"
 
 
 import unittest
 
 
-from gcid.jsn import dumps, loads
-from gcid.obj import Object
+from obj import Object
+
+
+from obj.jsn import dumps, loads
 
 
 validjson = '{"test": "bla"}'

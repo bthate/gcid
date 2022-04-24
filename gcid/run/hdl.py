@@ -7,13 +7,13 @@
 import threading
 
 
-from obj import Object
+from .bus import Bus
+from .cbs import Callbacks
+from .que import Queued
+from .thr import launch
 
-from run.bus import Bus
-from run.cbs import Callbacks
-from run.que import Queued
-from run.thr import launch
 
+from gcid.obj import Object
 
 def __dir__():
     return (

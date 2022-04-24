@@ -1,7 +1,7 @@
 rm -fR build dist MANIFEST gcid.egg-info __pycache *~ 
 rm -fR gcid/*~ gcid/__pycache__ 
-rm -fR gcid/obj/*~ gcid/obj/__pycache__ _
-rm -fR gcid/run//*~ gcid/run/__pycache__
+rm -fR gcid/obj/*~ gcid/obj/__pycache__ 
+rm -fR gcid/run/*~ gcid/run/__pycache__
 rm -fR gcid/exc/*~ gcid/exc/__pycache__
 rm -fR gcid/mod/*~ gcid/mod/__pycache__
 rm -fR files/*~ .test

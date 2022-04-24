@@ -7,9 +7,9 @@ import os
 import sys
 
 
-from obj.dbs import Class
-from run.cbs import Callbacks
-from run.cmd import Commands
+from gcid.obj.dbs import Class
+from gcid.run.cbs import Callbacks
+from gcid.run.cmd import Commands
 
 
 def __dir__():
@@ -28,7 +28,7 @@ def init(mod):
 
 def introspect(mod):
     for k, o in inspect.getmembers(mod, inspect.isfunction):
-        if "event" in o.__code__.co_varnames:
+        if "event" in o.__code__.co_varnames[:o.__code__.co_argcount]:
             Commands.cmd[k] = o
     for k, clz in inspect.getmembers(mod, inspect.isclass):
         Class.add(clz)
@@ -42,7 +42,10 @@ def scan(dn):
 
 def scandir(dn):
     dns = []
-    pn = dn.split(os.sep)[-1]
+    if "." in dn:
+        pn = dn
+    else:
+        pn = dn.split(os.sep)[-1]
     if os.path.exists(dn):
         dns.append(dn)
         sys.path.insert(0, dn)

@@ -1,15 +1,17 @@
 # This file is placed in the Public Domain.
 
 
-"composite"
+"composite tests"
 
 
 import unittest
 
 
-from gcid.dbs import Db
-from gcid.obj import Object
-from gcid.jsn import dumps, loads
+from obj import Object
+
+
+from obj.dbs import Db
+from obj.jsn import dumps, loads
 
 
 class Composite(Object):

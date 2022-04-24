@@ -7,13 +7,11 @@
 import time
 
 
-from obj.dbs import Db, fntime
-from obj.dbs import find
-from obj.fnc import format
-
-
-from run.cmd import Commands
-from run.prs import elapsed
+from gcid.obj.dbs import Db, fntime
+from gcid.obj.dbs import find
+from gcid.obj.fnc import format
+from gcid.run.cmd import Commands
+from gcid.run.prs import elapsed
 
 
 def __dir__():

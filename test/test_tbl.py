@@ -10,17 +10,18 @@ import sys
 import unittest
 
 
-from gcid.obj import Object, keys, values
-from gcid.tbl import Tbl
+from gcid.run.tbl import Table
 
+
+from gcid.obj import Object, keys, values
 
 import gcid.obj
 
 
-Tbl.add(gcid.obj)
+Table.add(gcid.obj)
 
 
 class Test_Table(unittest.TestCase):
 
     def test_mod(self):
-        self.assertTrue("gcid.obj" in keys(Tbl.mod))
+        self.assertTrue("gcid.obj" in Table.mod.keys())

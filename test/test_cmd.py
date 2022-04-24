@@ -1,56 +1,54 @@
 # This file is placed in the Public Domain.
 
 
-"command"
+"command tests"
 
 
 import inspect
+import random
 import unittest
 
 
-from gcid.cbs import Cbs
-from gcid.cls import Cls
-from gcid.cmd import Cmd
-from gcid.evt import Event
-from gcid.fnc import format
-from gcid.hdl import Handler, dispatch
-from gcid.krn import Cfg
-from gcid.obj import Object, get, values
-from gcid.tbl import Tbl
-from gcid.thr import launch
+from gcid.obj.dbs import Class, Config
+from gcid.obj.fnc import format
+from gcid.run.cbs import Callbacks
+from gcid.run.cmd import Commands, Command, dispatch
+from gcid.run.hdl import Handler
+from gcid.run.prs import parse
+from gcid.run.tbl import Table
+from gcid.run.thr import launch
+
+
+from gcid.obj import Object, get, keys, values
 
 
 events = []
 
 
 param = Object()
-param.add = ["test@shell", "bart", ""]
-param.cfg = ["nick=gcid", "server=localhost", ""]
-param.dlt = ["root@shell"]
-param.dne = ["test4", ""]
-param.dpl = ["reddit title,summary,link"]
-param.flt = ["0", ""]
-param.fnd = ["cfg", "log", "rss", "cfg server==localhost", "rss rss==reddit"]
-param.log = ["test1", ""]
-param.met = ["root@shell"]
-param.nck = ["gcid"]
-param.pwd = ["bart blabla"]
-param.rem = ["reddit", ""]
+param.commands = [""]
+param.config = ["nick=opbot", "server=localhost", "port=6699"]
+param.display = ["reddit title,summary,link", ""]
+param.fetch = [""]
+param.find = ["log", "log txt==test", "rss", "rss rss==reddit", "config server==localhost"]
+param.fleet = ["0", ""]
+param.log = ["test1", "test2"]
+param.meet = ["root@shell", "test@user"]
+param.more = [""]
+param.nick = ["dfly", "dflybot", "dfly_"]
+param.password = ["bart blabla"]
 param.rss = ["https://www.reddit.com/r/python/.rss"]
-param.tdo = ["things todo"]
+param.todo = ["things todo"]
 
 
-class CLI(Handler):
+def getmain(name):
+    main =  __import__("__main__")
+    return getattr(main, name, None)
 
-     def __init__(self):
-         Handler.__init__(self)
-
-     def raw(self, txt):
-         if Cfg.verbose:
-             print(txt)
-        
          
-c = CLI()
+c = getmain("c")
+c.threaded = True
+c.start()
 
 
 def consume(events):
@@ -69,20 +67,16 @@ def consume(events):
 
 class Test_Commands(unittest.TestCase):
 
-    def setUp(self):
-        c.start()
-        
-    def tearDown(self):
-        c.stop()
 
     def test_commands(self):
-        cmds = sorted(Cmd.cmd)
+        cmds = sorted(Commands.cmd)
+        random.shuffle(cmds)
         for cmd in cmds:
-            for ex in getattr(param, cmd, [""]):
-                e = Event()
+            for ex in get(param, cmd, [""]):
+                e = Command()
                 e.txt = cmd + " " + ex
                 e.orig = repr(c)
-                launch(Cbs.callback(e))
+                c.put(e)
                 events.append(e)
         consume(events)
         self.assertTrue(not events)

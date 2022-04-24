@@ -9,17 +9,15 @@ import threading
 import time
 
 
-from obj import Object, get, keys, update
+from gcid.obj import Object, get, keys, update
 
 
-from obj.dbs import Config, find, last, save
-from obj.fnc import edit, format, register
-
-
-from run.bus import Bus
-from run.cmd import Commands
-from run.prs import elapsed, parse
-from run.thr import getname
+from gcid.obj.dbs import Config, find, last, save
+from gcid.obj.fnc import edit, format, register
+from gcid.run.bus import Bus
+from gcid.run.cmd import Commands
+from gcid.run.prs import elapsed, parse
+from gcid.run.thr import getname
 
 
 starttime = time.time()

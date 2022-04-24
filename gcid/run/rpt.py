@@ -4,8 +4,8 @@
 "object repeater"
 
 
-from run.tmr import Timer
-from run.thr import launch
+from .tmr import Timer
+from .thr import launch
 
 
 def __dir__():

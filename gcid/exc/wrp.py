@@ -7,9 +7,9 @@ import time
 import traceback
 
 
-from run.cbs import Callbacks
-from exc.dmn import cprint
-from exc.utl import wait
+from gcid.run.cbs import Callbacks
+from gcid.exc.dmn import cprint
+from gcid.exc.utl import wait
 
 
 def wrap(func):

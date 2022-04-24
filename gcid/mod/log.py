@@ -11,13 +11,11 @@ def __dir__():
     )
 
 
-from obj import Object
+from gcid.obj.dbs import Class, save
+from gcid.run.cmd import Commands
 
 
-from obj.dbs import Class, save
-
-from run.cmd import Commands
-
+from gcid.obj import Object
 
 class Log(Object):
 

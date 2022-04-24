@@ -7,13 +7,11 @@
 import time
 
 
-from obj import Object
+from gcid.obj.dbs import Class, find, fntime, save
+from gcid.run.prs import elapsed
 
 
-from obj.dbs import Class, find, fntime, save
-
-
-from run.prs import elapsed
+from gcid.obj import Object
 
 
 def __dir__():
