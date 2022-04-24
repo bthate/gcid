@@ -1,10 +1,13 @@
- .. title:: {{ fullname }}
+.. raw:: html
 
- **{{ fullname }}**
+    <br>
 
- .. auto{{ objtype }}:: {{ objname }}
+{{ fullname }}
+{{ underline }}
 
- .. automodule:: {{ fullname }}
+.. raw:: html
 
+    <br>
 
- .. currentmodule:: {{ module }}
+.. auto{{ objtype }}:: {{ fullname }}
+

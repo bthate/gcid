@@ -1,4 +1,4 @@
-# GCD OTP-CR-117/19
+# GENOCIDE OTP-CR-117/19
 # -*- coding: utf-8 -*-
 #
 
@@ -6,7 +6,7 @@
 "OTP-CR-117/19"
 
 
-__version__ = 102
+__version__ = 58
 
 
 import doctest
@@ -19,13 +19,14 @@ curdir = os.getcwd()
 
 
 sys.path.insert(0, curdir)
-sys.path.insert(0, os.path.join(curdir , " "))
+sys.path.insert(0, os.path.join(curdir, ".."))
+sys.path.insert(0, os.path.join(curdir, "..", ".."))
 
 
 # -- Options for GENERIC output ---------------------------------------------
 
 
-project = "gcid"
+project = "genocide"
 master_doc = 'index'
 version = '%s' % __version__
 release = '%s' % __version__
@@ -42,7 +43,7 @@ templates_path=['_templates']
 add_function_parentheses = False
 add_module_names = False
 show_authors = False
-pygments_style = 'sphinx'
+pygments_style = 'colorful'
 extensions=[
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
@@ -56,25 +57,44 @@ extensions=[
 # -- Options for HTML output -------------------------------------------------
 
 
-html_theme = "bizstyle"
-html_theme_options = {
-    'nosidebar': True,
-}
 html_title = "OTP-CR-117/19"
-html_title = ""
-html_short_title = "GCID %s" % __version__
-html_favicon = "jpg/skull3.jpg"
+html_style = 'genocide.css'
+html_static_path = ["_static"]
+html_css_files = ["genocide.css",]
+html_short_title = "GENOCIDE %s" % __version__
+html_sidebars = {
+    '**': [
+        'about.html',
+        'searchbox.html',
+        'navigation.html',
+        'relations.html',
+    ]
+}
+html_theme = "alabaster"
+html_theme_options = {
+    'github_user': 'bthate',
+    'github_repo': 'genocide2',
+    'github_button': True,
+    'github_banner': False,
+    'logo': 'skull3.jpg',
+    'link': '#000',
+    'link_hover': '#000',
+    'nosidebar': True,
+    'show_powered_by': False,
+    'show_relbar_top': False,
+}
+html_favicon = "skull3.jpg"
 html_extra_path = []
 html_last_updated_fmt = '%Y-%b-%d'
 html_additional_pages = {}
 html_domain_indices = False
-html_use_index = True
-html_split_index = True
+html_use_index = False
+html_split_index = False
 html_show_sourcelink = False
 html_show_sphinx = False
 html_show_copyright = False
 html_copy_source = False
-html_use_opensearch = 'http://gcid.rtfd.io/'
+html_use_opensearch = 'http://genocide.rtfd.io/'
 html_file_suffix = '.html'
 htmlhelp_basename = 'testdoc'
 
@@ -85,13 +105,16 @@ intersphinx_mapping = {
 intersphinx_cache_limit=1
 
 
-rst_prolog = ''' .. image:: line.png
+rst_prolog = '''.. image:: line.png
     :width: 100%
+    :height: 2.2cm
+    :target: index.html
+
+.. raw:: html
+
+    <br><br>
 
 '''
-
-
-# -- Options for CODE output -------------------------------------------------
 
 
 autosummary_generate=True

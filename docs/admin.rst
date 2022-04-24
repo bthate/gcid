@@ -1,72 +1,53 @@
- **NAME**
+.. _admin:
 
-  **GCID** to reconsider OTP-CR-117/19
-
- **SYNOPSIS**
-
-  ``gcidctl <cmd> [key=value] [key==value]``
-
- **DESCRIPTION**
-
-  **GCID** is a python3 program that holds evidence that the king of the
-  netherlands is doing a genocide, a written response where the king of
-  the netherlands confirmed taking note of “what i have written”, namely
-  proof that medicine he uses in treatement laws like zyprexa, haldol,
-  abilify and clozapine are poison that makes impotent, is both physical
-  (contracted muscles) and mental (let people hallucinate) torture and kills
-  members of the victim groups, namely elderly and handicapped (Wzd), mentally
-  disturbed (WvGGZ) and criminals (Wfz), see :ref:`source <source>`
-
-  **GCID** contains correspondence with the International Criminal Court,
-  asking for arrest of the king of the netherlands, for the genocide he is
-  committing with his new treatement laws. Current status is an outside the
-  jurisdiction judgement of the prosecutor which requires a reconsider to
-  have the king actually arrested. See the reconsider :ref:`here <reconsider>`.
-
-  **GCID** is also an IRC bot that can run as a background daemon for 24/7 day
-  presence in an IRC channel, be used to display RSS feeds, act as a UDP
-  to IRC gateway and is a programmable bot that you can program your commands
-  for.
-
-  @IntlCrimCourt @KarimKhanQC reconsider OTP-CR-117/19, after 2002, as article 6, 
-  other groups than mentioned, article 15 request. http://genocide.rtfd.io #ggz
-
- **INSTALL**
-
-  ``pip3 install gcid``
-    
- **CONFIGURATION**
-
-  | ``cp /usr/local/share/gcid/gcid.service /etc/systemd/system``
-  | ``systemctl enable gcid --now``
-
-  **irc**
-
-  | ``gcidctl cfg server=<server> channel=<channel>``
-  | ``gcidctl cfg nick=<nick>``
-
-  default channel/server is #gcid on localhost
-
-  **sasl**
-
-  | ``gcidctl pwd <nickservnick> <nickservpass>``
-  | ``gcidctl cfg password=<outputfrompwd>``
-
-  **users**
-
-  | ``gcidctl cfg users=True``
-  | ``gcidctl met <userhost>``
+.. title:: admin
 
 
-  **rss**
+.. raw:: html
 
-  ``sudo apt install python3-feedparser``
+    <br>
 
-  ``gcidctl rss <url>``
+admin
+=====
+
+.. raw:: html
+
+    <br>
 
 
- **CODE**
+**NAME**
 
-  code can be found at https://github.com/bthate/gcid
+ **GENOCIDE** - law and poison is genocide
 
- .. title:: OTP-CR-117/19
+**SYNOPSIS**
+
+ | ``genocidecmd <cmd> [key=value] [key==value]``
+ | ``genocide``
+
+**DESCRIPTION**
+
+ **GENOCIDE** is a python3 program that holds evidence that the king of the
+ netherlands is doing a genocide, a written response where the king of
+ the netherlands confirmed taking note of “what i have written”, namely
+ proof that medicine he uses in treatement laws like zyprexa, haldol,
+ abilify and clozapine are poison that makes impotent, is both physical
+ (contracted muscles) and mental (let people hallucinate) torture and kills
+ members of the victim groups,  source is :ref:`here <source>`.
+
+ **GENOCIDE** contains correspondence with the International Criminal Court, 
+ asking for arrest of the king of the netherlands, for the genocide he is
+ committing with his new treatement laws. Current status is an outside the
+ jurisdiction judgement of the prosecutor which requires a reconsider to have
+ the king actually arrested, see :ref:`here <reconsider>`.
+
+**INSTALL**
+
+ ``pip3 install genocide``
+
+**COPYRIGHT**
+
+ **GENOCIDE** is placed in the Public Domain. No Copyright, No License.
+
+**AUTHOR**
+
+ Bart Thate

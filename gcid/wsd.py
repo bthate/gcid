@@ -1,13 +1,9 @@
 # This file is placed in the Public Domain.
+#
+# EM_T04_OTP-CR-117_19 otp.informationdesk@icc-cpi.int https://genocide.rtfd.io
 
 
-"wisdom"
-
-
-from .cmd import Cmd
-
-
-import random
+"the trip in between"
 
 
 #:
@@ -194,8 +190,8 @@ txt = """| wijsheid, wijs !
 """
 
 
+import random
+
+
 def wsd(event):
     event.reply(random.choice(txt.split("\n")).strip()[2:])
-
-
-Cmd.add(wsd)

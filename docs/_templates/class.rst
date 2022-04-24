@@ -1,8 +1,7 @@
- .. title:: {{ fullname }}
+{{ fullname }}
+{{ underline }}
 
- **{{ fullname }}**
-
- .. autoclass:: {{ objname }}
+.. autoclass:: {{ name }}
 
     {% block methods %}
     .. automethod:: __init__
@@ -16,6 +15,10 @@
     {%- endfor %}
     {% endif %}
     {% endblock %}
+
+    .. raw:: html
+
+        <br>
 
     {% block attributes %}
     {% if attributes %}

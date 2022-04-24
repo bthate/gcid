@@ -1,38 +1,46 @@
- .. title:: {{ fullname }}
+.. raw:: html
 
- **{{ fullname }}**
+    <br>
 
- .. automodule:: {{ fullname }}
+{{ fullname }}
+{{ underline }}
 
-     {% block exceptions %}
-     {% if exceptions %}
-     .. rubric:: exceptions
+.. automodule:: {{ fullname }}
+    :members:
 
-     .. autosummary::
-     {% for item in exceptions %}
-         {{ item }}
-     {%- endfor %}
-     {% endif %}
-     {% endblock %}
+    {% block exceptions %}
+    {% if exceptions %}
+    .. rubric:: exceptions
 
-     {% block classes %}
-     {% if classes %}
-     .. rubric:: classes
+    .. autosummary::
+    {% for item in exceptions %}
+        {{ item }}
+    {%- endfor %}
+    {% endif %}
+    {% endblock %}
 
-     .. autosummary::
-     {% for item in classes %}
-         {{ item }}
-     {%- endfor %}
-     {% endif %}
-     {% endblock %}
+    {% block classes %}
+    {% if classes %}
+    .. rubric:: classes
 
-     {% block functions %}
-     {% if functions %}
-     .. rubric:: functions
+    .. autosummary:: 
+    {% for item in classes %}
+        {{ item }}
+    {%- endfor %}
+    {% endif %}
+    {% endblock %}
 
-     .. autosummary::
-     {% for item in functions %}
-         {{ item }}
-     {%- endfor %}
-     {% endif %}
-     {% endblock %}
+    {% block functions %}
+    {% if functions %}
+    .. rubric:: functions
+
+    .. autosummary::
+    {% for item in functions %}
+        {{ item }}
+    {%- endfor %}
+    {% endif %}
+    {% endblock %}
+
+    .. raw:: html
+
+        <br><br>
