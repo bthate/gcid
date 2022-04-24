@@ -3,6 +3,7 @@ rm -fR gcid/*~ gcid/__pycache__
 rm -fR gcid/obj/*~ gcid/obj/__pycache__ _
 rm -fR gcid/run//*~ gcid/run/__pycache__
 rm -fR gcid/exc/*~ gcid/exc/__pycache__
+rm -fR gcid/mod/*~ gcid/mod/__pycache__
 rm -fR files/*~ .test
 rm -fR test/__pycache__ test/*~
 rm -fR docs/gcid.*.rst
