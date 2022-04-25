@@ -1,37 +1,258 @@
 # This file is placed in the Public Domain.
 
 
-"object databases"
+"Object"
 
 
+import copy as copying
 import datetime
 import json
 import os
 import pathlib
 import time
+import uuid
 import _thread
-
-
-from .fnc import search
-from .jsn import ObjectDecoder, ObjectEncoder
-
-
-from . import Object, update
 
 
 def __dir__():
     return (
-         'Class',
-         'Config',
-         'Db',
-         'all',
-         'find',
-         'load',
-         'last',
-         'read',
-         'save',
-         'dump',
+        'Class',
+        'Config',
+        'Db',
+        'Object',
+        'ObjectDecoder',
+        'ObjectEncoder',
+        'all',
+        'clear',
+        'copy',
+        'diff',
+        'dump',
+        'dumps',
+        'edit',
+        'format',
+        'find',
+        'fromkeys',
+        'get',
+        'items',
+        'keys',
+        'last',
+        'load',
+        'loads',
+        'pop',
+        'popitem',
+        'read',
+        "register",
+        'save',
+        'search',
+        'setdefault',
+        'update',
+        'values'
     )
+
+
+class Object:
+
+    __slots__ = (
+        "__dict__",
+        "__otype__",
+        "__stp__",
+    )
+
+    def __init__(self):
+        object.__init__(self)
+        self.__otype__ = str(type(self)).split()[-1][1:-2]
+        self.__stp__ = os.path.join(
+            self.__otype__,
+            str(uuid.uuid4()),
+            os.sep.join(str(datetime.datetime.now()).split()),
+        )
+
+    def __class_getitem__(cls):
+        return cls.__dict__.__class_geitem__(cls)
+
+    def __contains__(self, k):
+        if k in self.__dict__.keys():
+            return True
+        return False
+
+    def __delitem__(self, k):
+        if k in self:
+            del self.__dict__[k]
+
+    def __eq__(self, o):
+        return len(self.__dict__) == len(o.__dict__)
+
+    def __getitem__(self, k):
+        return self.__dict__[k]
+
+    def __ior__(self, o):
+        return self.__dict__.__ior__(o)
+
+    def __iter__(self):
+        return iter(self.__dict__)
+
+    def __len__(self):
+        return len(self.__dict__)
+
+    def __le__(self, o):
+        return len(self) <= len(o)
+
+    def __lt__(self, o):
+        return len(self) < len(o)
+
+    def __ge__(self, o):
+        return len(self) >= len(o)
+
+    def __gt__(self, o):
+        return len(self) > len(o)
+
+    def __hash__(self):
+        return id(self)
+
+    def __ne__(self, o):
+        return len(self.__dict__) != len(o.__dict__)
+
+    def __reduce__(self):
+        pass
+
+    def __reduce_ex__(self, k):
+        pass
+
+    def __reversed__(self):
+        return self.__dict__.__reversed__()
+
+    def __setitem__(self, k, v):
+        self.__dict__[k] = v
+
+    def __oqn__(self):
+        return "<%s.%s object at %s>" % (
+            self.__class__.__module__,
+            self.__class__.__name__,
+            hex(id(self)),
+        )
+
+    def __ror__(self, o):
+        return self.__dict__.__ror__(o)
+
+    def __str__(self):
+        return str(self.__dict__)
+
+
+def clear(o):
+    o.__dict__ = {}
+
+
+def copy(o):
+    return copying.copy(o)
+
+
+def fromkeys(iterable, value=None):
+    o = Object()
+    for i in iterable:
+        o[i] = value
+    return o
+
+
+def get(o, key, default=None):
+    return o.__dict__.get(key, default)
+
+
+def items(o):
+    try:
+        return o.__dict__.items()
+    except AttributeError:
+        return o.items()
+
+
+def keys(o):
+    try:
+        return o.__dict__.keys()
+    except TypeError:
+        return o.keys()
+
+
+def pop(o, k, d=None):
+    try:
+        return o[k]
+    except KeyError as ex:
+        if d:
+            return d
+        raise KeyError from ex
+
+
+def popitem(o):
+    k = keys(o)
+    if k:
+        v = o[k]
+        del o[k]
+        return (k, v)
+    raise KeyError
+
+
+def setdefault(o, key, default=None):
+    if key not in o:
+        o[key] = default
+    return o[key]
+
+
+def update(o, data):
+    try:
+        o.__dict__.update(vars(data))
+    except TypeError:
+        o.__dict__.update(data)
+    return o
+
+
+def values(o):
+    try:
+        return o.__dict__.values()
+    except TypeError:
+        return o.values()
+
+
+
+class ObjectDecoder(json.JSONDecoder):
+
+    def decode(self, s, _w=None):
+        v = json.loads(s)
+        o = Object()
+        update(o, v)
+        return o
+
+
+class ObjectEncoder(json.JSONEncoder):
+
+    def default(self, o):
+        if isinstance(o, dict):
+            return o.items()
+        if isinstance(o, Object):
+            return vars(o)
+        if isinstance(o, list):
+            return iter(o)
+        if isinstance(o,
+                      (type(str), type(True), type(False),
+                       type(int), type(float))):
+            return o
+        try:
+            return json.JSONEncoder.default(self, o)
+        except TypeError:
+            return str(o)
+
+
+def dump(o, f):
+    return json.dump(o, f, cls=ObjectEncoder)
+
+
+def dumps(o):
+    return json.dumps(o, cls=ObjectEncoder)
+
+
+def load(s, f):
+    return json.load(s, f, cls=ObjectDecoder)
+
+
+def loads(s):
+    return json.loads(s, cls=ObjectDecoder)
 
 
 dblock = _thread.allocate_lock()
@@ -295,3 +516,55 @@ def save(o):
     dump(o, opath)
     os.chmod(opath, 0o444)
     return o.__stp__
+
+
+def spl(txt):
+    return [x for x in txt.split(",") if x]
+
+
+def diff(o1, o2):
+    d = Object()
+    for k in keys(o2):
+        if k in keys(o1) and o1[k] != o2[k]:
+            d[k] = o2[k]
+    return d
+
+
+def edit(o, setter):
+    for key, v in items(setter):
+        register(o, key, v)
+
+
+def format(o, args="", skip="", sep=" ", empty=False, **kwargs):
+    res = []
+    if args:
+        ks = spl(args)
+    else:
+        ks = keys(o)
+    for k in ks:
+        if k in spl(skip) or k.startswith("_"):
+            continue
+        v = getattr(o, k, None)
+        if not v and not empty:
+            continue
+        if isinstance(v, str) and len(v.split()) >= 2:
+            txt = '%s="%s"' % (k, v)
+        else:
+            txt='%s=%s' % (k, v)
+        res.append(txt)
+    return sep.join(res)
+
+
+def register(o, k, v):
+    setattr(o, k, v)
+
+
+def search(o, s):
+    ok = False
+    for k, v in items(s):
+        vv = getattr(o, k, None)
+        if v not in str(vv):
+            ok = False
+            break
+        ok = True
+    return ok

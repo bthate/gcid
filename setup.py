@@ -37,9 +37,14 @@ setup(
     description="GCID to reconsider OTP-CR-117/19",
     long_description=read(),
     license='Public Domain',
-    packages=["gcid"],
     zip_safe=True,
     include_package_data=True,
+    datadirs={
+              "": "lib",
+              "gcid": "gcid"
+             },
+    packages=["gcid"],
+    py_modules=["ob"],
     data_files=[
                 ("share/gcid", ["files/gcid.service"]),
                 ("share/gcid", ["files/gcid.1.md"]),

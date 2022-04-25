@@ -7,10 +7,16 @@
 
 import os
 import readline
+import sys
 
 
-from gcid.obj.dbs import Class, Config, Db, find, fntime, last, save
-from gcid.obj.fnc import edit, format, register
+sys.path.insert(0, "lib")
+sys.path.insert(0, os.getcwd())
+
+from ob import Object, get, keys, update
+from ob import Class, Config, Db, find, fntime, last, save
+from ob import edit, format, register
+
 from gcid.run.cbs import Callbacks
 from gcid.run.cmd import Commands, dispatch
 from gcid.run.shl import Shell
@@ -20,7 +26,6 @@ from gcid.exc.wrp import wrap
 from gcid.exc.utl import wait
 
 
-from gcid.obj import Object, get, keys, update
 
 
 Config.name = "gcid"
