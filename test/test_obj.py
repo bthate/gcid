@@ -8,33 +8,50 @@ import os
 import unittest
 
 
-from gcid.obj.dbs import cdir, Config, Db, fns, hook, load, last, save
-from gcid.obj.fnc import edit, format, register
-from gcid.obj.jsn import loads
-
-
+from gcid.obj import cdir, Config, Db, fns, hook, load, last, save
+from gcid.obj import edit, format, register
+from gcid.obj import loads
 from gcid.obj import Object, get, items, keys, update, values
 
 
-import obj
+import gcid.obj
 
 
 Config.workdir = ".test"
 
 
 attrs1 = (
-    'Object',
-    'clear',
-    'copy',
-    'fromkeys',
-    'get',
-    'items',
-    'keys',
-    'pop',
-    'popitem',
-    'setdefault',
-    'update',
-    'values'
+        'Class',
+        'Config',
+        'Db',
+        'Object',
+        'ObjectDecoder',
+        'ObjectEncoder',
+        'all',
+        'clear',
+        'copy',
+        'diff',
+        'dump',
+        'dumps',
+        'edit',
+        'find',
+        'format',
+        'fromkeys',
+        'get',
+        'items',
+        'keys',
+        'last',
+        'load',
+        'loads',
+        'pop',
+        'popitem',
+        'read',
+        "register",
+        'save',
+        'search',
+        'setdefault',
+        'update',
+        'values'
 )
 
 
@@ -80,10 +97,16 @@ attrs2 = (
     '__subclasshook__'
 )
 
+
+class Cfg(Object):
+
+    pass
+    
+
 class Test_Object(unittest.TestCase):
 
     def test_import(self):
-        self.assertEqual(tuple(dir(obj)), attrs1)
+        self.assertEqual(tuple(dir(gcid.obj)), attrs1)
 
     def test_attributes(self):
         o = Object()
@@ -199,7 +222,7 @@ class Test_Object(unittest.TestCase):
         self.assertTrue(o < oo)
 
     def test_Object__module__(self):
-        self.assertTrue(Object().__module__, "obj")
+        self.assertTrue(Object().__module__, "gcid.obj")
 
     def test_Object__ne__(self):
         o = Object()
@@ -273,9 +296,7 @@ class Test_Object(unittest.TestCase):
         self.assertEqual(format(o), "")
 
     def test_fns(self):
-        from gcid.obj import Object
-        from gcid.obj.dbs import Config, save
-        Config.workdir = ".test"
+        from gcid.obj import Object, save
         o = Object()
         save(o)
         self.assertTrue("Object" in fns("gcid.obj.Object")[0])
@@ -333,7 +354,6 @@ class Test_Object(unittest.TestCase):
         self.assertEqual(o.key, "value")
 
     def test_save(self):
-        Config.workdir = ".test"
         o = Object()
         p = save(o)
         self.assertTrue(os.path.exists(os.path.join(Config.workdir, "store", p)))
@@ -355,3 +375,9 @@ class Test_Object(unittest.TestCase):
                 "value",
             ],
         )
+
+    def test_edit(self):
+        d = Object()
+        update(d, {"mod": "irc,rss"})
+        edit(Cfg, d)
+        self.assertEqual(Cfg.mod, "irc,rss")

@@ -12,10 +12,8 @@ import sys
 import unittest
 
 
-from gcid.obj.dbs import Db, all, dump, find, fns, fntime, load, listfiles, hook, save
-
-
-from gcid.obj import Object
+from gcid.obj import Db, Object, all, dump, find, fns, fntime, load,
+from gcid.obj import listfiles, hook, save
 
 
 db = Db()

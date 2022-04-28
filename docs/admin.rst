@@ -1,28 +1,18 @@
 .. _admin:
 
+.. raw:: html
+
+    <br>
+
 .. title:: admin
-
-
-.. raw:: html
-
-    <br>
-
-admin
-=====
-
-.. raw:: html
-
-    <br>
-
 
 **NAME**
 
- **GENOCIDE** - law and poison is genocide
+ **GENOCIDE** - Prosecutor. Reconsider. OTP-CR-117/19.
 
 **SYNOPSIS**
 
- | ``genocidecmd <cmd> [key=value] [key==value]``
- | ``genocide``
+ ``gcidctl <cmd> [key=value] [key==value]``
 
 **DESCRIPTION**
 
@@ -38,16 +28,42 @@ admin
  asking for arrest of the king of the netherlands, for the genocide he is
  committing with his new treatement laws. Current status is an outside the
  jurisdiction judgement of the prosecutor which requires a reconsider to have
- the king actually arrested, see :ref:`here <reconsider>`.
+ the king actually arrested.
+
+ **GENOCIDE** provides a IRC bot that can run as a background daemon for 24/7
+ day presence in a IRC channel, be used to display RSS feeds, act as a UDP
+ to IRC gateway and program your own commands for.
 
 **INSTALL**
 
- ``pip3 install genocide``
+ ``pip3 install gcid``
+
+**CONFIGURATION**
+
+ | ``cp /usr/local/share/gcid/gcid.service /etc/systemd/system``
+ | ``systemctl enable gcid --now``
+
+ *irc*
+
+ | ``gcidctl cfg server=<server> channel=<channel>``
+ | ``gcidctl cfg nick=<nick>``
+
+ default channel/server is #genocide on localhost
+
+ *sasl*
+
+ | ``gcidctl pwd <nickservnick> <nickservpass>``
+ | ``gcidctl cfg password=<outputfrompwd>``
+
+ *users*
+
+ | ``gcidctl cfg users=True``
+ | ``gcidctl met <userhost>``
 
 **COPYRIGHT**
 
- **GENOCIDE** is placed in the Public Domain. No Copyright, No License.
+ **GCID** is placed in the Public Domain. No Copyright, No License.
 
 **AUTHOR**
 
- Bart Thate
+ Bart Thate - bthate67@gmail.com

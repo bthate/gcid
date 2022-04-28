@@ -1,7 +1,7 @@
 # This file is placed in the Public Domain.
 
 
-"table"
+"object programming tests"
 
 
 import inspect
@@ -10,18 +10,17 @@ import sys
 import unittest
 
 
-from gcid.run.tbl import Table
-
-
 from gcid.obj import Object, keys, values
+from gcid.tbl import Table
 
-import gcid.obj
+
+import gcid
 
 
-Table.add(gcid.obj)
+Table.add(gcid)
 
 
 class Test_Table(unittest.TestCase):
 
     def test_mod(self):
-        self.assertTrue("gcid.obj" in Table.mod.keys())
+        self.assertTrue("gcid" in keys(Table.mod))

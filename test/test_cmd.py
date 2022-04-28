@@ -1,55 +1,50 @@
 # This file is placed in the Public Domain.
 
 
-"command tests"
+"object programming tests"
 
 
 import inspect
-import random
 import unittest
 
 
-from gcid.obj.dbs import Class, Config
-from gcid.obj.fnc import format
-from gcid.run.cbs import Callbacks
-from gcid.run.cmd import Commands, Command, dispatch
-from gcid.run.hdl import Handler
-from gcid.run.prs import parse
-from gcid.run.tbl import Table
-from gcid.run.thr import launch
-
-
-from gcid.obj import Object, get, keys, values
+from gcid.obj import Class, Config, Object, format, get, values
+from gcid.cbs import Callbacks
+from gcid.cmd import Commands, Command, dispatch
+from gcid.evt import Event
+from gcid.hdl import Handler
+from gcid.shl import CLI
+from gcid.tbl import Table
+from gcid.thr import launch
 
 
 events = []
 
 
 param = Object()
-param.commands = [""]
-param.config = ["nick=opbot", "server=localhost", "port=6699"]
-param.display = ["reddit title,summary,link", ""]
-param.fetch = [""]
-param.find = ["log", "log txt==test", "rss", "rss rss==reddit", "config server==localhost"]
-param.fleet = ["0", ""]
-param.log = ["test1", "test2"]
-param.meet = ["root@shell", "test@user"]
-param.more = [""]
-param.nick = ["dfly", "dflybot", "dfly_"]
-param.password = ["bart blabla"]
+param.add = ["test@shell", "bart", ""]
+param.cfg = ["nick=opb", "server=localhost", ""]
+param.dlt = ["root@shell"]
+param.dne = ["test4", ""]
+param.dpl = ["reddit title,summary,link"]
+param.flt = ["0", ""]
+param.fnd = ["cfg", "log", "rss", "cfg server==localhost", "rss rss==reddit"]
+param.log = ["test1", ""]
+param.met = ["root@shell"]
+param.nck = ["opb"]
+param.pwd = ["bart blabla"]
+param.rem = ["reddit", ""]
 param.rss = ["https://www.reddit.com/r/python/.rss"]
-param.todo = ["things todo"]
+param.tdo = ["things todo"]
 
 
 def getmain(name):
-    main =  __import__("__main__")
-    return getattr(main, name, None)
+    m = __import__("__main__")
+    return getattr(m, name, None)
 
-         
+
 c = getmain("c")
-c.threaded = True
 c.start()
-
 
 def consume(events):
     fixed = []
@@ -70,9 +65,8 @@ class Test_Commands(unittest.TestCase):
 
     def test_commands(self):
         cmds = sorted(Commands.cmd)
-        random.shuffle(cmds)
         for cmd in cmds:
-            for ex in get(param, cmd, [""]):
+            for ex in getattr(param, cmd, [""]):
                 e = Command()
                 e.txt = cmd + " " + ex
                 e.orig = repr(c)

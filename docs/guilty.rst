@@ -1,17 +1,11 @@
-.. title:: guilty
-
 .. _guilty:
 
 .. raw:: html
 
   <br>
 
-guilty
-======
+.. title:: guilty
 
-.. raw:: html
-
-  <br>
 
 .. image:: informed.jpg
 

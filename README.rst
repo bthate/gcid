@@ -1,64 +1,53 @@
-**NAME**
+| **Information and Evidence Unit**
+| **Office of the Prosecutor**
+| **Post Office Box 19519**
+| **2500 CM The Hague**
+| **The Netherlands**
+| 
 
-**GCID** - reconsider OTP-CR-117/19
+Hello Office of the Prosecutor,
 
+i write you in the context of communications and claims under art.15 of 
+the Rome Statute. i want to inform the prosecutor that the king of the 
+netherlands and his government are commiting 3 of the 5 crimes defined 
+in the Rome Statute.
 
-**SYNOPSIS**
+The dutch government has introduced three new forced care laws, the Wfz 
+(wet forensische zorg) for criminals, the WvGGZ (Wet verplichte GGZ) for 
+the disturbed and addicted and the Wzd (Wet zorg en dwang) for the 
+handicapped.
 
-``gcidctl <cmd> [key=value] [key==value]``
+Both the chamber suggesting these laws to the king and the king himself 
+have been informed about the fact the the substances administered under 
+these laws are proven to be poison.
+ 
+There is proof the medication used in forced treatements in the 
+netherlands are poison, see copies of the ECHA <`European Chemical Agency`>
+website for:
 
-**DESCRIPTION**
+(1) haldol
+(2) clozapine
+(3) zyprexa
+(4) abilify
 
-**GCID** is a python3 program that holds evidence that the king of the
-netherlands is doing a genocide, a written response where the king of
-the netherlands confirmed taking note of “what i have written”, namely
-proof that medicine he uses in treatement laws like zyprexa, haldol,
-abilify and clozapine are poison that makes impotent, is both physical
-(contracted muscles) and mental (let people hallucinate) torture and kills
-members of the victim groups, namely elderly and handicapped (Wzd), mentally
-disturbed (WvGGZ) and criminals (Wfz).
+With the mass scale torture with poison the king of the netherlands and 
+his chamber:
 
-**GCID** contains correspondence with the International Criminal Court,
-asking for arrest of the king of the netherlands, for the genocide he is
-committing with his new treatement laws. Current status is an outside the
-jurisdiction judgement of the prosecutor which requires a reconsider to
-have the king actually arrested.
+(1) kills
+(2) does grave bodily and mental harm
+(3) makes impotent
 
-**GCID** is also an IRC bot that can run as a background daemon for 24/7 day
-presence in an IRC channel, be used to display RSS feeds, act as a UDP
-to IRC gateway and a programmable bot that you can program your commands for.
+on the following victim groups here in the Netherlands:
 
-@IntlCrimCourt @KarimKhanQC reconsider OTP-CR-117/19, after 2002, as article 6, 
-other groups than mentioned, article 15 request. http://genocide.rtfd.io #ggz
+(1) verslaafden (addicts)
+(2) bejaarden (elderly)
+(3) ggz patienten (psychiatric patients)
+(4) criminelen (criminials)
+(5) gehandicapten (handicapped)
 
-**INSTALL**
-
-``pip3 install gcid``
-    
-**CONFIGURATION**
-
-| ``cp /usr/local/share/gcid/gcid.service /etc/systemd/system``
-| ``systemctl enable gcid --now``
-
-**irc**
-
-| ``gcidctl cfg server=<server> channel=<channel>``
-| ``gcidctl cfg nick=<nick>``
-
- default channel/server is #gcid on localhost
-
-**sasl**
-
-| ``gcidctl pwd <nickservnick> <nickservpass>``
-| ``gcidctl cfg password=<outputfrompwd>``
-
-**users**
-
-| ``gcidctl cfg users=True``
-| ``gcidctl met <userhost>``
-
-**rss**
-
-``sudo apt install python3-feedparser``
-
-``sudo botctl rss <url>``
+Since the members of the chamber and the king were aware that these medicine
+are poison at the time they voted for this law and the day the Wfz law took
+effect (1-1-2019), i ask the prosecutor to prosecute the king for making the
+commiting of the above mentioned crimes (killing, torture and impotent making)
+possible here in the netherlands in the hope that it stops the mass torture
+with poison the king of the netherlands and his government are doing.

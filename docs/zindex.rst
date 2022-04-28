@@ -1,16 +1,24 @@
-.. _home:
+.. _end:
 
 .. raw:: html
 
     <br>
 
-.. title:: Prosecutor. Reconsider. OTP-CR-117/19.
+.. title:: OTP-CR-117/19
+
+the end
+=======
+
+.. raw:: html
+
+    <br>
 
 | **Information and Evidence Unit**
 | **Office of the Prosecutor**
 | **Post Office Box 19519**
 | **2500 CM The Hague**
 | **The Netherlands**
+| 
 
 Hello Office of the Prosecutor,
 
@@ -60,14 +68,3 @@ prosecute the king for making the commiting of the above mentioned crimes
 the hope that it stops the mass torture with poison the king of the 
 netherlands and his government are :ref:`doing <correspondence>`:ref:`. <source>`
 
-
-.. toctree::
-    :maxdepth: 2
-    :hidden:
-
-    admin
-    correspondence
-    evidence
-    guilty
-    source
-    zindex

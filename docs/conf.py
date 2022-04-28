@@ -3,10 +3,10 @@
 #
 
 
-"OTP-CR-117/19"
+"Prosecutor. Reconsider. OTP-CR-117/19."
 
 
-__version__ = 58
+__version__ = 2
 
 
 import doctest
@@ -57,33 +57,32 @@ extensions=[
 # -- Options for HTML output -------------------------------------------------
 
 
-html_title = "OTP-CR-117/19"
-html_style = 'genocide.css'
+html_title = "Prosecutor. Reconsider. OTP-CR-117/19."
+html_style = 'gcid.css'
 html_static_path = ["_static"]
-html_css_files = ["genocide.css",]
+html_css_files = ["gcid.css",]
 html_short_title = "GENOCIDE %s" % __version__
 html_sidebars = {
     '**': [
         'about.html',
         'searchbox.html',
         'navigation.html',
-        'relations.html',
     ]
 }
 html_theme = "alabaster"
 html_theme_options = {
     'github_user': 'bthate',
-    'github_repo': 'genocide2',
-    'github_button': True,
+    'github_repo': 'gcid',
+    'github_button': False,
     'github_banner': False,
-    'logo': 'skull3.jpg',
+    'logo': 'skull.jpg',
     'link': '#000',
     'link_hover': '#000',
     'nosidebar': True,
     'show_powered_by': False,
     'show_relbar_top': False,
 }
-html_favicon = "skull3.jpg"
+html_favicon = "skull.jpg"
 html_extra_path = []
 html_last_updated_fmt = '%Y-%b-%d'
 html_additional_pages = {}
@@ -94,7 +93,7 @@ html_show_sourcelink = False
 html_show_sphinx = False
 html_show_copyright = False
 html_copy_source = False
-html_use_opensearch = 'http://genocide.rtfd.io/'
+html_use_opensearch = 'http://gcid.rtfd.io/'
 html_file_suffix = '.html'
 htmlhelp_basename = 'testdoc'
 
@@ -112,13 +111,12 @@ rst_prolog = '''.. image:: line.png
 
 .. raw:: html
 
-    <br><br>
-
+    <br>
 '''
 
 
 autosummary_generate=True
-autodoc_default_flags=['members', 'undoc-members', 'private-members', "imported-members"]
+autodoc_default_flags=['members', 'undoc-members', 'private-members', "imported-members", "xpecial-members"]
 autodoc_member_order='groupwise'
 autodoc_docstring_signature=True
 autoclass_content="class"

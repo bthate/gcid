@@ -7,5 +7,5 @@ grep -R --exclude *check --exclude-dir=docs --exclude-dir=test --exclude-dir=dev
 grep -R --exclude *check --exclude-dir=docs --exclude-dir=test --exclude-dir=dev --exclude-dir=.git popen
 grep -R --exclude *check --exclude-dir=docs --exclude-dir=test --exclude-dir=dev --exclude-dir=.git pkgutil
 grep -R --exclude *check --exclude-dir=docs --exclude-dir=test --exclude-dir=dev --exclude-dir=.git importlib
-grep -R --exclude *check --exclude-dir=docs --exclude-dir=lib --exclude-dir=test --exclude-dir=dev --exclude-dir=bin --exclude-dir=.git print
-grep -R --exclude *check --exclude-dir=docs --exclude-dir=lib --exclude-dir=test --exclude-dir=dev --exclude-dir=bin --exclude-dir=.git --exclude-dir=bin "import sys"
+grep -R --exclude *check --exclude-dir=docs --exclude-dir=dev --exclude-dir=bin --exclude-dir=.git print
+grep -R --exclude *check --exclude-dir=docs --exclude-dir=test --exclude-dir=dev --exclude-dir=bin --exclude-dir=.git --exclude-dir=bin "import sys"

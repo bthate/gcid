@@ -1,6 +1,4 @@
 # This file is placed in the Public Domain.
-#
-# king netherlands commits genocide.
 
 
 import os
@@ -34,25 +32,20 @@ setup(
     url='https://github.com/bthate/gcid',
     author='Bart Thate',
     author_email='bthate67@gmail.com', 
-    description="GCID to reconsider OTP-CR-117/19",
+    description="Prosecutor. Reconsider. OTP-CR-117/19.",
     long_description=read(),
     license='Public Domain',
-    zip_safe=True,
-    include_package_data=True,
-    datadirs={
-              "": "lib",
-              "gcid": "gcid"
-             },
     packages=["gcid"],
-    py_modules=["ob"],
+    zip_safe=False,
+    include_package_data=True,
     data_files=[
-                ("share/gcid", ["files/gcid.service"]),
-                ("share/gcid", ["files/gcid.1.md"]),
+                ("share/gcid", ["gcid.service",]),
                 ("share/doc/gcid", uploadlist("docs")),
+                ("share/doc/gcid/pdf", uploadlist("docs/pdf")),
                 ("share/doc/gcid/_static", uploadlist("docs/_static")),
                 ("share/doc/gcid/_templates", uploadlist("docs/_templates")),
                ],
-    scripts=["bin/gcid", "bin/gcidcmd", "bin/gcidctl",  "bin/gcidd"],
+    scripts=["bin/gcid", "bin/gcidbot", "bin/gcidctl", "bin/gcidd"],
     classifiers=['Development Status :: 3 - Alpha',
                  'License :: Public Domain',
                  'Operating System :: Unix',

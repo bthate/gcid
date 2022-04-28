@@ -3,7 +3,6 @@
 
 
 import doctest
-import importlib
 import inspect
 import os
 import shutil
@@ -15,14 +14,14 @@ import unittest
 sys.path.insert(0, os.getcwd())
 
 
-from gcid.obj.dbs import Class, Config
-from gcid.obj.fnc import format
-from gcid.run.cbs import Callbacks
-from gcid.run.cmd import Commands, dispatch
-from gcid.run.evt import Event
-from gcid.run.hdl import Handler
-from gcid.exc.scn import scan
-from gcid.exc.wrp import wrap
+from gcid.obj import Config, format
+from gcid.cbs import Callbacks
+from gcid.cmd import dispatch
+from gcid.scn import scan
+from gcid.shl import CLI
+
+
+import gcid.cmds
 
 
 flags = doctest.REPORT_NDIFF | doctest.FAIL_FAST | doctest.ELLIPSIS
@@ -30,35 +29,31 @@ results = []
 
 
 Config.debug = True
-Config.verbose = False
 Config.workdir = ".test"
 
 
-class CLI(Handler):
+class CLI(CLI):
 
     def raw(self, txt):
         if Config.verbose:
             print(txt)
-            sys.stdout.flush()
-
-
-Class.add(Event)
 
 
 c = CLI()
 
 
 def main():
+    Callbacks.add("command", dispatch)
     if os.path.exists(".test"):
         shutil.rmtree(".test")
+    print("GCIDE tests started at %s" % time.ctime(time.time()).replace("  ", " "))
     if "-v" in sys.argv:
         Config.verbose = True
-    Callbacks.add("command", dispatch)
-    pat = "test_%s*" % "*"
+    print(format(Config))
     scan("gcid")
-    scan("gcid.mod")
+    pat = "test_%s*" % "*"
     suite = unittest.loader.TestLoader().discover("test", pattern=pat)
     unittest.TextTestRunner(verbosity=3).run(suite)
 
 
-wrap(main)
+main()

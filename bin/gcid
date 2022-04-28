@@ -2,7 +2,7 @@
 # This file is placed in the Public Domain.
 
 
-"gcid genocide bot"
+"Prosecutor. Reconsider. OTP-CR-117/19."
 
 
 import os
@@ -10,29 +10,27 @@ import readline
 import sys
 
 
-sys.path.insert(0, "lib")
 sys.path.insert(0, os.getcwd())
 
-from ob import Object, get, keys, update
-from ob import Class, Config, Db, find, fntime, last, save
-from ob import edit, format, register
 
-from gcid.run.cbs import Callbacks
-from gcid.run.cmd import Commands, dispatch
-from gcid.run.shl import Shell
-from gcid.exc.dmn import cprint
-from gcid.exc.scn import init, introspect, scan
-from gcid.exc.wrp import wrap
-from gcid.exc.utl import wait
+from gcid.obj import Object, get, keys, update
+from gcid.obj import Class, Config, Db, find, fntime, last, save
+from gcid.obj import edit, format, register
+from gcid.cbs import Callbacks
+from gcid.cmd import Commands, dispatch
+from gcid.shl import CLI
+from gcid.shl import cmd as docmd
+from gcid.exc import cprint, wait, wrap
 
 
+import gcid.all
 
 
 Config.name = "gcid"
-Config.workdir = os.path.expanduser("~/.genocide")
+Config.workdir = "/var/lib/gcid/"
 
 
-class Console(Shell):
+class CLI(CLI):
 
     def raw(self, txt):
         cprint(txt)
@@ -47,10 +45,8 @@ Commands.add(cmd)
 
 def main():
     Callbacks.add("command", dispatch)
-    scan("gcid")
-    c = Console()
-    c.start()
-    wait()
+    c = CLI()
+    return docmd(c, " ".join(sys.argv[1:]))
 
 
-wrap(main)
+main()

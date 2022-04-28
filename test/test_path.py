@@ -7,10 +7,10 @@
 import unittest
 
 
-from obj.dbs import fntime
+from gcid.obj import fntime
 
 
-fn = "store/oev.Event/61cba0b9-29c7-4154-a6c4-10b7365b3730/2022-04-11/22:40:31.259218"
+fn = "store/gcid.evt.Event/61cba0b9-29c7-4154-a6c4-10b7365b3730/2022-04-11/22:40:31.259218"
 
 
 class Test_Path(unittest.TestCase):
@@ -18,4 +18,4 @@ class Test_Path(unittest.TestCase):
 
     def test_path(self):
         t = fntime(fn)
-        self.assertEqual(t,  1649709631.259218)
+        self.assertEqual(t, 1649709631.259218)

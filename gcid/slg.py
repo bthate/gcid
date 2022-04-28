@@ -1,10 +1,6 @@
 # This file is placed in the Public Domain.
-#
-# EM_T04_OTP-CR-117_19 otp.informationdesk@icc-cpi.int https://genocide.rtfd.io
 
-
-"""OTP-CR-117/19 otp.informationdesk@icc-cpi.int https://genocide.rtfd.io"""
-
+"slogan"
 
 txt = "Prosecutor. Reconsider. OTP-CR-117/19."
 

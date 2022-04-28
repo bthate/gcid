@@ -1,16 +1,9 @@
-rm -fR build dist MANIFEST gcid.egg-info __pycache *~ 
-rm -fR lib/*~ lib/__pycache__ lib/gcid.egg-info
+rm -fR build dist MANIFEST gcid.egg-info *~ __pycache__
 rm -fR gcid/*~ gcid/__pycache__ 
-rm -fR gcid/obj/*~ gcid/obj/__pycache__ 
-rm -fR gcid/run/*~ gcid/run/__pycache__
-rm -fR gcid/exc/*~ gcid/exc/__pycache__
-rm -fR gcid/mod/*~ gcid/mod/__pycache__
-rm -fR files/*~ .test
-rm -fR test/__pycache__ test/*~
-rm -fR docs/gcid.*.rst
-rm -fR docs/*~ 
-rm -fR docs/_static/*~
-rm -fR docs/_templates/*~
+rm -fR test/*~ test/__pycache__ .test
+rm -fR docs/*~ docs/_static/*~ docs/_templates/*~
+rm -fR docs/gcid.*.rst 
 rm -fR html
-rm -fR dev/*~
-rm -fR bin/*~ *~
+rm -fR bin/*~
+rm -fR dev/*~ 
+rm -fR .gcid
