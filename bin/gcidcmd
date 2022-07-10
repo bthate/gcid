@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+# This file is placed in the Public Domain.
+
+
+"OTP-CR-117/19"
+
+
+import sys
+
+
+from gcid.obj import Config, cdir
+from gcid.hdl import CLI
+from gcid.run import boot, wrap
+
+
+import gcid.bsc
+import gcid.irc
+import gcid.rss
+
+
+Config.name = "gcid"
+Config.threaded = False
+Config.version = "71"
+Config.workdir = "/var/lib/gcid"
+
+
+class CLI(CLI):
+
+    def raw(self, txt):
+        print(txt)
+
+
+def main():
+    boot()
+    cdir(Config.workdir)
+    c = CLI()
+    return c.cmd(" ".join(sys.argv[1:]))
+
+
+wrap(main)
