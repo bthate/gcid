@@ -9,7 +9,7 @@ import time
 
 
 from .obj import Class, Config, Db, Object
-from .obj import find, fntime, get, save, update
+from .obj import find, fntime, format, get, save, update
 from .hdl import Bus, Commands, getname, starttime
 
 
@@ -109,6 +109,7 @@ def dne(event):
 
 Commands.add(dne)
 
+
 def flt(event):
     try:
         index = int(event.args[0])
@@ -150,6 +151,7 @@ def fnd(event):
 
 
 Commands.add(fnd)
+
 
 def log(event):
     if not event.rest:
