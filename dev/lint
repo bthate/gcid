@@ -13,18 +13,20 @@ sys.path.insert(0, wd)
 sys.path.insert(0, os.path.join(wd, "lib"))
 
 
-mns = ["genocide"]
+mns = ["gcid"]
+
 
 mods = [
-        "genocide.hdl",
-        "genocide.irc",
-        "genocide.mdl",
-        "genocide.obj",
-        "genocide.rss",
-        "genocide.tmr",
+        "gcid.hdl",
+        "gcid.irc",
+        "gcid.mdl",
+        "gcid.obj",
+        "gcid.rss",
+        "gcid.tmr",
        ]
 
-txt = "E1121,E1101,E0102,R0801,R0001,C0413,C0412,C0414,C0201,C0209,C0415,C0301,C0413,W1505,W0603,W0622,W0611,W0212,W0703,W0613,R0915,R0912,R1732,R1710,R0201,R0903,R0902,C0411,C0116,C0114,C0115,C0103"
+
+txt = "E1121,E1101,E0102,R0801,R0001,C0413,C0412,C0414,C0201,C0209,C0415,C0301,C0413,W1505,W0603,W0622,W0611,W0212,W0703,W0613,R0915,R0912,R1732,R1710,R0201,R0903,R0902,C0411,C0116,C0114,C0115,C0103,C0112"
 
 
 def popen(txt):
@@ -36,10 +38,10 @@ def popen(txt):
             yield line.replace("\n", "")          
 
 
-import genocide
+import gcid
 
 
-import genocide.all
+import gcid.all
 
 
 def main():
