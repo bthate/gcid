@@ -61,9 +61,6 @@ class NoUser(Exception):
     pass
 
 
-## config
-
-
 class Config(Config):
 
     cc = "!"
@@ -98,9 +95,6 @@ class Config(Config):
 Class.add(Config)
 
 
-## IRC event
-
-
 class Event(Event):
 
     def __init__(self):
@@ -115,9 +109,6 @@ class Event(Event):
         self.sock = None
         self.type = "event"
         self.txt = ""
-
-
-## output
 
 
 class TextWrap(textwrap.TextWrapper):
@@ -187,9 +178,6 @@ class Output(Object):
     def stop(self):
         self.dostop.set()
         self.oqueue.put_nowait((None, None))
-
-
-## IRC
 
 
 class IRC(Handler, Output):
@@ -557,9 +545,6 @@ def QUIT(event):
         bot.reconnect()
 
 
-## users
-
-
 class User(Object):
 
     def __init__(self, val=None):
@@ -615,9 +600,6 @@ class Users(Object):
 
 
 Class.add(Users)
-
-
-## commands
 
 
 def cfg(event):

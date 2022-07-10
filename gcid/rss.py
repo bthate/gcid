@@ -4,9 +4,6 @@
 "rich site syndicate"
 
 
-## imports
-
-
 import datetime
 import html.parser
 import time

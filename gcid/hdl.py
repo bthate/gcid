@@ -4,9 +4,6 @@
 "program your own commands."
 
 
-## imports
-
-
 import queue
 import threading
 import time
@@ -14,9 +11,6 @@ import types
 
 
 from .obj import Class, Config, Default, Object, get, register
-
-
-## defines
 
 
 def __dir__():
@@ -41,9 +35,6 @@ def __dir__():
 
 
 starttime = time.time()
-
-
-## threads
 
 
 class Thread(threading.Thread):
@@ -99,9 +90,6 @@ def launch(func, *args, **kwargs):
     t = Thread(func, name, *args)
     t.start()
     return t
-
-
-## events
 
 
 class Event(Object):
@@ -187,9 +175,6 @@ class Command(Event):
     def __init__(self):
         Event.__init__(self)
         self.type = "command"
-
-
-## handler
 
 
 class Bus(Object):
@@ -329,9 +314,6 @@ class Handler(Object):
         self.stopped.set()
 
 
-## consoles
-
-
 class CLI(Handler):
 
     def announce(self, txt):
@@ -370,9 +352,6 @@ class Console(CLI):
             time.sleep(1.0)
 
 
-## table
-
-
 class Table():
 
     mod = {}
@@ -384,9 +363,6 @@ class Table():
     @staticmethod
     def get(nm):
         return Table.mod.get(nm, None)
-
-
-## utilities
 
 
 def dispatch(e):

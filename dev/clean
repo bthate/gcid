@@ -1,9 +1,25 @@
-rm -fR build dist MANIFEST gcid.egg-info *~ __pycache__
-rm -fR gcid/*~ gcid/__pycache__ 
-rm -fR test/*~ test/__pycache__ .test
-rm -fR docs/*~ docs/_static/*~ docs/_templates/*~
-rm -fR docs/gcid.*.rst 
-rm -fR html
-rm -fR bin/*~
-rm -fR dev/*~ 
-rm -fR .gcid
+#!/usr/bin/env python3
+# This file is placed in the Public Domain.
+
+
+import os
+import shutil
+
+
+def popen(txt):
+    for l in os.popen(txt).readlines():
+        print(l)
+
+
+popen("rm -fR txt/*~ files/*~ files/__pycache__")
+popen("rm -fR bin/*~ *~ __pycache__")
+popen("rm -fR build dist MANIFEST gcid.egg-info") 
+popen("rm -fR dev/*~ bin/*~ *~ files/*~")
+popen("rm -fR gcid/*~ gcid/__pycache__")
+popen("rm -fR .test test/__pycache__ test/*~")
+popen("rm -fR html tar")
+popen("rm -fR docs/*~ docs/_static/*~ docs/_templates/*~")
+popen("rm -fR docs/gcid*.rst")
+popen("rm -fR html")
+popen("rm -fR docs/*~ docs/_static/*~ docs/_templates/*~")
+popen("rm -fR docs/gcid.*.rst")

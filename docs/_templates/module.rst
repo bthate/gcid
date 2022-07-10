@@ -3,7 +3,8 @@
 .. raw:: html
 
     <br><br>
-    <center><b>
+    <center>
+    <b>
 
 
 {{ fullname }}
