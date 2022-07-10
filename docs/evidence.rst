@@ -1,22 +1,29 @@
 .. _evidence:
 
-.. title:: evidence
+.. raw:: html
 
+  <br>
+
+.. title:: Evidence
+
+.. raw:: html
+
+     <center><h2><b>EVIDENCE</b></h2></center>
+     <br>
+
+
+
+There is proof the medication used in forced treatements in the netherlands are poison, see copies of the ECHA <European Chemical Agency> website for:
+
+.. raw:: html
+
+  <br>
 
 .. _haldol:
 
-.. raw:: html
 
-  <br>
+**haldol**
 
-haldol
-------
-
-.. raw:: html
-
-  <br>
-
-https://echa.europa.eu/substance-information/-/substanceinfo/100.000.142
 
 .. raw:: html
 
@@ -31,14 +38,8 @@ https://echa.europa.eu/substance-information/-/substanceinfo/100.000.142
 
 .. _clozapine:
 
-clozapine
----------
 
-.. raw:: html
-
-  <br>
-
-https://echa.europa.eu/substance-information/-/substanceinfo/100.024.831
+**clozapine**
 
 
 .. raw:: html
@@ -56,14 +57,9 @@ https://echa.europa.eu/substance-information/-/substanceinfo/100.024.831
 
 .. _zyprexa:
 
-zyprexa
--------
 
-.. raw:: html
+**zyprexa**
 
-  <br>
-
-https://echa.europa.eu/substance-information/-/substanceinfo/100.125.320
 
 .. raw:: html
 
@@ -79,14 +75,8 @@ https://echa.europa.eu/substance-information/-/substanceinfo/100.125.320
 .. _abilify:
 
 
-abilify
--------
+**abilify**
 
-.. raw:: html
-
-  <br>
-
-https://echa.europa.eu/substance-information/-/substanceinfo/100.112.532
 
 .. raw:: html
 
@@ -95,6 +85,3 @@ https://echa.europa.eu/substance-information/-/substanceinfo/100.112.532
 .. image:: ECHAabilify.png
      :width: 100%
 
-.. raw:: html
-
-  <br>

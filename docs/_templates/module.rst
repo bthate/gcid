@@ -1,9 +1,19 @@
+.. _{{ fullname }}:
+
 .. raw:: html
 
-    <br>
+    <br><br>
+    <center><b>
+
 
 {{ fullname }}
 {{ underline }}
+
+.. raw:: html
+
+    </b>
+    </center>
+    <br>
 
 .. automodule:: {{ fullname }}
     :members:
@@ -18,6 +28,7 @@
     {%- endfor %}
     {% endif %}
     {% endblock %}
+
 
     {% block classes %}
     {% if classes %}

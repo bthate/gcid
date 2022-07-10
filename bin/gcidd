@@ -2,50 +2,50 @@
 # This file is placed in the Public Domain.
 
 
-"Prosecutor. Reconsider. OTP-CR-117/19."
+"Prosecutor. Court. Reconsider OTP-CR-117/19."
 
 
-import os
-import readline
-import sys
 import time
 
 
-from gcid.obj import Object, get, keys, update
-from gcid.obj import Class, Config, Db, find, fntime, last, save
-from gcid.obj import edit, format, register
-from gcid.cbs import Callbacks
-from gcid.cmd import Commands, dispatch
-from gcid.shl import Shell
-from gcid.exc import cprint, daemon,wait, wrap
-from gcid.irc import IRC
-from gcid.scn import init, introspect, scan
-
-
-import gcid.all
-import gcid.cmds
-
-
-from gcid.mdl import init
+from gcid.obj import Config
 
 
 Config.name = "gcid"
-Config.workdir = "/var/lib/gcid/"
+Config.threaded = False
+Config.version = "71"
+Config.workdir = "/var/lib/gcid"
 
 
-def cmd(event):
-    event.reply(",".join(sorted(Commands.cmd)))
+from gcid.irc import Config as IConfig
 
 
-Commands.add(cmd)
+IConfig.cc = "!"
+IConfig.channel = "#gcid"
+IConfig.nick = "gcid"
+IConfig.password = ""
+IConfig.port = 6667
+IConfig.realname = "Prosecutor. Court. Reconsider OTP-CR-117/19."
+IConfig.sasl = False
+IConfig.server = "localhost"
+IConfig.servermodes = ""
+IConfig.sleep = 60
+IConfig.username = "gcid"
+IConfig.users = False
+
+
+from gcid.irc import IRC
+from gcid.mdl import init
+
+
+import gcid.all
 
 
 def main():
-    Callbacks.add("command", dispatch)
-    i = IRC()
-    i.start()
+    irc = IRC()
+    irc.start()
     init()
-    wait()
-
+    while 1:
+        time.sleep(1.0)
 
 main()

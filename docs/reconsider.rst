@@ -1,8 +1,15 @@
-# This file is placed in the Public Domain.
+.. _reconsider:
 
-"request to arrest."
+.. title:: Reconsider
 
-txt = """| **Information and Evidence Unit**
+
+.. raw:: html
+
+     <br>
+     <center><h2><b>RECONSIDER</b></h2></center>
+     <br>
+
+| **Information and Evidence Unit**
 | **Office of the Prosecutor**
 | **Post Office Box 19519**
 | **2500 CM The Hague**
@@ -29,10 +36,10 @@ There is proof the medication used in forced treatements in the
 netherlands are poison, see copies of the ECHA <`European Chemical Agency`>
 website for:
 
-(1) haldol
-(2) clozapine
-(3) zyprexa
-(4) abilify`
+(1) :ref:`haldol <haldol>`
+(2) :ref:`clozapine <clozapine>`
+(3) :ref:`zyprexa <zyprexa>`
+(4) :ref:`abilify <abilify>`
 
 With the mass scale torture with poison the king of the netherlands and 
 his chamber:
@@ -49,16 +56,10 @@ on the following victim groups here in the Netherlands:
 (4) criminelen (criminials)
 (5) gehandicapten (handicapped)
 
-Since the members of the chamber and the king
+Since the members of the :ref:`chamber <chamber>` and the :ref:`king <king>`
 were aware that these medicine are poison at the time they voted for this law
 and the day the Wfz law took effect (1-1-2019), i ask the prosecutor to
 prosecute the king for making the commiting of the above mentioned crimes
 (killing, torture and impotent making) possible here in the netherlands in
 the hope that it stops the mass torture with poison the king of the 
 netherlands and his government are doing.
-"""
-
-
-
-def req(event):
-    event.reply(txt)

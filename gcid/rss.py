@@ -4,50 +4,54 @@
 "rich site syndicate"
 
 
-fmt = "[gitweb-dfbsd] - bsd-family-tree: Sync with FreeBSD. - https://tinyurl.com/3n7nvvxz - Sascha Wildner <saw@online.de>"
-fmt = "[%s] - %s - %s - %s"
+## imports
 
 
+import datetime
 import html.parser
+import time
 import re
 import threading
 import urllib
 
 
-try:
-    import feedparser
-except ImportError:
-    pass
-
-
-
-from .obj import Class, Db, find, last, save
-from .obj import Config, Object, get, update
-from .obj import edit, spl
-from .bus import Bus
-from .cmd import Commands
-from .rpt import Repeater
-from .thr import launch
+from .obj import Class, Config, Db, Object
+from .obj import edit, find, get, last, save, spl, update
+from .hdl import Bus, Commands, getname, launch
+from .tmr import Repeater, elapsed
 
 
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote_plus, urlencode
 from urllib.request import Request, urlopen
 
-
 def __dir__():
     return (
-        "Feed",
-        "Rss",
-        "Seen",
-        "Fetcher",
-        "display",
-        "fetch",
-        "name",
-        "remove",
-        "rss"
+        "init",
+        "register",
+        "remove"
     )
 
+def init():
+    f = Fetcher()
+    f.start()
+    return f
+
+
+def register():
+    Commands.add(dpl)
+    Commands.add(ftc)
+    Commands.add(nme)
+    Commands.add(rem)
+    Commands.add(rss)
+
+
+def remove():
+    Commands.remove(dpl)
+    Commands.remove(ftc)
+    Commands.remove(nme)
+    Commands.remove(rem)
+    Commands.remove(rss)
 
 class Feed(Object):
 
@@ -63,6 +67,7 @@ class Rss(Object):
 
     def __init__(self):
         super().__init__()
+        self.display_list = "title,link,author"
         self.name = ""
         self.rss = ""
 
@@ -76,6 +81,7 @@ class Seen(Object):
 
 class Fetcher(Object):
 
+    dosave = False
     errors = []
     seen = Seen()
 
@@ -106,9 +112,9 @@ class Fetcher(Object):
     def fetch(self, feed):
         counter = 0
         objs = []
-        for o in reversed(list(getfeed(feed.rss))):
+        for o in reversed(list(getfeed(feed.rss, feed.display_list))):
             f = Feed()
-            update(f, dict(o))
+            update(f, o)
             update(f, feed)
             if "link" in f:
                 u = urllib.parse.urlparse(f.link)
@@ -118,8 +124,10 @@ class Fetcher(Object):
                     url = f.link
                 if url in Fetcher.seen.urls:
                     continue
-            Fetcher.seen.urls.append(url)
+                Fetcher.seen.urls.append(url)
             counter += 1
+            if self.dosave:
+                save(f)
             objs.append(f)
         if objs:
             save(Fetcher.seen)
@@ -128,8 +136,8 @@ class Fetcher(Object):
         if name:
             txt = "[%s] " % name
         for o in objs:
-            txt = self.display(o)
-            Bus.announce(txt.rstrip())
+            txt2 = txt + self.display(o)
+            Bus.announce(txt2.rstrip())
         return counter
 
     def run(self):
@@ -145,7 +153,38 @@ class Fetcher(Object):
             repeater.start()
 
 
-def getfeed(url):
+
+class Parser(Object):
+
+    @staticmethod
+    def getitem(line, item):
+        try:
+            i = line.index("<%s>" % item) + len(item) + 2
+            ii = line.index("</%s>" % item)
+        except ValueError:
+            return
+        l = line[i:ii]
+        if "CDATA" in l:
+            l = l.replace("![CDATA[", "")
+            l = l.replace("]]", "")
+            l = l[1:-1]
+        return l
+
+
+    @staticmethod
+    def parse(txt, items="title,link"):
+        res = []
+        for line in txt.split("<item>"):
+            line = line.strip()
+            o = Object()
+            for item in spl(items):
+                o[item] = Parser.getitem(line, item)
+            res.append(o)
+        return res
+
+
+
+def getfeed(url, items):
     if Config.debug:
         return [Object(), Object()]
     try:
@@ -154,10 +193,7 @@ def getfeed(url):
         return [Object(), Object()]
     if not result:
         return [Object(), Object()]
-    result = feedparser.parse(result.data)
-    if result and "entries" in result:
-        for entry in result["entries"]:
-            yield entry
+    return Parser.parse(str(result.data, "utf-8"), items)
 
 
 def gettinyurl(url):
@@ -200,10 +236,12 @@ def useragent(txt):
     return "Mozilla/5.0 (X11; Linux x86_64) " + txt
 
 
+parser = Parser()
+
+
 Class.add(Feed)
 Class.add(Rss)
 Class.add(Seen)
-
 
 def dpl(event):
     if len(event.args) < 2:
@@ -220,17 +258,23 @@ def dpl(event):
             event.reply("ok")
 
 
+Commands.add(dpl)
+
+
 def ftc(event):
     res = []
     thrs = []
     fetcher = Fetcher()
     fetcher.start(False)
     thrs = fetcher.run()
-    for thr in thrs:
-        res.append(thr.join())
+    for t in thrs:
+        res.append(t.join())
     if res:
         event.reply(",".join([str(x) for x in res]))
         return
+
+
+Commands.add(ftc)
 
 
 def nme(event):
@@ -249,6 +293,9 @@ def nme(event):
     event.reply("ok")
 
 
+Commands.add(nme)
+
+
 def rem(event):
     if not event.args:
         event.reply("rem <stringinurl>")
@@ -263,6 +310,9 @@ def rem(event):
     for o in got:
         save(o)
     event.reply("ok")
+
+
+Commands.add(rem)
 
 
 def rss(event):
@@ -282,8 +332,4 @@ def rss(event):
     event.reply("ok")
 
 
-Commands.add(dpl)
-Commands.add(ftc)
-Commands.add(nme)
-Commands.add(rem)
 Commands.add(rss)

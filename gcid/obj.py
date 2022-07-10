@@ -1,7 +1,10 @@
 # This file is placed in the Public Domain.
 
 
-"object"
+"program your own commands"
+
+
+## imports
 
 
 import copy as copying
@@ -9,9 +12,18 @@ import datetime
 import json
 import os
 import pathlib
+import queue
+import readline
+import termios
+import threading
 import time
+import types
+import traceback
 import uuid
 import _thread
+
+
+## defines
 
 
 def __dir__():
@@ -50,15 +62,28 @@ def __dir__():
     )
 
 
-## Big Object
+## exceptions
+
+
+class ENOPATH(Exception):
+
+    pass
+
+
+## big object
+
 
 class Object:
+
+    "Big Object."
+
 
     __slots__ = (
         "__dict__",
         "__otype__",
         "__stp__",
     )
+
 
     def __init__(self):
         object.__init__(self)
@@ -140,15 +165,32 @@ class Object:
         return str(self.__dict__)
 
 
-class Config(Object):
+class Default(Object):
+
+
+    _default = ""
+
+
+    def __getattr__(self, k):
+        return self.__dict__.get(k, self._default)
+
+
+## configuration
+
+
+class Config(Default):
 
     debug = False
-    name = "gcid"
-    workdir = ".gcid"
+    name = ""
+    threaded = False
+    version = "1"
+    workdir = ""
+
+
+## dict emulation functions
 
 
 def clear(o):
-    """ empty __dict__ """
     o.__dict__ = {}
 
 
@@ -226,6 +268,7 @@ def values(o):
 class ObjectDecoder(json.JSONDecoder):
 
     def decode(self, s, _w=None):
+        ""
         v = json.loads(s)
         o = Object()
         update(o, v)
@@ -235,6 +278,7 @@ class ObjectDecoder(json.JSONDecoder):
 class ObjectEncoder(json.JSONEncoder):
 
     def default(self, o):
+        ""
         if isinstance(o, dict):
             return o.items()
         if isinstance(o, Object):
@@ -299,12 +343,6 @@ def locked(obj):
     return lockeddec
 
 
-
-class ENOPATH(Exception):
-
-    pass
-
-
 class Class():
 
     cls = {}
@@ -331,6 +369,19 @@ class Class():
 class Db(Object):
 
     names = Object()
+
+    def all(self, otype, timed=None):
+        nr = -1
+        result = []
+        for fn in fns(otype, timed):
+            o = hook(fn)
+            if "_deleted" in o and o._deleted:
+                continue
+            nr += 1
+            result.append((fn, o))
+        if not result:
+            return []
+        return result
 
     def find(self, otype, selector=None, index=None, timed=None):
         if selector is None:
@@ -393,19 +444,8 @@ class Db(Object):
 def fntime(daystr):
     daystr = daystr.replace("_", ":")
     datestr = " ".join(daystr.split(os.sep)[-2:])
-    if "." in datestr:
-        datestr, rest = datestr.rsplit(".", 1)
-    else:
-        rest = ""
-    t = time.mktime(time.strptime(datestr, "%Y-%m-%d %H:%M:%S"))
-    if rest:
-        try:
-            t += float("." + rest)
-        except ValueError:
-            t = 0
-    else:
-        t = 0
-    return t
+    datestr = datestr.split(".")[0]
+    return time.mktime(time.strptime(datestr, "%Y-%m-%d %H:%M:%S"))
 
 
 @locked(dblock)
@@ -516,10 +556,13 @@ def load(o, opath):
     return o.__stp__
 
 
-def save(o):
+def save(o, stime=None):
     assert Config.workdir
     prv = os.sep.join(o.__stp__.split(os.sep)[:2])
-    o.__stp__ = os.path.join(prv,
+    if stime:
+        o.__stp__ = os.path.join(prv, stime)
+    else:
+        o.__stp__ = os.path.join(prv,
                              os.sep.join(str(datetime.datetime.now()).split()))
     opath = os.path.join(Config.workdir, "store", o.__stp__)
     dump(o, opath)
@@ -527,11 +570,11 @@ def save(o):
     return o.__stp__
 
 
-## object functions
-
-
 def spl(txt):
     return [x for x in txt.split(",") if x]
+
+
+## object funtions
 
 
 def diff(o1, o2):
@@ -547,7 +590,9 @@ def edit(o, setter):
         register(o, key, v)
 
 
-def format(o, args="", skip="", sep=" ", empty=False, **kwargs):
+def format(o, args="", skip="_", empty=False, plain=False, **kwargs):
+    if not o:
+        return ""
     res = []
     if args:
         ks = spl(args)
@@ -559,12 +604,15 @@ def format(o, args="", skip="", sep=" ", empty=False, **kwargs):
         v = getattr(o, k, None)
         if not v and not empty:
             continue
-        if isinstance(v, str) and len(v.split()) >= 2:
+        txt = ""
+        if plain:
+            txt = str(v)
+        elif isinstance(v, str) and len(v.split()) >= 2:
             txt = '%s="%s"' % (k, v)
         else:
-            txt='%s=%s' % (k, v)
+            txt = '%s=%s' % (k, v)
         res.append(txt)
-    return sep.join(res)
+    return " ".join(res)
 
 
 def register(o, k, v):
@@ -580,6 +628,3 @@ def search(o, s):
             break
         ok = True
     return ok
-
-
-## teh end

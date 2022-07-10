@@ -15,39 +15,43 @@ import time
 import _thread
 
 
-from .obj import Config as CoreConfig
-from .obj import Object, Class, find, last, locked, save, update
-from .obj import edit, format
-from .cmd import Commands, Command
-from .evt import Event
-from .hdl import Handler
-from .thr import launch
+from .obj import Class, Config, Object
+from .obj import edit, find, format, last, locked, save, update
+from .hdl import Commands, Event, Handler, launch
 
 
 def __dir__():
     return (
-        "init",
         "Config",
         "Event",
-        "Output",
         "IRC",
         "DCC",
-        "User",
-        "Users",
-        "cfg",
-        "dlt",
-        "met",
-        "mre",
-        "nck",
-        "ops",
-        "pwd"
+        "init",
+        "register",
+        "remove"
     )
-
 
 def init():
     i = IRC()
     i.start()
     return i
+
+
+def register():
+    Commands.add(cfg)
+    Commands.add(dlt)
+    Commands.add(met)
+    Commands.add(mre)
+    Commands.add(pwd)
+
+
+def remove():
+    Commands.remove(cfg)
+    Commands.remove(dlt)
+    Commands.remove(met)
+    Commands.remove(mre)
+    Commands.remove(pwd)
+
 
 saylock = _thread.allocate_lock()
 
@@ -57,14 +61,17 @@ class NoUser(Exception):
     pass
 
 
-class Config(Object):
+## config
+
+
+class Config(Config):
 
     cc = "!"
     channel = "#gcid"
     nick = "gcid"
     password = ""
     port = 6667
-    realname = "Prosecutor. Reconsider. OTP-CR-117/19."
+    realname = "OTP-CR-117/19"
     sasl = False
     server = "localhost"
     servermodes = ""
@@ -91,6 +98,9 @@ class Config(Object):
 Class.add(Config)
 
 
+## IRC event
+
+
 class Event(Event):
 
     def __init__(self):
@@ -107,34 +117,43 @@ class Event(Event):
         self.txt = ""
 
 
+## output
+
+
 class TextWrap(textwrap.TextWrapper):
 
     def __init__(self):
         super().__init__()
-        self.break_long_words = True
+        self.break_long_words = False
         self.drop_whitespace = True
         self.fix_sentence_endings = True
         self.replace_whitespace = True
         self.tabsize = 4
-        self.width = 250
+        self.width = 450
 
 
 class Output(Object):
 
+    cache = Object()
 
     def __init__(self):
         Object.__init__(self)
-        self.cache = Object()
         self.oqueue = queue.Queue()
         self.dostop = threading.Event()
 
     def dosay(self, channel, txt):
-        pass
+        raise NotImplementedError
 
     def extend(self, channel, txtlist):
         if channel not in self.cache:
             self.cache[channel] = []
         self.cache[channel].extend(txtlist)
+
+    def get(self, channel):
+        try:
+            return self.cache[channel].pop(0)
+        except IndexError:
+            pass
 
     def oput(self, channel, txt):
         self.oqueue.put_nowait((channel, txt))
@@ -144,10 +163,16 @@ class Output(Object):
             (channel, txt) = self.oqueue.get()
             if self.dostop.isSet():
                 break
-            try:
-                self.dosay(channel, txt)
-            except Exception as _ex:
-                pass
+            wrapper = TextWrap()
+            txtlist = wrapper.wrap(txt)
+            c = -1
+            if len(txtlist) > 3:
+                self.extend(channel, txtlist)
+                self.dosay(channel, "%s put in cache, use !mre to show more" % len(txtlist))
+                continue
+            for t in txtlist:
+                c += 1
+                self.dosay(channel, t)
 
     def size(self, name):
         if name in self.cache:
@@ -164,61 +189,7 @@ class Output(Object):
         self.oqueue.put_nowait((None, None))
 
 
-class User(Object):
-
-    def __init__(self, val=None):
-        super().__init__()
-        self.user = ""
-        self.perms = []
-        if val:
-            update(self, val)
-
-
-Class.add(User)
-
-
-class Users(Object):
-
-    userhosts = Object()
-
-    def allowed(self, origin, perm):
-        perm = perm.upper()
-        origin = getattr(self.userhosts, origin, origin)
-        user = self.get_user(origin)
-        if user:
-            if perm in user.perms:
-                return True
-        return False
-
-    def delete(self, origin, perm):
-        for user in self.get_users(origin):
-            try:
-                user.perms.remove(perm)
-                save(user)
-                return True
-            except ValueError:
-                pass
-
-    def get_users(self, origin=""):
-        s = {"user": origin}
-        return find("user", s)
-
-    def get_user(self, origin):
-        u = list(self.get_users(origin))
-        if u:
-            return u[-1][-1]
-
-    def perm(self, origin, permission):
-        user = self.get_user(origin)
-        if not user:
-            raise NoUser(origin)
-        if permission.upper() not in user.perms:
-            user.perms.append(permission.upper())
-            save(user)
-        return user
-
-
-Class.add(User)
+## IRC
 
 
 class IRC(Handler, Output):
@@ -304,7 +275,7 @@ class IRC(Handler, Output):
     def disconnect(self):
         self.sock.shutdown(2)
 
-    def doconnect(self, server, nick, port=6667):
+    def doconnect(self, server, nck, port=6667):
         self.state.nrconnect = 0
         while 1:
             self.state.nrconnect += 1
@@ -314,24 +285,12 @@ class IRC(Handler, Output):
             except Exception as ex:
                 self.errors.append(ex)
             time.sleep(self.cfg.sleep)
-        self.logon(server, nick)
+        self.logon(server, nck)
 
     def dosay(self, channel, txt):
-        wrapper = TextWrap()
         txt = str(txt).replace("\n", "")
         txt = txt.replace("  ", " ")
-        c = 0
-        txtlist = wrapper.wrap(txt)
-        for t in txtlist:
-            if not t:
-                continue
-            if c < 3:
-                self.command("PRIVMSG", channel, t)
-                c += 1
-            else:
-                self.command("PRIVMSG", channel, "%s left in cache, use !mre to show more" % (len(txtlist)-3))
-                self.extend(channel, txtlist[3:])
-                break
+        self.command("PRIVMSG", channel, txt)
 
     def event(self, txt, origin=None):
         if not txt:
@@ -354,8 +313,8 @@ class IRC(Handler, Output):
         elif cmd == "366":
             self.joined.set()
         elif cmd == "433":
-            nick = self.cfg.nick + "_"
-            self.raw("NICK %s" % nick)
+            nck = self.cfg.nick + "_"
+            self.raw("NICK %s" % nck)
         return e
 
     def fileno(self):
@@ -377,14 +336,14 @@ class IRC(Handler, Output):
                 #self.keeprunning = False
                 self.restart()
 
-    def logon(self, server, nick):
-        self.raw("NICK %s" % nick)
+    def logon(self, server, nck):
+        self.raw("NICK %s" % nck)
         self.raw(
             "USER %s %s %s :%s"
-            % (self.cfg.username or "opb",
+            % (self.cfg.username or "bot",
                server,
                server,
-               self.cfg.realname or "opb")
+               self.cfg.realname or "bot")
         )
 
     def parsing(self, txt):
@@ -447,7 +406,14 @@ class IRC(Handler, Output):
     def poll(self):
         self.connected.wait()
         if not self.buffer:
-            self.some()
+            try:
+                self.some()
+            except ConnectionResetError as ex:
+                e = Event()
+                e._exc = ex
+                e.txt = "ConnectionResetError"
+                self.stop()
+                return e
         if self.buffer:
             return self.event(self.buffer.pop(0))
 
@@ -498,8 +464,8 @@ class IRC(Handler, Output):
         assert self.cfg.channel
         self.connected.clear()
         self.joined.clear()
-        launch(Handler.start, self)
-        launch(Output.start, self)
+        Output.start(self)
+        Handler.start(self)
         self.doconnect(self.cfg.server, self.cfg.nick, int(self.cfg.port))
         if not self.keeprunning:
             launch(self.keep)
@@ -509,62 +475,20 @@ class IRC(Handler, Output):
             self.sock.shutdown(2)
         except OSError:
             pass
-        Output.stop(self)
         Handler.stop(self)
 
     def wait(self):
         self.joined.wait()
 
 
-class DCC(Handler):
-
-    def __init__(self):
-        Handler.__init__(self)
-        self.encoding = "utf-8"
-        self.origin = ""
-        self.sock = None
-        self.speed = "fast"
-
-    def connect(self, dccevent):
-        arguments = dccevent.txt.split()
-        addr = arguments[3]
-        port = int(arguments[4])
-        if ":" in addr:
-            self.sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
-        else:
-            self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        try:
-            self.sock.connect((addr, port))
-        except ConnectionRefusedError:
-            return
-        self.sock.setblocking(1)
-        os.set_inheritable(self.sock.fileno(), os.O_RDWR)
-        self.origin = dccevent.origin
-        self.start()
-        self.raw("%s start at %s" % (CoreConfig.name.upper(), time.ctime(time.time()).replace("  ", " ")))
-
-    def poll(self):
-        if not self.sock:
-            return
-        txt = str(self.sock.recv(512), "utf8")
-        if txt == "":
-            raise ConnectionResetError
-        e = Command()
-        e.orig = repr(self)
-        e.txt = txt.rstrip()
-        e.sock = self.sock
-        return e
-
-    def raw(self, txt):
-        self.sock.send(bytes("%s\n" % txt.rstrip(), self.encoding))
-
-
 def AUTH(event):
+    time.sleep(1.0)
     bot = event.bot()
     bot.raw("AUTHENTICATE %s" % bot.cfg.password)
 
 
 def CAP(event):
+    time.sleep(1.0)
     bot = event.bot()
     if bot.cfg.password and "ACK" in event.arguments:
         bot.raw("AUTHENTICATE PLAIN")
@@ -573,11 +497,13 @@ def CAP(event):
 
 
 def h903(event):
+    time.sleep(1.0)
     bot = event.bot()
     bot.raw("CAP END")
 
 
 def h904(event):
+    time.sleep(1.0)
     bot = event.bot()
     bot.raw("CAP END")
 
@@ -601,35 +527,26 @@ def NOTICE(event):
     if event.txt.startswith("VERSION"):
         txt = "\001VERSION %s %s - %s\001" % (
             "op",
-            bot.cfg.version or CoreConfig.version or 1,
-            bot.cfg.username or CoreConfig.name.upper(),
+            bot.cfg.version or "1",
+            bot.cfg.username or "OIRC",
         )
         bot.command("NOTICE", event.channel, txt)
 
 
 def PRIVMSG(event):
-    bot = event.bot()
-    if event.txt.startswith("DCC CHAT"):
-        if bot.cfg.users and not bot.users.allowed(event.origin, "USER"):
-            return
-        try:
-            dcc = DCC()
-            dcc.connect(event)
-            return
-        except ConnectionError:
-            return
     if event.txt:
+        bot = event.bot()
         if event.txt[0] in [bot.cfg.cc, "!"]:
             event.txt = event.txt[1:]
         elif event.txt.startswith("%s:" % bot.cfg.nick):
             event.txt = event.txt[len(bot.cfg.nick)+1:]
         else:
             return
+        if bot.cfg.users and not bot.users.allowed(event.origin, "USER"):
+            return
         splitted = event.txt.split()
         splitted[0] = splitted[0].lower()
         event.txt = " ".join(splitted)
-        if bot.cfg.users and not bot.users.allowed(event.origin, "USER"):
-            return
         event.type = "command"
         bot.handle(event)
 
@@ -640,16 +557,76 @@ def QUIT(event):
         bot.reconnect()
 
 
+## users
+
+
+class User(Object):
+
+    def __init__(self, val=None):
+        super().__init__()
+        self.user = ""
+        self.perms = []
+        if val:
+            update(self, val)
+
+
+Class.add(User)
+
+
+class Users(Object):
+
+    userhosts = Object()
+
+    def allowed(self, origin, perm):
+        perm = perm.upper()
+        origin = getattr(self.userhosts, origin, origin)
+        user = self.get_user(origin)
+        if user:
+            if perm in user.perms:
+                return True
+        return False
+
+    def delete(self, origin, perm):
+        for user in self.get_users(origin):
+            try:
+                user.perms.remove(perm)
+                save(user)
+                return True
+            except ValueError:
+                pass
+
+    def get_users(self, origin=""):
+        s = {"user": origin}
+        return find("user", s)
+
+    def get_user(self, origin):
+        u = list(self.get_users(origin))
+        if u:
+            return u[-1][-1]
+
+    def perm(self, origin, permission):
+        user = self.get_user(origin)
+        if not user:
+            raise NoUser(origin)
+        if permission.upper() not in user.perms:
+            user.perms.append(permission.upper())
+            save(user)
+        return user
+
+
+Class.add(Users)
+
+
+## commands
+
+
 def cfg(event):
     c = Config()
     last(c)
-    if not event.prs.sets:
-        if not c:
-            event.reply("no config yet")
-            return
-        event.reply(format(c, skip="cc,password,realname,servermodes,sleep,username"))
+    if not event.sets:
+        event.reply(format(c, skip="realname,sleep,username"))
         return
-    edit(c, event.prs.sets)
+    edit(c, event.sets)
     save(c)
     event.reply("ok")
 
@@ -667,7 +644,6 @@ def dlt(event):
         save(o)
         event.reply("ok")
         break
-
 
 Commands.add(dlt)
 
@@ -687,53 +663,30 @@ Commands.add(met)
 
 
 def mre(event):
-    if event.channel is None:
+    if not event.channel:
         event.reply("channel is not set.")
         return
     bot = event.bot()
-    if "cache" not in bot:
+    if "cache" not in dir(bot):
         event.reply("bot is missing cache")
         return
     if event.channel not in bot.cache:
         event.reply("no output in %s cache." % event.channel)
         return
     for _x in range(3):
-        txt = bot.cache[event.channel].pop(0)
+        txt = bot.get(event.channel)
         if txt:
             bot.say(event.channel, txt)
     sz = bot.size(event.channel)
-    if sz:
-        event.reply("(+%s more)" % sz)
+    event.reply("%s more in cache" % sz)
 
 
 Commands.add(mre)
 
 
-def nck(event):
-    bot = event.bot()
-    if isinstance(bot, IRC):
-        bot.command("NICK", event.rest)
-        bot.cfg.nick = event.rest
-        save(bot.cfg)
-
-
-Commands.add(nck)
-
-
-def ops(event):
-    bot = event.bot()
-    if isinstance(bot, IRC):
-        if not bot.users.allowed(event.origin, "USER"):
-            return
-        bot.command("MODE", event.channel, "+o", event.nick)
-
-
-Commands.add(ops)
-
-
 def pwd(event):
     if len(event.args) != 2:
-        event.reply("password <nick> <password>")
+        event.reply("pwd <nick> <password>")
         return
     m = "\x00%s\x00%s" % (event.args[0], event.args[1])
     mb = m.encode("ascii")

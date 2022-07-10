@@ -1,73 +1,39 @@
 .. _home:
 
+.. title:: OTP-CR-117/19
+
+.. image:: skullagain.jpg
+    :width: 100%
+    :target: evidence.html
+
 .. raw:: html
 
-    <br>
-
-.. title:: Prosecutor. Reconsider. OTP-CR-117/19.
-
-| **Information and Evidence Unit**
-| **Office of the Prosecutor**
-| **Post Office Box 19519**
-| **2500 CM The Hague**
-| **The Netherlands**
-
-Hello Office of the Prosecutor,
-
-i write you in the context of communications and claims under art.15 of 
-the Rome Statute. i want to inform the prosecutor that the king of the 
-netherlands and his government are commiting 3 of the 5 crimes defined 
-in the Rome Statute.
-
-The dutch government has introduced three new forced care laws, the Wfz 
-(wet forensische zorg) for criminals, the WvGGZ (Wet verplichte GGZ) for 
-the disturbed and addicted and the Wzd (Wet zorg en dwang) for the 
-handicapped.
-
-Both the chamber suggesting these laws to the king and the king himself 
-have been informed about the fact the the substances administered under 
-these laws are proven to be poison.
- 
-There is proof the medication used in forced treatements in the 
-netherlands are poison, see copies of the ECHA <`European Chemical Agency`>
-website for:
-
-(1) :ref:`haldol <haldol>`
-(2) :ref:`clozapine <clozapine>`
-(3) :ref:`zyprexa <zyprexa>`
-(4) :ref:`abilify <abilify>`
-
-With the mass scale torture with poison the king of the netherlands and 
-his chamber:
-
-(1) kills
-(2) does grave bodily and mental harm
-(3) makes impotent
-
-on the following victim groups here in the Netherlands:
-
-(1) verslaafden (addicts)
-(2) bejaarden (elderly)
-(3) ggz patienten (psychiatric patients)
-(4) criminelen (criminials)
-(5) gehandicapten (handicapped)
-
-Since the members of the :ref:`chamber <chamber>` and the :ref:`king <king>`
-were aware that these medicine are poison at the time they voted for this law
-and the day the Wfz law took effect (1-1-2019), i ask the prosecutor to
-prosecute the king for making the commiting of the above mentioned crimes
-(killing, torture and impotent making) possible here in the netherlands in
-the hope that it stops the mass torture with poison the king of the 
-netherlands and his government are :ref:`doing <correspondence>`:ref:`. <source>`
-
+    <center><b>Prosecutor. Court. Reconsider <a href="reconsider.html">OTP-CR-117/19.</a></b></center>
+    <br><br>
+    <center>
+    In 2018 i wrote the king of the netherlands that what he calls medicine in
+    his laws are in fact not medicine but poison. Proof of being poison of these
+    medicine were shown to the king, bringing him in the "knowing" was confirmed
+    by the king saying "he has taken note of what i have written (zyprexa is poison)".
+    <br><br>
+    This makes that the care laws the king employs are not care laws but genocide
+    laws with which the king is killing groups of the population by giving them
+    poison instead of medicine in the "care" they are forced to undergo.
+    <br><br>
+    I wrote the prosecutor asking for an arrest of the king (make him stop).
+    Prosecutor decided to call it a "no basis to proceed", it requires a
+    reconsider of the prosecutor to get the king in his cell and his genocide, thereby, stopped.
+    </center>
 
 .. toctree::
-    :maxdepth: 2
     :hidden:
+    :glob:
 
-    admin
-    correspondence
     evidence
     guilty
+    reconsider
+    request
     source
-    zindex
+    writings
+    man
+    mobile
