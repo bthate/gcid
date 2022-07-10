@@ -1,7 +1,7 @@
 # This file is placed in the Public Domain.
 
 
-"program your own commands"
+"Big Object."
 
 
 import copy as copying
@@ -28,7 +28,7 @@ def __dir__():
         'Object',
         'ObjectDecoder',
         'ObjectEncoder',
-        'all',
+        'allfns',
         'clear',
         'copy',
         'diff',
@@ -420,8 +420,13 @@ class Db(Object):
 def fntime(daystr):
     daystr = daystr.replace("_", ":")
     datestr = " ".join(daystr.split(os.sep)[-2:])
-    datestr = datestr.split(".")[0]
-    return time.mktime(time.strptime(datestr, "%Y-%m-%d %H:%M:%S"))
+    datestr, remain = datestr.split(".")
+    tme = time.mktime(time.strptime(datestr, "%Y-%m-%d %H:%M:%S"))
+    try:
+        tme += float("." + remain)
+    except ValueError:
+        pass
+    return tme
 
 
 @locked(dblock)
@@ -532,13 +537,10 @@ def load(o, opath):
     return o.__stp__
 
 
-def save(o, stime=None):
+def save(o):
     assert Config.workdir
     prv = os.sep.join(o.__stp__.split(os.sep)[:2])
-    if stime:
-        o.__stp__ = os.path.join(prv, stime)
-    else:
-        o.__stp__ = os.path.join(prv,
+    o.__stp__ = os.path.join(prv,
                              os.sep.join(str(datetime.datetime.now()).split()))
     opath = os.path.join(Config.workdir, "store", o.__stp__)
     dump(o, opath)

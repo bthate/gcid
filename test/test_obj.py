@@ -8,13 +8,13 @@ import os
 import unittest
 
 
-from gcid.obj import cdir, Config, Db, fns, hook, load, last, save
-from gcid.obj import edit, format, register
-from gcid.obj import loads
-from gcid.obj import Object, get, items, keys, update, values
+from genocide.obj import Config, Db, fns, hook, load, last, save
+from genocide.obj import cdir, edit, format, register
+from genocide.obj import loads
+from genocide.obj import Object, get, items, keys, update, values
 
 
-import gcid.obj
+import genocide.obj
 
 
 Config.workdir = ".test"
@@ -98,15 +98,10 @@ attrs2 = (
 )
 
 
-class Cfg(Object):
-
-    pass
-    
-
 class Test_Object(unittest.TestCase):
 
     def test_import(self):
-        self.assertEqual(tuple(dir(gcid.obj)), attrs1)
+        self.assertEqual(tuple(dir(genocide.obj)), attrs1)
 
     def test_attributes(self):
         o = Object()
@@ -145,11 +140,13 @@ class Test_Object(unittest.TestCase):
 
     def test_Object__dir__(self):
         o = Object()
-        self.assertEqual(tuple(dir(o)), attrs2)
+        self.assertEqual(
+            dir(o), list(attrs2)
+        )
 
     def test_Object__doc__(self):
         o = Object()
-        self.assertEqual(o.__doc__, None)
+        self.assertEqual(o.__doc__, "Big Object.")
 
     def test_Object__eq__(self):
         o = Object()
@@ -222,7 +219,7 @@ class Test_Object(unittest.TestCase):
         self.assertTrue(o < oo)
 
     def test_Object__module__(self):
-        self.assertTrue(Object().__module__, "gcid.obj")
+        self.assertTrue(Object().__module__, "genocide.obj")
 
     def test_Object__ne__(self):
         o = Object()
@@ -236,7 +233,7 @@ class Test_Object(unittest.TestCase):
         self.assertEqual(o, oo)
 
     def test_Object__otype__(self):
-        self.assertEqual(Object().__otype__, "gcid.obj.Object")
+        self.assertEqual(Object().__otype__, "genocide.obj.Object")
 
     def test_Object__reduce__(self):
         o = Object()
@@ -270,7 +267,7 @@ class Test_Object(unittest.TestCase):
 
     def test_Object__stp__(self):
         o = Object()
-        self.assertTrue("gcid.obj.Object" in o.__stp__)
+        self.assertTrue("genocide.obj.Object" in o.__stp__)
 
     def test_Object__str__(self):
         o = Object()
@@ -280,6 +277,10 @@ class Test_Object(unittest.TestCase):
         o = Object()
         b = o.__subclasshook__()
         self.assertEqual(b, NotImplemented)
+
+    def test_Db(self):
+        db = Db()
+        self.assertTrue(type(db), Db)
 
     def test_cdir(self):
         cdir(".test")
@@ -296,10 +297,11 @@ class Test_Object(unittest.TestCase):
         self.assertEqual(format(o), "")
 
     def test_fns(self):
-        from gcid.obj import Object, save
+        from genocide.obj import Config, Object, save
+        Config.workdir = ".test"
         o = Object()
         save(o)
-        self.assertTrue("Object" in fns("gcid.obj.Object")[0])
+        self.assertTrue("Object" in fns("genocide.obj.Object")[0])
 
     def test_get(self):
         o = Object()
@@ -354,6 +356,7 @@ class Test_Object(unittest.TestCase):
         self.assertEqual(o.key, "value")
 
     def test_save(self):
+        Config.workdir = ".test"
         o = Object()
         p = save(o)
         self.assertTrue(os.path.exists(os.path.join(Config.workdir, "store", p)))
@@ -375,9 +378,3 @@ class Test_Object(unittest.TestCase):
                 "value",
             ],
         )
-
-    def test_edit(self):
-        d = Object()
-        update(d, {"mod": "irc,rss"})
-        edit(Cfg, d)
-        self.assertEqual(Cfg.mod, "irc,rss")

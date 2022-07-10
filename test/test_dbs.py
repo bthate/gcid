@@ -12,7 +12,7 @@ import sys
 import unittest
 
 
-from gcid.obj import Db, Object, all, dump, find, fns, fntime, load,
+from gcid.obj import Db, Object, all, dump, find, fns, fntime, load
 from gcid.obj import listfiles, hook, save
 
 

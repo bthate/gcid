@@ -1,13 +1,13 @@
 # This file is placed in the Public Domain.
 
 
-"json tests"
+"JSON tests"
 
 
 import unittest
 
 
-from gcid.obj import Object, dumps, loads
+from genocide.obj import Object, dumps, loads
 
 
 validjson = '{"test": "bla"}'
