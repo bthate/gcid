@@ -2,7 +2,7 @@
 # This file is placed in the Public Domain.
 
 
-"OTP-CR-117/19"
+"Prosector. Court. Reconsider OTP-CR-117/19."
 
 
 import sys
@@ -20,7 +20,7 @@ import gcid.rss
 
 Config.name = "gcid"
 Config.threaded = False
-Config.version = "71"
+Config.version = "103"
 Config.workdir = "/var/lib/gcid"
 
 

@@ -13,7 +13,7 @@ from gcid.obj import Config
 
 Config.name = "gcid"
 Config.threaded = False
-Config.version = "71"
+Config.version = "103"
 Config.workdir = "/var/lib/gcid"
 
 

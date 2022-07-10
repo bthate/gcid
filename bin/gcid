@@ -161,7 +161,7 @@ from gcid.obj import Config
 
 Config.name = "gcid"
 Config.threaded = False
-Config.version = "161"
+Config.version = "103"
 Config.workdir = os.path.expanduser("~/.gcid")
 
 
