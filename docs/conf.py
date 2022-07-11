@@ -1,4 +1,4 @@
-# GCID OTP-CR-117/19
+# Prosecutor. Court. Reconsider OTP-CR-117/19.
 # -*- coding: utf-8 -*-
 #
 
@@ -6,7 +6,7 @@
 "Prosecutor. Court. Reconsider OTP-CR-117/19."
 
 
-__version__ = 71
+__version__ = 103
 
 
 import doctest
@@ -26,7 +26,7 @@ sys.path.insert(0, os.path.join(curdir, "..", ".."))
 # -- Options for GENERIC output ---------------------------------------------
 
 
-project = "gcid"
+project = "genocide"
 master_doc = 'index'
 version = '%s' % __version__
 release = '%s' % __version__
@@ -57,11 +57,11 @@ extensions=[
 # -- Options for HTML output -------------------------------------------------
 
 
-html_title = "Prosecutor. Court. Reconsider."
-html_style = 'gcid.css'
+html_title = "Prosecutor. Court. Reconsider OTP-CR-117/19."
+html_style = 'genocide.css'
 html_static_path = ["_static"]
-html_css_files = ["gcid.css",]
-html_short_title = "GCID %s" % __version__
+html_css_files = ["genocide.css",]
+html_short_title = "GENOCIDE %s" % __version__
 html_sidebars = {
     '**': [
         'about.html',
@@ -95,7 +95,7 @@ html_show_sourcelink = False
 html_show_sphinx = False
 html_show_copyright = False
 html_copy_source = False
-html_use_opensearch = 'http://gcid.rtfd.io/'
+html_use_opensearch = 'http://genocide.rtfd.io/'
 html_file_suffix = '.html'
 htmlhelp_basename = 'testdoc'
 
@@ -115,7 +115,7 @@ rst_prolog = '''.. image:: genocidebig2.png
 
     <center><b>
 
-:ref:`reconsider <reconsider>` - :ref:`request <request>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`man <man>` - :ref:`source <source>`
+:ref:`reconsider <reconsider>` - :ref:`request <request>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`manual <man>` - :ref:`source <source>`
 
 .. raw:: html
 
@@ -128,7 +128,7 @@ rst_epilog = '''
     <br>
     <center><b>
 
-:ref:`reconsider <reconsider>` - :ref:`request <request>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`man <man>` - :ref:`source <source>`
+:ref:`reconsider <reconsider>` - :ref:`request <request>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`manual <man>` - :ref:`source <source>`
 
 .. raw:: html
 

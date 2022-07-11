@@ -14,31 +14,31 @@
 
 **NAME**
 
- **GCID** - Prosecutor. Court. Reconsider OTP-CR-117/19.
+ **GENOCIDE** - Prosecutor. Court. Reconsider OTP-CR-117/19.
 
 
 **SYNOPSIS**
 
- | ``gcidctl <cmd> [key=value] [key==value]``
+ | ``genocidectl <cmd> [key=value] [key==value]``
 
 
 **DESCRIPTION**
 
- **GCID** is a solid, non hackable bot, that runs under systemd as a 
+ **GENOCIDE** is a solid, non hackable bot, that runs under systemd as a 
  24/7 background service starts after reboot and is intended to be programmable
  in a static, only code, no popen, no user imports and no reading modules from
  a directory, way. It can show genocide and suicide stats of king netherlands
  his genocide into a IRC channel, display rss feeds and log simple text
  messages, source is :ref:`here <source>`.
 
- **GCID** holds evidence that king netherlands is doing a genocide, a 
+ **GENOCIDE** holds evidence that king netherlands is doing a genocide, a 
  written :ref:`response <guilty>` where king netherlands confirmed taking note
  of “what i have written”, namely :ref:`proof <evidence>` that medicine he
  uses in treatement laws like zyprexa, haldol, abilify and clozapine are poison
  that make impotent, is both physical (contracted muscles) and mental (let 
  people hallucinate) torture and kills members of the victim groups. 
 
- **GCID** contains :ref:`correspondence <request>` with the
+ **GENOCIDE** contains :ref:`correspondence <request>` with the
  International Criminal Court, asking for arrest of the king of the 
  netherlands, for the genocide he is committing with his new treatement laws.
  Current status is an outside the jurisdiction judgement of the prosecutor 
@@ -53,32 +53,32 @@
 
 **CONFIGURATION**
 
- use sudo, ``gcidctl`` needs root privileges
+ use sudo, ``genocidectl`` needs root privileges
 
  **irc**
 
-  | ``gcidctl cfg server=<server> channel=<channel> nick=<nick>``
+  | ``genocidectl cfg server=<server> channel=<channel> nick=<nick>``
   
   | ``(*) default channel/server is #gcid on localhost``
 
  **sasl**
 
-  | ``gcidctl pwd <nickservnick> <nickservpass>``
-  | ``gcidctl cfg password=<outputfrompwd>``
+  | ``genocidectl pwd <nickservnick> <nickservpass>``
+  | ``genocidectl cfg password=<outputfrompwd>``
 
  **users**
 
-  | ``gcidctl cfg users=True``
-  | ``gcidctl met <userhost>``
+  | ``genocidectl cfg users=True``
+  | ``genocidectl met <userhost>``
 
  **rss**
 
-  | ``gcidctl rss <url>``
+  | ``genocidectl rss <url>``
 
  **24/7**
 
-  | ``cp /usr/local/share/gcid/gcid.service /etc/systemd/system``
-  | ``systemctl enable gcid --now``
+  | ``cp /usr/local/share/genocide/genocide.service /etc/systemd/system``
+  | ``systemctl enable genocide --now``
 
 
 **COMMANDS**
@@ -111,8 +111,8 @@
 **FILES**
 
 
- | ``/usr/local/share/doc/gcid/*``
- | ``/usr/local/share/gcid/gcid.service``
+ | ``/usr/local/share/doc/genocide/*``
+ | ``/usr/local/share/gcid/genocide.service``
 
 
 **AUTHOR**
@@ -121,4 +121,4 @@
 
 **COPYRIGHT**
 
- **GCID** is placed in the Public Domain. No Copyright, No License.
+ **GENOCIDE** is placed in the Public Domain. No Copyright, No License.

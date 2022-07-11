@@ -129,7 +129,7 @@ def wrap(func):
 
 
 def main():
-    cprint("GCID tinder start at %s" % time.ctime(time.time()).replace("  ", " "))
+    cprint("GENOCIDE tinder start at %s" % time.ctime(time.time()).replace("  ", " "))
     Callbacks.threaded = False
     cfg = parse_cli()
     if os.path.exists(Config.workdir):

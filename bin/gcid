@@ -159,18 +159,18 @@ sys.path.insert(0, os.getcwd())
 from gcid.obj import Config
 
 
-Config.name = "gcid"
+Config.name = "genocide"
 Config.threaded = False
 Config.version = "103"
-Config.workdir = os.path.expanduser("~/.gcid")
+Config.workdir = os.path.expanduser("~/.genocide")
 
 
 from gcid.irc import Config as IConfig
 
 
 IConfig.cc = "!"
-IConfig.channel = "#gcid"
-IConfig.nick = "gcid"
+IConfig.channel = "#genocide"
+IConfig.nick = "genocide"
 IConfig.password = ""
 IConfig.port = 6667
 IConfig.realname = "Prosecutor. Court. Reconsider OTP-CR-117/19."
@@ -178,7 +178,7 @@ IConfig.sasl = False
 IConfig.server = "localhost"
 IConfig.servermodes = ""
 IConfig.sleep = 60
-IConfig.username = "gcid"
+IConfig.username = "genocde"
 IConfig.users = False
 
 
@@ -211,7 +211,7 @@ def main():
     if len(sys.argv) > 1:
         c = CLI()
         return c.cmd(" ".join(sys.argv[1:]))
-    print("GCID shell started at %s" % time.ctime(starttime).replace("  ", " "))
+    print("GENOCIDE shell started at %s" % time.ctime(starttime).replace("  ", " "))
     print(format(Config, skip="password"))
     irc = IRC()
     irc.start()

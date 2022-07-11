@@ -1,6 +1,6 @@
 .. _home:
 
-.. title:: OTP-CR-117/19
+.. title:: Prosecutor. Court. Reconsider OTP-CR-117/19.
 
 .. image:: skullagain.jpg
     :width: 100%
