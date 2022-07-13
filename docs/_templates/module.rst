@@ -1,4 +1,4 @@
-.. _{{ fullname }}:
+.. _{{ name }}:
 
 .. raw:: html
 
@@ -7,7 +7,7 @@
     <b>
 
 
-{{ fullname }}
+{{ name }}
 {{ underline }}
 
 .. raw:: html
