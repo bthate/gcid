@@ -15,9 +15,9 @@ import time
 import _thread
 
 
-from genocide.object import Class, Config, Object
-from genocide.object import edit, find, format, last, locked, save, update
-from genocide.handler import Callbacks, Commands, Event, Handler, launch
+from gcid.object import Class, Config, Object
+from gcid.object import edit, find, format, last, locked, save, update
+from gcid.handler import Callbacks, Commands, Event, Handler, launch
 
 
 def __dir__():

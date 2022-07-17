@@ -8,7 +8,6 @@ import sys
 
 
 wd =  os.getcwd()
-print(wd)
 sys.path.insert(0, wd)
 sys.path.insert(0, os.path.join(wd, "lib"))
 
@@ -17,12 +16,13 @@ mns = ["gcid"]
 
 
 mods = [
-        "gcid.hdl",
+        "gcid.basic",
+        "gcid.handler",
         "gcid.irc",
-        "gcid.mdl",
-        "gcid.obj",
+        "gcid.model",
+        "gcid.object",
         "gcid.rss",
-        "gcid.tmr",
+        "gcid.timer",
        ]
 
 

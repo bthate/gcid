@@ -15,23 +15,23 @@ import _thread
 sys.path.insert(0, os.getcwd())
 
 
-from gcid.obj import Config
+from genocide.object import Config
 
 
 Config.debug = True
 Config.threaded = False
 Config.verbose = False
-Config.version = 103
+Config.version = 72
 Config.workdir = ".test"
 
 
-from gcid.hdl import Callbacks, CLI, Command, Commands, Event, Handler
-from gcid.hdl import dispatch, getname, launch
-from gcid.obj import Object, format, get, locked
-from gcid.tmr import elapsed
+from genocide.handler import Callbacks, CLI, Command, Commands, Event, Handler
+from genocide.handler import dispatch, getname, launch
+from genocide.object import Object, format, get, locked
+from genocide.timer import elapsed
 
 
-import gcid.all
+import genocide.all
 
 
 errors = []
@@ -106,6 +106,7 @@ def payload(c):
             e.txt = cmd + " " + ex
             e.orig = repr(c)
             e.parse()
+            #c.put(e)
             try:
                 c.handle(e)
             except Exception as ex:

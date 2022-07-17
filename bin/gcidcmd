@@ -8,17 +8,17 @@
 import sys
 
 
-from genocide.object import Config, cdir
-from genocide.handler import CLI, init
+from gcid.object import Config, cdir
+from gcid.handler import CLI, init
 
 
-import genocide.all
+import gcid.all
 
 
-Config.name = "genocide"
+Config.name = "gcid"
 Config.threaded = False
-Config.version = "72"
-Config.workdir = "/var/lib/genocide"
+Config.version = "103"
+Config.workdir = "/var/lib/gcid"
 
 
 class CLI(CLI):
@@ -29,7 +29,7 @@ class CLI(CLI):
 
 def main():
     cdir(Config.workdir)
-    init("irc,rss,model", "genocide", "reg")
+    init("irc,rss,model", "gcid", "reg")
     c = CLI()
     return c.cmd(" ".join(sys.argv[1:]))
 

@@ -1,13 +1,13 @@
 # This file is placed in the Public Domain.
 
 
-import genocide.basic as basic
-import genocide.model as model
-import genocide.irc as irc
-import genocide.rss as rss
+import gcid.basic as basic
+import gcid.model as model
+import gcid.irc as irc
+import gcid.rss as rss
 
 
-from genocide.handler import Table
+from gcid.handler import Table
 
 
 Table.add(basic)

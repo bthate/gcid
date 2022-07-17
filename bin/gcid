@@ -16,21 +16,21 @@ import traceback
 sys.path.insert(0, os.getcwd())
 
 
-from genocide.object import Config
+from gcid.object import Config
 
 
-Config.name = "genocide"
+Config.name = "gcid"
 Config.threaded = False
-Config.version = "72"
-Config.workdir = os.path.expanduser("~/.genocide")
+Config.version = "103"
+Config.workdir = os.path.expanduser("~/.gcid")
 
 
-from genocide.irc import Config as IConfig
+from gcid.irc import Config as IConfig
 
 
 IConfig.cc = "!"
-IConfig.channel = "#genocide"
-IConfig.nick = "genocide"
+IConfig.channel = "#gcid"
+IConfig.nick = "gcid"
 IConfig.password = ""
 IConfig.port = 6667
 IConfig.realname = "Prosecutor. Court. Reconsider OTP-CR-117/19."
@@ -38,17 +38,17 @@ IConfig.sasl = False
 IConfig.server = "localhost"
 IConfig.servermodes = ""
 IConfig.sleep = 60
-IConfig.username = "genocide"
+IConfig.username = "gcid"
 IConfig.users = False
 
 
-from genocide.object import Class, Db, Object
-from genocide.object import cdir, find, fntime, format, get, items, save, spl, update
-from genocide.handler import Callbacks, CLI, Console, Event, Handler, Table
-from genocide.handler import boot, getname, init, starttime
+from gcid.object import Class, Db, Object
+from gcid.object import cdir, find, fntime, format, get, items, save, spl, update
+from gcid.handler import Callbacks, CLI, Console, Event, Handler, Table
+from gcid.handler import boot, getname, init, starttime
 
 
-import genocide.all
+import gcid.all
 
 
 class CLI(CLI):
@@ -81,7 +81,7 @@ def wait():
     while 1:
         time.sleep(1.0)
         for err in Callbacks.errors:
-            print(from_exception(err, "genocide"))
+            print(from_exception(err, "gcid"))
             Callbacks.errors.remove(err)
 
 
@@ -99,13 +99,13 @@ def wrap(func):
 def main():
     boot(" ".join(sys.argv[1:]))
     cdir(Config.workdir)
-    init("irc,model,rss", "genocide", "reg")
+    init("irc,model,rss", "gcid", "reg")
     if len(sys.argv) > 1:
         c = CLI()
         return c.cmd(" ".join(sys.argv[1:]))
-    print("GENOCIDE shell started at %s" % time.ctime(starttime).replace("  ", " "))
+    print("GCID shell started at %s" % time.ctime(starttime).replace("  ", " "))
     print(format(Config, skip="password"))
-    init("irc,model,rss", "genocide")
+    init("irc,model,rss", "gcid")
     c = Console()
     c.start()
     wait()

@@ -8,9 +8,9 @@ import threading
 import time
 
 
-from genocide.object import Class, Config, Db, Object
-from genocide.object import find, fntime, format, get, save, update
-from genocide.handler import Bus, Commands, getname, starttime
+from gcid.object import Class, Config, Db, Object
+from gcid.object import find, fntime, format, get, save, update
+from gcid.handler import Bus, Commands, getname, starttime
 
 
 class Todo(Object):

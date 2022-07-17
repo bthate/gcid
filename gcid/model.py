@@ -121,7 +121,7 @@ for kk in keys(oorzaak):
 
 
 year = 365*24*60*60
-source = "https://github.com/bthate/genocide"
+source = "https://github.com/bthate/gcid"
 startdate = "2020-01-01 00:00:00"
 starttime = time.mktime(time.strptime(startdate, "%Y-%m-%d %H:%M:%S"))
 
@@ -170,7 +170,7 @@ def cbnow(e):
             continue
         nrtimes = int(delta/needed)
         txt += "%s: %s " % (get(aliases, name), nrtimes)
-    txt += " http://genocide.rtfd.io"
+    txt += " http://gcid.rtfd.io"
     Bus.announce(txt)
 
 
@@ -194,7 +194,7 @@ def now(event):
             continue
         nrtimes = int(delta/needed)
         txt += "%s: %s " % (get(aliases, name), nrtimes)
-    txt += " http://genocide.rtfd.io"
+    txt += " http://gcid.rtfd.io"
     Bus.announce(txt)
 
 
