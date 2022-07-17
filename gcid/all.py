@@ -1,16 +1,16 @@
 # This file is placed in the Public Domain.
 
 
-import gcid.bsc as bsc
-import gcid.mdl as mdl
-import gcid.irc as irc
-import gcid.rss as rss
+import genocide.basic as basic
+import genocide.model as model
+import genocide.irc as irc
+import genocide.rss as rss
 
 
-from .hdl import Table
+from genocide.handler import Table
 
 
-Table.add(bsc)
-Table.add(mdl)
+Table.add(basic)
+Table.add(model)
 Table.add(irc)
 Table.add(rss)

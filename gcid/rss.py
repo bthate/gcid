@@ -12,22 +12,24 @@ import threading
 import urllib
 
 
-from .obj import Class, Config, Db, Object
-from .obj import edit, find, get, last, save, spl, update
-from .hdl import Bus, Commands, getname, launch
-from .tmr import Repeater, elapsed
+from genocide.object import Class, Config, Db, Object
+from genocide.object import edit, find, get, last, save, spl, update
+from genocide.handler import Bus, Commands, getname, launch
+from genocide.timer import Repeater, elapsed
 
 
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote_plus, urlencode
 from urllib.request import Request, urlopen
 
+
 def __dir__():
     return (
         "init",
-        "register",
-        "remove"
+        "reg",
+        "rem",
     )
+
 
 def init():
     f = Fetcher()
@@ -35,7 +37,7 @@ def init():
     return f
 
 
-def register():
+def reg():
     Commands.add(dpl)
     Commands.add(ftc)
     Commands.add(nme)
@@ -43,12 +45,13 @@ def register():
     Commands.add(rss)
 
 
-def remove():
+def rem():
     Commands.remove(dpl)
     Commands.remove(ftc)
     Commands.remove(nme)
     Commands.remove(rem)
     Commands.remove(rss)
+
 
 class Feed(Object):
 
@@ -255,9 +258,6 @@ def dpl(event):
             event.reply("ok")
 
 
-Commands.add(dpl)
-
-
 def ftc(event):
     res = []
     thrs = []
@@ -269,9 +269,6 @@ def ftc(event):
     if res:
         event.reply(",".join([str(x) for x in res]))
         return
-
-
-Commands.add(ftc)
 
 
 def nme(event):
@@ -290,9 +287,6 @@ def nme(event):
     event.reply("ok")
 
 
-Commands.add(nme)
-
-
 def rem(event):
     if not event.args:
         event.reply("rem <stringinurl>")
@@ -307,9 +301,6 @@ def rem(event):
     for o in got:
         save(o)
     event.reply("ok")
-
-
-Commands.add(rem)
 
 
 def rss(event):
@@ -327,6 +318,3 @@ def rss(event):
     o.rss = event.args[0]
     save(o)
     event.reply("ok")
-
-
-Commands.add(rss)

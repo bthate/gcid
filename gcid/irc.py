@@ -15,9 +15,9 @@ import time
 import _thread
 
 
-from .obj import Class, Config, Object
-from .obj import edit, find, format, last, locked, save, update
-from .hdl import Commands, Event, Handler, launch
+from genocide.object import Class, Config, Object
+from genocide.object import edit, find, format, last, locked, save, update
+from genocide.handler import Callbacks, Commands, Event, Handler, launch
 
 
 def __dir__():
@@ -26,10 +26,8 @@ def __dir__():
         "Event",
         "IRC",
         "DCC",
-        "init",
-        "register",
-        "remove"
     )
+
 
 def init():
     i = IRC()
@@ -37,7 +35,7 @@ def init():
     return i
 
 
-def register():
+def reg():
     Commands.add(cfg)
     Commands.add(dlt)
     Commands.add(met)
@@ -45,7 +43,7 @@ def register():
     Commands.add(pwd)
 
 
-def remove():
+def rem():
     Commands.remove(cfg)
     Commands.remove(dlt)
     Commands.remove(met)
@@ -61,19 +59,20 @@ class NoUser(Exception):
     pass
 
 
+
 class Config(Config):
 
     cc = "!"
-    channel = "#gcid"
-    nick = "gcid"
+    channel = "#genocide"
+    nick = "genocide"
     password = ""
     port = 6667
-    realname = "OTP-CR-117/19"
+    realname = "Prosecutor. Court. Reconsider OTP-CR-117/19."
     sasl = False
     server = "localhost"
     servermodes = ""
     sleep = 60
-    username = "gcid"
+    username = "genocide"
     users = False
 
     def __init__(self):
@@ -182,6 +181,7 @@ class Output(Object):
 
 class IRC(Handler, Output):
 
+
     def __init__(self):
         Handler.__init__(self)
         Output.__init__(self)
@@ -271,7 +271,7 @@ class IRC(Handler, Output):
                 if self.connect(server, port):
                     break
             except Exception as ex:
-                self.errors.append(ex)
+                Callbacks.errors.append(ex)
             time.sleep(self.cfg.sleep)
         self.logon(server, nck)
 
@@ -454,7 +454,7 @@ class IRC(Handler, Output):
         self.joined.clear()
         Output.start(self)
         Handler.start(self)
-        self.doconnect(self.cfg.server, self.cfg.nick, int(self.cfg.port))
+        launch(self.doconnect, self.cfg.server, self.cfg.nick, int(self.cfg.port))
         if not self.keeprunning:
             launch(self.keep)
 
@@ -516,7 +516,7 @@ def NOTICE(event):
         txt = "\001VERSION %s %s - %s\001" % (
             "op",
             bot.cfg.version or "1",
-            bot.cfg.username or "OIRC",
+            bot.cfg.username or "genocide",
         )
         bot.command("NOTICE", event.channel, txt)
 
@@ -613,9 +613,6 @@ def cfg(event):
     event.reply("ok")
 
 
-Commands.add(cfg)
-
-
 def dlt(event):
     if not event.args:
         event.reply("dlt <username>")
@@ -627,9 +624,6 @@ def dlt(event):
         event.reply("ok")
         break
 
-Commands.add(dlt)
-
-
 def met(event):
     if not event.args:
         event.reply("met <userhost>")
@@ -639,9 +633,6 @@ def met(event):
     user.perms = ["USER"]
     save(user)
     event.reply("ok")
-
-
-Commands.add(met)
 
 
 def mre(event):
@@ -663,9 +654,6 @@ def mre(event):
     event.reply("%s more in cache" % sz)
 
 
-Commands.add(mre)
-
-
 def pwd(event):
     if len(event.args) != 2:
         event.reply("pwd <nick> <password>")
@@ -675,6 +663,3 @@ def pwd(event):
     bb = base64.b64encode(mb)
     bm = bb.decode("ascii")
     event.reply(bm)
-
-
-Commands.add(pwd)

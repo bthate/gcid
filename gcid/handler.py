@@ -1,7 +1,7 @@
 # This file is placed in the Public Domain.
 
 
-"program your own commands."
+"event handler"
 
 
 import queue
@@ -10,7 +10,7 @@ import time
 import types
 
 
-from .obj import Class, Config, Default, Object, get, register
+from genocide.object import Class, Config, Default, Object, get, items, register, spl
 
 
 def __dir__():
@@ -27,8 +27,10 @@ def __dir__():
         'Handler',
         'Table',
         'Thread',
+        'boot',
         'dispatch',
         'getname',
+        'init',
         'launch',
         'starttime',
     )
@@ -36,60 +38,6 @@ def __dir__():
 
 starttime = time.time()
 
-
-class Thread(threading.Thread):
-
-    def __init__(self, func, name, *args, daemon=True):
-        super().__init__(None, self.run, name, (), {}, daemon=daemon)
-        self._exc = None
-        self._evt = None
-        self.name = name
-        self.queue = queue.Queue()
-        self.queue.put_nowait((func, args))
-        self._result = None
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        for k in dir(self):
-            yield k
-
-    def join(self, timeout=None):
-        ""
-        super().join(timeout)
-        return self._result
-
-    def run(self):
-        ""
-        func, args = self.queue.get()
-        if args:
-            self._evt = args[0]
-        self.setName(self.name)
-        self._result = func(*args)
-        return self._result
-
-
-def getname(o):
-    t = type(o)
-    if isinstance(t, types.ModuleType):
-        return o.__name__
-    if "__self__" in dir(o):
-        return "%s.%s" % (o.__self__.__class__.__name__, o.__name__)
-    if "__class__" in dir(o) and "__name__" in dir(o):
-        return "%s.%s" % (o.__class__.__name__, o.__name__)
-    if "__class__" in dir(o):
-        return o.__class__.__name__
-    if "__name__" in dir(o):
-        return o.__name__
-    return None
-
-
-def launch(func, *args, **kwargs):
-    name = kwargs.get("name", getname(func))
-    t = Thread(func, name, *args)
-    t.start()
-    return t
 
 
 class Event(Object):
@@ -119,10 +67,10 @@ class Event(Object):
     def parse(self, txt=None, orig=None):
         self.otxt = txt or self.txt
         self.orig = orig or self.orig
-        spl = self.otxt.split()
+        splitted = self.otxt.split()
         args = []
         _nr = -1
-        for w in spl:
+        for w in splitted:
             _nr += 1
             if w.startswith("-"):
                 try:
@@ -223,12 +171,8 @@ class Callbacks(Object):
         try:
             f(e)
         except Exception as ex:
-            if Callbacks.threaded:
-                Callbacks.errors.append(ex)
-                e._exc = ex
-                e.ready()
-            else:
-                raise
+            Callbacks.errors.append(ex)
+            e.ready()
 
     @staticmethod
     def get(cmd):
@@ -365,6 +309,50 @@ class Table():
         return Table.mod.get(nm, None)
 
 
+class Thread(threading.Thread):
+
+    def __init__(self, func, name, *args, daemon=True):
+        super().__init__(None, self.run, name, (), {}, daemon=daemon)
+        self._exc = None
+        self._evt = None
+        self.name = name
+        self.queue = queue.Queue()
+        self.queue.put_nowait((func, args))
+        self._result = None
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        for k in dir(self):
+            yield k
+
+    def join(self, timeout=None):
+        ""
+        super().join(timeout)
+        return self._result
+
+    def run(self):
+        ""
+        func, args = self.queue.get()
+        if args:
+            self._evt = args[0]
+        self.setName(self.name)
+        self._result = func(*args)
+        return self._result
+
+
+def boot(txt):
+    e = Event()
+    e.parse(txt)
+    for k, v in items(e):
+        setattr(Config, k, v)
+    for o in Config.opts:
+        if o == "-v":
+            Config.verbose = True
+    return e
+
+
 def dispatch(e):
     e.parse()
     f = Commands.get(e.cmd)
@@ -372,6 +360,42 @@ def dispatch(e):
         f(e)
         e.show()
     e.ready()
+
+
+def getname(o):
+    t = type(o)
+    if isinstance(t, types.ModuleType):
+        return o.__name__
+    if "__self__" in dir(o):
+        return "%s.%s" % (o.__self__.__class__.__name__, o.__name__)
+    if "__class__" in dir(o) and "__name__" in dir(o):
+        return "%s.%s" % (o.__class__.__name__, o.__name__)
+    if "__class__" in dir(o):
+        return o.__class__.__name__
+    if "__name__" in dir(o):
+        return o.__name__
+    return None
+
+
+def init(mns, pn=None, cmds="init"):
+    for mn in spl(mns):
+        if pn:
+            mn = pn + "." + mn
+        mod = Table.get(mn)
+        if not mod:
+            continue
+        for cmd in spl(cmds):
+            c = getattr(mod, cmd, None)
+            if not c:
+                continue
+            c()
+
+
+def launch(func, *args, **kwargs):
+    name = kwargs.get("name", getname(func))
+    t = Thread(func, name, *args)
+    t.start()
+    return t
 
 
 Callbacks.add("command", dispatch)

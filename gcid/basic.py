@@ -1,16 +1,16 @@
 # This file is placed in the Public Domain.
 
 
-"program your own commands"
+"basic commands"
 
 
 import threading
 import time
 
 
-from .obj import Class, Config, Db, Object
-from .obj import find, fntime, format, get, save, update
-from .hdl import Bus, Commands, getname, starttime
+from genocide.object import Class, Config, Db, Object
+from genocide.object import find, fntime, format, get, save, update
+from genocide.handler import Bus, Commands, getname, starttime
 
 
 class Todo(Object):
@@ -109,7 +109,6 @@ def dne(event):
 
 Commands.add(dne)
 
-
 def flt(event):
     try:
         index = int(event.args[0])
@@ -151,7 +150,6 @@ def fnd(event):
 
 
 Commands.add(fnd)
-
 
 def log(event):
     if not event.rest:
@@ -202,6 +200,13 @@ def thr(event):
 
 
 Commands.add(thr)
+
+
+def upt(event):
+    event.reply(elapsed(time.time()-starttime))
+
+
+Commands.add(upt)
 
 
 def ver(event):

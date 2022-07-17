@@ -28,7 +28,7 @@ def __dir__():
         'Object',
         'ObjectDecoder',
         'ObjectEncoder',
-        'allfns',
+        'all',
         'clear',
         'copy',
         'diff',
@@ -40,6 +40,7 @@ def __dir__():
         'fromkeys',
         'get',
         'items',
+        'key',
         'keys',
         'last',
         'load',
@@ -187,8 +188,8 @@ def fromkeys(iterable, value=None):
     return o
 
 
-def get(o, key, default=None):
-    return o.__dict__.get(key, default)
+def get(o, k, default=None):
+    return o.__dict__.get(k, default)
 
 
 def items(o):
@@ -196,6 +197,12 @@ def items(o):
         return o.__dict__.items()
     except AttributeError:
         return o.items()
+
+
+def key(o, k, default=None):
+    for kk in keys(o):
+        if k.lower() in kk.lower():
+            return kk
 
 
 def keys(o):
@@ -223,10 +230,10 @@ def popitem(o):
     raise KeyError
 
 
-def setdefault(o, key, default=None):
-    if key not in o:
-        o[key] = default
-    return o[key]
+def setdefault(o, k, default=None):
+    if k not in o:
+        o[k] = default
+    return o[k]
 
 
 def update(o, data):
@@ -420,13 +427,8 @@ class Db(Object):
 def fntime(daystr):
     daystr = daystr.replace("_", ":")
     datestr = " ".join(daystr.split(os.sep)[-2:])
-    datestr, remain = datestr.split(".")
-    tme = time.mktime(time.strptime(datestr, "%Y-%m-%d %H:%M:%S"))
-    try:
-        tme += float("." + remain)
-    except ValueError:
-        pass
-    return tme
+    datestr = datestr.split(".")[0]
+    return time.mktime(time.strptime(datestr, "%Y-%m-%d %H:%M:%S"))
 
 
 @locked(dblock)
@@ -537,10 +539,13 @@ def load(o, opath):
     return o.__stp__
 
 
-def save(o):
+def save(o, stime=None):
     assert Config.workdir
     prv = os.sep.join(o.__stp__.split(os.sep)[:2])
-    o.__stp__ = os.path.join(prv,
+    if stime:
+        o.__stp__ = os.path.join(prv, stime)
+    else:
+        o.__stp__ = os.path.join(prv,
                              os.sep.join(str(datetime.datetime.now()).split()))
     opath = os.path.join(Config.workdir, "store", o.__stp__)
     dump(o, opath)
@@ -561,8 +566,8 @@ def diff(o1, o2):
 
 
 def edit(o, setter):
-    for key, v in items(setter):
-        register(o, key, v)
+    for k, v in items(setter):
+        register(o, k, v)
 
 
 def format(o, args="", skip="_", empty=False, plain=False, **kwargs):

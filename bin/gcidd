@@ -8,21 +8,19 @@
 import time
 
 
-from gcid.obj import Config
+from genocide.object import Config
 
 
-Config.name = "gcid"
+Config.name = "genocide"
 Config.threaded = False
-Config.version = "103"
-Config.workdir = "/var/lib/gcid"
+Config.version = "72"
+Config.workdir = "/var/lib/genocide"
 
-
-from gcid.irc import Config as IConfig
-
+from genocide.irc import Config as IConfig
 
 IConfig.cc = "!"
-IConfig.channel = "#gcid"
-IConfig.nick = "gcid"
+IConfig.channel = "#genocide"
+IConfig.nick = "genocide"
 IConfig.password = ""
 IConfig.port = 6667
 IConfig.realname = "Prosecutor. Court. Reconsider OTP-CR-117/19."
@@ -30,20 +28,23 @@ IConfig.sasl = False
 IConfig.server = "localhost"
 IConfig.servermodes = ""
 IConfig.sleep = 60
-IConfig.username = "gcid"
+IConfig.username = "genocide"
 IConfig.users = False
 
 
-from gcid.irc import IRC
-from gcid.mdl import init
+from genocide.irc import IRC
+from genocide.model import init
+from genocide.rss import Fetcher
 
 
-import gcid.all
+import genocide.all
 
 
 def main():
     irc = IRC()
     irc.start()
+    f = Fetcher()
+    f.start()
     init()
     while 1:
         time.sleep(1.0)

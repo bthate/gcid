@@ -2,26 +2,23 @@
 # This file is placed in the Public Domain.
 
 
-"Prosector. Court. Reconsider OTP-CR-117/19."
+"OTP-CR-117/19"
 
 
 import sys
 
 
-from gcid.obj import Config, cdir
-from gcid.hdl import CLI
-from gcid.run import boot, wrap
+from genocide.object import Config, cdir
+from genocide.handler import CLI, init
 
 
-import gcid.bsc
-import gcid.irc
-import gcid.rss
+import genocide.all
 
 
-Config.name = "gcid"
+Config.name = "genocide"
 Config.threaded = False
-Config.version = "103"
-Config.workdir = "/var/lib/gcid"
+Config.version = "72"
+Config.workdir = "/var/lib/genocide"
 
 
 class CLI(CLI):
@@ -31,10 +28,10 @@ class CLI(CLI):
 
 
 def main():
-    boot()
     cdir(Config.workdir)
+    init("irc,rss,model", "genocide", "reg")
     c = CLI()
     return c.cmd(" ".join(sys.argv[1:]))
 
 
-wrap(main)
+main()

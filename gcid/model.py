@@ -7,40 +7,40 @@
 import time
 
 
-from .obj import Object, get, keys, update
-from .hdl import Bus, Commands, Event, launch
-from .tmr import Repeater, elapsed
+from genocide.object import Object, get, key, keys, update
+from genocide.handler import Bus, Commands, Event, launch
+from genocide.timer import Repeater, elapsed
 
 
 def __dir__():
     return (
         "init",
-        "register",
-        "remove"
+        "reg",
+        "rem"
     )
 
 
 def init():
-    for key in keys(oorzaken):
-        val = get(oorzaken, key, None)
+    for k in keys(oorzaken):
+        val = get(oorzaken, k, None)
         if val and int(val) > 10000:
             e = Event()
             e.txt = ""
-            e.rest = key
+            e.rest = k
             sec = seconds(val)
-            repeater = Repeater(sec, cbstats, e, name=get(aliases, key))
+            repeater = Repeater(sec, cbstats, e, name=get(aliases, k))
             repeater.start()
     launch(daily, name="daily")
     launch(hourly, name="hourly")
 
 
-def register():
+def reg():
     Commands.add(now)
     Commands.add(sts)
     Commands.add(tpc)
 
 
-def remove():
+def rem():
     Commands.remove(now)
     Commands.remove(sts)
     Commands.remove(tpc)
@@ -92,13 +92,13 @@ oorzaken = Object()
 
 
 nr = -1
-for k in keys(oorzaak):
+for kk in keys(oorzaak):
     nr += 1
     if nr == 0:
         continue
-    if k.startswith('"'):
-        k = k[1:]
-    l = k.split("/")
+    if kk.startswith('"'):
+        kk = kk[1:]
+    l = kk.split("/")
     if len(l) > 1 and not l[1].startswith("Totaal"):
         continue
     a = l[0].replace('(aantal)"', "")
@@ -121,11 +121,9 @@ for k in keys(oorzaak):
 
 
 year = 365*24*60*60
-source = "https://github.com/bthate/gcid"
+source = "https://github.com/bthate/genocide"
 startdate = "2020-01-01 00:00:00"
 starttime = time.mktime(time.strptime(startdate, "%Y-%m-%d %H:%M:%S"))
-
-
 
 
 def daily():
@@ -150,15 +148,15 @@ def seconds(nrs):
 
 
 def nr(name):
-    for key in keys(oorzaken):
-        if name.lower() in key.lower():
-            return int(get(oorzaken, key))
+    for k in keys(oorzaken):
+        if name.lower() in k.lower():
+            return int(get(oorzaken, k))
     return 0
 
 
-def iswanted(key, line):
+def iswanted(k, line):
     for w in line:
-        if w in key:
+        if w in k:
             return True
     return False
 
@@ -172,12 +170,12 @@ def cbnow(e):
             continue
         nrtimes = int(delta/needed)
         txt += "%s: %s " % (get(aliases, name), nrtimes)
-    txt += " http://gcid.rtfd.io"
+    txt += " http://genocide.rtfd.io"
     Bus.announce(txt)
 
 
 def cbstats(e):
-    name = e.rest or "psyche"
+    name = e.rest or "psych"
     needed = seconds(nr(name))
     if needed:
         delta = time.time() - starttime
@@ -196,18 +194,18 @@ def now(event):
             continue
         nrtimes = int(delta/needed)
         txt += "%s: %s " % (get(aliases, name), nrtimes)
-    txt += " http://gcid.rtfd.io"
+    txt += " http://genocide.rtfd.io"
     Bus.announce(txt)
 
 
 def sts(event):
-    name = event.rest or "psyche"
+    name = event.rest or "psych"
     needed = seconds(nr(name))
     if needed:
         delta = time.time() - starttime
         nrtimes = int(delta/needed)
         nryear = int(year/needed)
-        txt = "patient #%s died from %s (%s/year) every %s" % (nrtimes, get(aliases, name),  nryear, elapsed(needed))
+        txt = "patient #%s died from %s (%s/year) every %s" % (nrtimes, key(aliases, name, name).lower(),  nryear, elapsed(needed))
         Bus.announce(txt)
 
 
