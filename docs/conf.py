@@ -1,4 +1,4 @@
-# Prosecutor. Court. Reconsider OTP-CR-117/19.
+# GENOCIDE OTP-CR-117/19
 # -*- coding: utf-8 -*-
 #
 
@@ -6,7 +6,7 @@
 "Prosecutor. Court. Reconsider OTP-CR-117/19."
 
 
-__version__ = 103
+__version__ = 72
 
 
 import doctest
@@ -18,8 +18,10 @@ import unittest
 curdir = os.getcwd()
 
 
+sys.path.insert(0, "lib")
 sys.path.insert(0, curdir)
 sys.path.insert(0, os.path.join(curdir, ".."))
+sys.path.insert(0, os.path.join(curdir, "lib"))
 sys.path.insert(0, os.path.join(curdir, "..", ".."))
 
 
@@ -57,7 +59,7 @@ extensions=[
 # -- Options for HTML output -------------------------------------------------
 
 
-html_title = "Prosecutor. Court. Reconsider OTP-CR-117/19."
+html_title = "Prosecutor. Court. Reconsider."
 html_style = 'genocide.css'
 html_static_path = ["_static"]
 html_css_files = ["genocide.css",]
@@ -73,10 +75,10 @@ html_sidebars = {
 html_theme = "alabaster"
 html_theme_options = {
     'github_user': 'bthate',
-    'github_repo': 'gcid',
+    'github_repo': 'genocide',
     'github_button': False,
     'github_banner': False,
-    'logo': 'skull3.jpg',
+    'logo': 'skull.jpg',
     'link': '#000',
     'link_hover': '#000',
     'nosidebar': True,
@@ -84,7 +86,7 @@ html_theme_options = {
     'show_relbar_top': False,
     'sidebar_width': 0,
 }
-html_favicon = "skull3.jpg"
+html_favicon = "skull.jpg"
 html_extra_path = []
 html_last_updated_fmt = '%Y-%b-%d'
 html_additional_pages = {}
@@ -106,7 +108,7 @@ intersphinx_mapping = {
 intersphinx_cache_limit=1
 
 
-rst_prolog = '''.. image:: genocidebig2.png
+rst_prolog = '''.. image:: genocide.png
     :width: 100%
     :height: 2.2cm
     :target: index.html
@@ -115,24 +117,12 @@ rst_prolog = '''.. image:: genocidebig2.png
 
     <center><b>
 
-:ref:`reconsider <reconsider>` - :ref:`request <request>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`manual <man>` - :ref:`source <source>`
+:ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>` - :ref:`request <request>`
 
 .. raw:: html
 
     </b>
     </center>
-'''
-rst_epilog = '''
-.. raw:: html
-
-    <br>
-    <center><b>
-
-:ref:`reconsider <reconsider>` - :ref:`request <request>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`manual <man>` - :ref:`source <source>`
-
-.. raw:: html
-
-    </b></center>
 '''
 autosummary_generate=True
 autodoc_default_flags=['members', 'undoc-members', 'private-members', "imported-members"]

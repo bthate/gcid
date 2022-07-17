@@ -48,7 +48,7 @@
 
 **INSTALL**
 
-  | ``sudo pip3 install gcid --upgrade --force-reinstall``
+  | ``sudo pip3 install genocide --upgrade --force-reinstall``
 
 
 **CONFIGURATION**
@@ -59,7 +59,7 @@
 
   | ``genocidectl cfg server=<server> channel=<channel> nick=<nick>``
   
-  | ``(*) default channel/server is #gcid on localhost``
+  | ``(*) default channel/server is #genocide on localhost``
 
  **sasl**
 
@@ -112,7 +112,7 @@
 
 
  | ``/usr/local/share/doc/genocide/*``
- | ``/usr/local/share/gcid/genocide.service``
+ | ``/usr/local/share/genocide/genocide.service``
 
 
 **AUTHOR**
@@ -122,3 +122,4 @@
 **COPYRIGHT**
 
  **GENOCIDE** is placed in the Public Domain. No Copyright, No License.
+

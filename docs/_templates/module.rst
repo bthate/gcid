@@ -1,13 +1,12 @@
-.. _{{ name }}:
+.. _{{ fullname }}:
 
 .. raw:: html
 
     <br><br>
-    <center>
-    <b>
+    <center><b>
 
 
-{{ name }}
+{{ fullname }}
 {{ underline }}
 
 .. raw:: html
@@ -55,4 +54,16 @@
 
     .. raw:: html
 
-        <br><br>
+       <br><br>
+
+
+.. raw:: html
+
+   <br>
+   <center><b>
+
+:ref:`home <home>` - :ref:`manual <man>` - :ref:`source <source>`
+
+.. raw:: html
+
+    </b></center>

@@ -48,3 +48,14 @@ Both the chamber suggesting these laws to the king and the king himself have bee
   <br>
 
 .. image:: bevestigd.jpg
+
+.. raw:: html
+
+    <br>
+    <center><b>
+
+:ref:`home <home>` - :ref:`manual <man>` - :ref:`source <source>`
+
+.. raw:: html
+
+    </b></center>

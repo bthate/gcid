@@ -21,10 +21,22 @@
     :toctree: 
     :template: module.rst
 
-    gcid.bsc		basic commands
-    gcid.hdl		event handler
-    gcid.irc		chat bot
-    gcid.mdl		genocide model
-    gcid.obj		object storage
-    gcid.rss		rss fetcher
-    gcid.tmr		timers
+    genocide.basic		basic commands
+    genocide.handler		event handler
+    genocide.irc		chat bot
+    genocide.model		genocide model
+    genocide.object		object storage
+    genocide.rss		rss fetcher
+    genocide.timer		timers
+
+
+.. raw:: html
+
+    <br>
+    <center><b>
+
+:ref:`home <home>` - :ref:`manual <man>` - :ref:`source <source>`
+
+.. raw:: html
+
+    </b></center>
