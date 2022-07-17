@@ -7,7 +7,7 @@
 import unittest
 
 
-from gcid.obj import fntime
+from gcid.object import fntime
 
 
 fn = "store/gcid.evt.Event/61cba0b9-29c7-4154-a6c4-10b7365b3730/2022-04-11/22:40:31.259218"

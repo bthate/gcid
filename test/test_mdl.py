@@ -7,8 +7,8 @@
 import unittest
 
 
-from genocide.mdl import oorzaak
-from genocide.obj import Object
+from gcid.model import oorzaak
+from gcid.object import Object
 
 
 class Test_Composite(unittest.TestCase):

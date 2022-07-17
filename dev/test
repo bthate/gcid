@@ -12,18 +12,19 @@ import unittest
 
 
 sys.path.insert(0, os.getcwd())
+sys.path.insert(0, "lib")
 
 
-from gcid.obj import Config, format
+from gcid.object import Config, format
 
 
 Config.debug = True
 Config.verbose = False
-Config.version = "103"
+Config.version = 72
 Config.workdir = ".test"
 
 
-from gcid.hdl import Callbacks, Command, Handler, dispatch
+from gcid.handler import Callbacks, Command, Handler, dispatch
 
 
 Callbacks.threaded = False

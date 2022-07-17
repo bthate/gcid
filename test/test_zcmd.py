@@ -9,11 +9,11 @@ import random
 import unittest
 
 
-from gcid.obj import Object, get
-from gcid.hdl import Command, Commands
+from gcid.object import Object, get
+from gcid.handler import Command, Commands
 
 
-import gcid.bsc
+import gcid.basic
 
 
 

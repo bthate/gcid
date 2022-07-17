@@ -7,7 +7,7 @@
 import unittest
 
 
-from genocide.hdl import Table
+from gcid.handler import Table
 
 
 
