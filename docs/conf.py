@@ -6,7 +6,7 @@
 "Prosecutor. Court. Reconsider OTP-CR-117/19."
 
 
-__version__ = 72
+__version__ = "103"
 
 
 import doctest
@@ -18,17 +18,15 @@ import unittest
 curdir = os.getcwd()
 
 
-sys.path.insert(0, "lib")
 sys.path.insert(0, curdir)
 sys.path.insert(0, os.path.join(curdir, ".."))
-sys.path.insert(0, os.path.join(curdir, "lib"))
 sys.path.insert(0, os.path.join(curdir, "..", ".."))
 
 
 # -- Options for GENERIC output ---------------------------------------------
 
 
-project = "genocide"
+project = "gcid"
 master_doc = 'index'
 version = '%s' % __version__
 release = '%s' % __version__
@@ -59,11 +57,11 @@ extensions=[
 # -- Options for HTML output -------------------------------------------------
 
 
-html_title = "Prosecutor. Court. Reconsider."
+html_title = "Prosecutor. Court. Reconsider OTP-CR-117/19."
 html_style = 'genocide.css'
 html_static_path = ["_static"]
 html_css_files = ["genocide.css",]
-html_short_title = "GENOCIDE %s" % __version__
+html_short_title = "GCID %s" % __version__
 html_sidebars = {
     '**': [
         'about.html',
@@ -97,7 +95,7 @@ html_show_sourcelink = False
 html_show_sphinx = False
 html_show_copyright = False
 html_copy_source = False
-html_use_opensearch = 'http://genocide.rtfd.io/'
+html_use_opensearch = 'http://gcid.rtfd.io/'
 html_file_suffix = '.html'
 htmlhelp_basename = 'testdoc'
 
