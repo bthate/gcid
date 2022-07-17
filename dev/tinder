@@ -15,23 +15,23 @@ import _thread
 sys.path.insert(0, os.getcwd())
 
 
-from genocide.object import Config
+from gcid.object import Config
 
 
 Config.debug = True
 Config.threaded = False
 Config.verbose = False
-Config.version = 72
+Config.version = "103"
 Config.workdir = ".test"
 
 
-from genocide.handler import Callbacks, CLI, Command, Commands, Event, Handler
-from genocide.handler import dispatch, getname, launch
-from genocide.object import Object, format, get, locked
-from genocide.timer import elapsed
+from gcid.handler import Callbacks, CLI, Command, Commands, Event, Handler
+from gcid.handler import dispatch, getname, launch
+from gcid.object import Object, format, get, locked
+from gcid.timer import elapsed
 
 
-import genocide.all
+import gcid.all
 
 
 errors = []
@@ -130,7 +130,7 @@ def wrap(func):
 
 
 def main():
-    cprint("GENOCIDE tinder start at %s" % time.ctime(time.time()).replace("  ", " "))
+    cprint("GCID tinder start at %s" % time.ctime(time.time()).replace("  ", " "))
     Callbacks.threaded = False
     cfg = parse_cli()
     if os.path.exists(Config.workdir):
