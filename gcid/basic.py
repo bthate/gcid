@@ -8,9 +8,9 @@ import threading
 import time
 
 
-from gcid.object import Class, Config, Db, Object
-from gcid.object import find, fntime, format, get, save, update
-from gcid.handler import Bus, Commands, getname, starttime
+from .object import Class, Config, Db, Object
+from .object import find, fntime, format, get, save, update
+from .handler import Bus, Commands, getname, starttime
 
 
 class Todo(Object):

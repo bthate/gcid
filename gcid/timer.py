@@ -9,8 +9,8 @@ import threading
 import time
 
 
-from gcid.object import Object
-from gcid.handler import getname, launch
+from .object import Object
+from .handler import getname, launch
 
 
 def __dir__():

@@ -7,9 +7,9 @@
 import time
 
 
-from gcid.object import Object, get, key, keys, update
-from gcid.handler import Bus, Commands, Event, launch
-from gcid.timer import Repeater, elapsed
+from .object import Object, get, key, keys, update
+from .handler import Bus, Commands, Event, launch
+from .timer import Repeater, elapsed
 
 
 def __dir__():

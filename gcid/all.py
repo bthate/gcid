@@ -7,7 +7,7 @@ import gcid.irc as irc
 import gcid.rss as rss
 
 
-from gcid.handler import Table
+from .handler import Table
 
 
 Table.add(basic)
