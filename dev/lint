@@ -8,8 +8,8 @@ import sys
 
 
 wd =  os.getcwd()
+
 sys.path.insert(0, wd)
-sys.path.insert(0, os.path.join(wd, "lib"))
 
 
 mns = ["gcid"]
@@ -32,16 +32,12 @@ txt = "E1121,E1101,E0102,R0801,R0001,C0413,C0412,C0414,C0201,C0209,C0415,C0301,C
 def popen(txt):
     for line in os.popen(txt).readlines():
         l = line.strip()
+        if " 10.00/10" in l:
+            continue
         if "Your code" in l:
             yield line.replace("\n", "")
         if ":" in l:
             yield line.replace("\n", "")          
-
-
-import gcid
-
-
-import gcid.all
 
 
 def main():
