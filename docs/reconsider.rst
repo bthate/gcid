@@ -3,12 +3,6 @@
 .. title:: Reconsider
 
 
-.. raw:: html
-
-     <br>
-     <center><h2><b>RECONSIDER</b></h2></center>
-     <br>
-
 | **Information and Evidence Unit**
 | **Office of the Prosecutor**
 | **Post Office Box 19519**

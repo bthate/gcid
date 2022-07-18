@@ -28,7 +28,7 @@ def uploadlist(dir):
 
 setup(
     name='gcid',
-    version='103',
+    version='104',
     url='https://github.com/bthate/gcid',
     author='Bart Thate',
     author_email='bthate67@gmail.com', 

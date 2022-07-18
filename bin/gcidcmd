@@ -24,11 +24,11 @@ Table.add(gcid.rss)
 
 
 from gcid.object import Config
-
+from gcid.version import __version__
 
 Config.name = "gcid"
 Config.threaded = False
-Config.version = "103"
+Config.version = __version__
 Config.workdir = "/var/lib/gcid"
 
 

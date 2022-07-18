@@ -8,12 +8,6 @@
 .. title:: Guilty
 
 
-.. raw:: html
-
-     <center><h2><b>GUILTY</b></h2></center>
-     <br>
-
-
 Both the chamber suggesting these laws to the king and the king himself have been informed about the fact the the substances administered under these laws are proven to be poison.
 
 

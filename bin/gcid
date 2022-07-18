@@ -17,11 +17,12 @@ sys.path.insert(0, os.getcwd())
 
 
 from gcid.object import Config
+from gcid.version import __version__
 
 
 Config.name = "gcid"
 Config.threaded = False
-Config.version = "103"
+Config.version = __version__
 Config.workdir = os.path.expanduser("~/.gcid")
 
 
@@ -113,8 +114,9 @@ def main():
         c = CLI()
         return c.cmd(" ".join(sys.argv[1:]))
     print("GCID shell started at %s" % time.ctime(starttime).replace("  ", " "))
-    print(format(Config, skip="password"))
+    init("basic,irc,model,rss", "gcid", "reg")
     init("irc,model,rss", "gcid")
+    print(format(Config, skip="password"))
     c = Console()
     c.start()
     wait()
