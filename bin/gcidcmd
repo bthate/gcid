@@ -64,7 +64,7 @@ from gcid.handler import init
 
 def main():
     cdir(Config.workdir)
-    init("irc,rss,model", "gcid", "reg")
+    init("basic,irc,rss,model", "gcid", "reg")
     c = CLI()
     return c.cmd(" ".join(sys.argv[1:]))
 

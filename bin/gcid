@@ -108,8 +108,8 @@ def wrap(func):
 def main():
     boot(" ".join(sys.argv[1:]))
     cdir(Config.workdir)
-    init("irc,model,rss", "gcid", "reg")
     if len(sys.argv) > 1:
+        init("basic,irc,model,rss", "gcid", "reg")
         c = CLI()
         return c.cmd(" ".join(sys.argv[1:]))
     print("GCID shell started at %s" % time.ctime(starttime).replace("  ", " "))
