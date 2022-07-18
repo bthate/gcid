@@ -2,7 +2,7 @@
 
 .. raw:: html
 
-    <br><br>
+    <br>
 
 .. title:: Source
 
@@ -18,7 +18,7 @@
     :template: module.rst
 
     gcid.basic		basic commands
-    gcid.handler		event handler
+    gcid.handler	event handler
     gcid.irc		chat bot
     gcid.model		genocide model
     gcid.object		object storage

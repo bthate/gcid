@@ -3,7 +3,7 @@
 
 .. raw:: html
 
-  <br><br>
+  <br>
 
 .. title:: Guilty
 
@@ -49,7 +49,7 @@ Both the chamber suggesting these laws to the king and the king himself have bee
     <br><br>
     <center><b>
     
-:ref:`home <home>` - :ref:`manual <man>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>`
+:ref:`home <home>` - :ref:`source <source>` - :ref:`manual <man>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>`
 
 .. raw:: html
 
