@@ -81,10 +81,10 @@ There is proof the medication used in forced treatements in the netherlands are 
 
 .. raw:: html
 
-    <br>
+    <br><br>
     <center><b>
-
-:ref:`home <home>` - :ref:`manual <man>` - :ref:`source <source>`
+    
+:ref:`home <home>` - :ref:`manual <man>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>`
 
 .. raw:: html
 

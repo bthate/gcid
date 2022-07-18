@@ -33,6 +33,4 @@
     reconsider
     request
     source
-    writings
     man
-    mobile
