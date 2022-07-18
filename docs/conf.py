@@ -119,7 +119,7 @@ rst_prolog = '''.. raw:: html
 
     <center><b>
     
-:ref:`home <home>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>` - :ref:`manual <man>` - :ref:`source <source>`
+:ref:`home <home>` - :ref:`manual <man>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>`
 
 .. raw:: html
 
