@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.join(curdir, ".."))
 sys.path.insert(0, os.path.join(curdir, "..", ".."))
 
 
-from gcid.version import __version__
+__version__ = "103"
 
 
 # -- Options for GENERIC output ---------------------------------------------
