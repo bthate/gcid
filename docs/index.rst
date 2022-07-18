@@ -9,7 +9,7 @@
 
 .. image:: skullagain.jpg
     :width: 100%
-    :target: man.html
+    :target: evidence.html
 
 .. raw:: html
 
@@ -20,7 +20,7 @@
     <center>
     By law, with the use of poison, killing, torturing, castrating, destroying, in whole or in part, all elderly and all handicapped (Wzd), all criminals (Wfz) and all psychiatric patients (WvGGZ) here in the netherlands.
     </center>
-    <br><br><br><br>
+    <br><br>
     <center><b>Prosecutor. Court. Reconsider <a href="reconsider.html">OTP-CR-117/19.</a></b></center>
 
 
