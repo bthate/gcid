@@ -48,7 +48,16 @@ from gcid.handler import Callbacks, CLI, Console, Event, Handler, Table
 from gcid.handler import boot, getname, init, starttime
 
 
-import gcid.all
+import gcid.basic 
+import gcid.irc
+import gcid.model
+import gcid.rss
+
+
+Table.add(gcid.basic)
+Table.add(gcid.irc)
+Table.add(gcid.model)
+Table.add(gcid.rss)
 
 
 class CLI(CLI):

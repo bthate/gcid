@@ -39,7 +39,7 @@ setup(
     zip_safe=True,
     include_package_data=True,
     data_files=[
-                ("share/gcid", ["files/gcid.service",]),
+                ("share/gcid", ["gcid.service",]),
                 ("share/doc/gcid", uploadlist("docs")),
                 ("share/doc/gcid/pdf", uploadlist("docs/pdf")),
                 ("share/doc/gcid/_static", uploadlist("docs/_static")),
