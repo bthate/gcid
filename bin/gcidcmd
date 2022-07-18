@@ -2,17 +2,28 @@
 # This file is placed in the Public Domain.
 
 
-"OTP-CR-117/19"
+"Prosecutor. Court. Reconsider OTP-CR-117/19."
 
 
 import sys
 
 
-from gcid.object import Config, cdir
-from gcid.handler import CLI, init
+from gcid.handler import Table
 
 
-import gcid.all
+import gcid.basic
+import gcid.model
+import gcid.irc
+import gcid.rss
+
+
+Table.add(gcid.basic)
+Table.add(gcid.model)
+Table.add(gcid.irc)
+Table.add(gcid.rss)
+
+
+from gcid.object import Config
 
 
 Config.name = "gcid"
@@ -21,10 +32,34 @@ Config.version = "103"
 Config.workdir = "/var/lib/gcid"
 
 
+from gcid.irc import Config as IConfig
+
+
+IConfig.cc = "!"
+IConfig.channel = "#gcid"
+IConfig.nick = "gcid"
+IConfig.password = ""
+IConfig.port = 6667
+IConfig.realname = "Prosecutor. Court. Reconsider OTP-CR-117/19."
+IConfig.sasl = False
+IConfig.server = "localhost"
+IConfig.servermodes = ""
+IConfig.sleep = 60
+IConfig.username = "gcid"
+IConfig.users = False
+
+
+from gcid.handler import CLI
+
+
 class CLI(CLI):
 
     def raw(self, txt):
         print(txt)
+
+
+from gcid.object import cdir
+from gcid.handler import init
 
 
 def main():

@@ -13,6 +13,17 @@ from .object import find, fntime, format, get, save, update
 from .handler import Bus, Commands, getname, starttime
 
 
+def reg():
+    Commands.add(cmd)
+    Commands.add(dlt)
+    Commands.add(dne)
+    Commands.add(flt)
+    Commands.add(fnd)
+    Commands.add(log)
+    Commands.add(tdo)
+    Commands.add(upt)
+    Commands.add(ver)
+
 class Todo(Object):
 
     def __init__(self):
@@ -79,9 +90,6 @@ def cmd(event):
     event.reply(",".join(sorted(Commands.cmd)))
 
 
-Commands.add(cmd)
-
-
 def dlt(event):
     if not event.args:
         event.reply("dlt <username>")
@@ -92,9 +100,6 @@ def dlt(event):
         save(o)
         event.reply("ok")
         break
-
-Commands.add(dlt)
-
 
 def dne(event):
     if not event.args:
@@ -107,8 +112,6 @@ def dne(event):
         break
 
 
-Commands.add(dne)
-
 def flt(event):
     try:
         index = int(event.args[0])
@@ -117,9 +120,6 @@ def flt(event):
     except (KeyError, TypeError, IndexError, ValueError):
         pass
     event.reply(" | ".join([getname(o) for o in Bus.objs]))
-
-
-Commands.add(flt)
 
 
 def fnd(event):
@@ -149,8 +149,6 @@ def fnd(event):
         event.reply("no result")
 
 
-Commands.add(fnd)
-
 def log(event):
     if not event.rest:
         event.reply("log <txt>")
@@ -161,7 +159,6 @@ def log(event):
     event.reply("ok")
 
 
-Commands.add(log)
 
 
 def tdo(event):
@@ -175,9 +172,6 @@ def tdo(event):
     o.txt = event.rest
     save(o)
     event.reply("ok")
-
-
-Commands.add(tdo)
 
 
 def thr(event):
@@ -199,18 +193,9 @@ def thr(event):
         event.reply(" ".join(res))
 
 
-Commands.add(thr)
-
-
 def upt(event):
     event.reply(elapsed(time.time()-starttime))
 
 
-Commands.add(upt)
-
-
 def ver(event):
     event.reply("%s %s" % (Config.name.upper(), Config.version or "1"))
-
-
-Commands.add(ver)

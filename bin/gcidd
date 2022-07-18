@@ -39,9 +39,6 @@ from gcid.model import init
 from gcid.rss import Fetcher
 
 
-import gcid.all
-
-
 def main():
     irc = IRC()
     irc.start()
