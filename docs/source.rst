@@ -2,9 +2,16 @@
 
 .. raw:: html
 
-    <br>
+    <br><br>
 
 .. title:: Source
+
+**GCID** provides the following modules:
+
+
+.. raw:: html
+
+    <br>
 
 .. autosummary::
     :toctree: 

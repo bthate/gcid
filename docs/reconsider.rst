@@ -1,5 +1,9 @@
 .. _reconsider:
 
+.. raw:: html
+
+    <br><br>
+
 .. title:: Reconsider
 
 
