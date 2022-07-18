@@ -6,6 +6,9 @@
 "Prosecutor. Court. Reconsider OTP-CR-117/19."
 
 
+__version__ = "104"
+
+
 import doctest
 import os
 import sys
@@ -18,9 +21,6 @@ curdir = os.getcwd()
 sys.path.insert(0, curdir)
 sys.path.insert(0, os.path.join(curdir, ".."))
 sys.path.insert(0, os.path.join(curdir, "..", ".."))
-
-
-__version__ = "103"
 
 
 # -- Options for GENERIC output ---------------------------------------------
@@ -73,7 +73,7 @@ html_sidebars = {
 html_theme = "alabaster"
 html_theme_options = {
     'github_user': 'bthate',
-    'github_repo': 'genocide',
+    'github_repo': 'gcid',
     'github_button': False,
     'github_banner': False,
     'logo': 'skull.jpg',
