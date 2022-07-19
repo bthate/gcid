@@ -6,6 +6,7 @@
 "Prosecutor. Court. Reconsider OTP-CR-117/19."
 
 
+__name__ = "gcid"
 __version__ = "104"
 
 
@@ -17,7 +18,7 @@ import unittest
 
 curdir = os.getcwd()
 
-
+sys.path.insert(0, os.path.join(curdir, "..", __name__))
 sys.path.insert(0, curdir)
 sys.path.insert(0, os.path.join(curdir, ".."))
 sys.path.insert(0, os.path.join(curdir, "..", ".."))
@@ -26,7 +27,7 @@ sys.path.insert(0, os.path.join(curdir, "..", ".."))
 # -- Options for GENERIC output ---------------------------------------------
 
 
-project = "gcid"
+project = __name__
 master_doc = 'index'
 version = '%s' % __version__
 release = '%s' % __version__
@@ -73,7 +74,7 @@ html_sidebars = {
 html_theme = "alabaster"
 html_theme_options = {
     'github_user': 'bthate',
-    'github_repo': 'gcid',
+    'github_repo': __name__,
     'github_button': False,
     'github_banner': False,
     'logo': 'skull.jpg',
@@ -95,7 +96,7 @@ html_show_sourcelink = False
 html_show_sphinx = False
 html_show_copyright = False
 html_copy_source = False
-html_use_opensearch = 'http://gcid.rtfd.io/'
+html_use_opensearch = 'http://%s.rtfd.io/' % __name__
 html_file_suffix = '.html'
 htmlhelp_basename = 'testdoc'
 
@@ -115,16 +116,16 @@ rst_prolog = '''.. raw:: html
     :height: 2.2cm
     :target: index.html
 
+
 .. raw:: html
 
     <center><b>
     
-:ref:`home <home>` - :ref:`source <source>` - :ref:`manual <man>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>`
+:ref:`home <home>` - :ref:`manual <man>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>`
 
 .. raw:: html
 
     </b></center>
-    
 '''
 autosummary_generate=True
 autodoc_default_flags=['members', 'undoc-members', 'private-members', "imported-members"]

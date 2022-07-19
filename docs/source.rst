@@ -1,8 +1,9 @@
 .. _source:
 
+
 .. raw:: html
 
-    <br>
+     <br>
 
 .. title:: Source
 
@@ -31,7 +32,7 @@
     <br>
     <center><b>
     
-:ref:`home <home>` - :ref:`source <source>` - :ref:`manual <man>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>`
+:ref:`home <home>` - :ref:`manual <man>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>`
 
 .. raw:: html
 
