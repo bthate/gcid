@@ -8,9 +8,9 @@ import threading
 import time
 
 
-from .object import Class, Config, Db, Object
-from .object import find, fntime, format, get, save, update
-from .handler import Bus, Commands, getname, starttime
+from object import Class, Config, Db, Object
+from object import find, fntime, format, get, save, update
+from handler import Bus, Commands, getname, starttime
 
 
 def reg():
@@ -21,8 +21,10 @@ def reg():
     Commands.add(fnd)
     Commands.add(log)
     Commands.add(tdo)
+    Commands.add(thr)
     Commands.add(upt)
     Commands.add(ver)
+
 
 class Todo(Object):
 
