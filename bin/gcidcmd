@@ -8,10 +8,14 @@
 name = "gcid"
 
 
+import os
 import sys
 
 
-sys.path.insert(0, name)
+mod = __import__(name)
+
+
+sys.path.insert(0, os.path.dirname(mod.__file__))
 
 
 from object import Config
