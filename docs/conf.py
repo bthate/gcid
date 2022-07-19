@@ -116,16 +116,6 @@ rst_prolog = '''.. raw:: html
     :height: 2.2cm
     :target: index.html
 
-
-.. raw:: html
-
-    <center><b>
-    
-:ref:`home <home>`  - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>` - :ref:`request <request>` - :ref:`writings <writings>` - :ref:`manual <man>`
-
-.. raw:: html
-
-    </b></center>
 '''
 autosummary_generate=True
 autodoc_default_flags=['members', 'undoc-members', 'private-members', "imported-members"]
