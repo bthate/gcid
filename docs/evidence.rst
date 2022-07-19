@@ -80,13 +80,3 @@ There is proof the medication used in forced treatements in the netherlands are 
      :width: 100%
 
 
-.. raw:: html
-
-    <br><br>
-    <center><b>
-    
-:ref:`home <home>` - :ref:`manual <man>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>`
-
-.. raw:: html
-
-    </b></center>

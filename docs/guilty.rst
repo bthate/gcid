@@ -45,13 +45,3 @@ Both the chamber suggesting these laws to the king and the king himself have bee
 .. image:: bevestigd.jpg
 
 
-.. raw:: html
-
-    <br><br>
-    <center><b>
-    
-:ref:`home <home>` - :ref:`manual <man>` - :ref:`evidence <evidence>` - :ref:`guilty <guilty>` - :ref:`reconsider <reconsider>`
-
-.. raw:: html
-
-    </b></center>
