@@ -10,10 +10,6 @@
 
 .. raw:: html
 
-    <center>
-    <i>"As article 6 but on other groups than defined"</i>
-    </center>
-    <br><br>
     In 2018 i informed the king of the netherlands that what he calls medicine in
     his laws are in fact not medicine but poison. Proof of these medicine being poison
     were shown to the king and the first chamber, which was confirmed by
