@@ -1,19 +1,19 @@
-.. _txt:
+.. _teksten:
 
 
 .. raw:: html
 
     <br>
 
-texts
-#####
+teksten
+#######
 
 .. raw:: html
 
     <br>
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :titlesonly:
     :glob:
 
